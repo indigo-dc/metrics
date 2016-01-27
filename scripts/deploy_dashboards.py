@@ -12,11 +12,7 @@ import sys
 import urllib2
 
 
-AUTOMATOR = "/srv/Automator.indigo"
-WORKSPACE = "/srv/test-script/indigo-dc"
-HTML_URL = "https://github.com/indigo-dc"
-#FIXME(orviz) move it to indigo-dc organization
-DASHBOARD_TEMPLATE = "https://github.com/orviz/indigo-dashboard.git"
+SCRIPT_NAME = os.path.basename(__file__)
 CONFIG_TEMPLATE = """# Remove _OFF to activate sections
 
 [generic]
@@ -104,20 +100,15 @@ period = months
 #destination = yourmaildomain@activity.devstack.org:/var/www/dash/"""
 
 
-# create logger with 'spam_application'
-logger = logging.getLogger('fetch-repos')
+logger = logging.getLogger(SCRIPT_NAME)
 logger.setLevel(logging.DEBUG)
-# create file handler which logs even debug messages
-fh = logging.FileHandler('indigo_fetch_repos.log')
+fh = logging.FileHandler("%s.log" % SCRIPT_NAME)
 fh.setLevel(logging.DEBUG)
-# create console handler with a higher log level
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
-# create formatter and add it to the handlers
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 fh.setFormatter(formatter)
 ch.setFormatter(formatter)
-# add the handlers to the logger
 logger.addHandler(fh)
 logger.addHandler(ch)
 
@@ -127,6 +118,36 @@ parser.add_argument('access_token',
                     metavar="OAUTH_TOKEN",
                     type=str,
                     help="GitHub OAuth access token.")
+parser.add_argument('--organization-url',
+                    metavar="URL",
+                    type=str,
+                    default="https://github.com/indigo-dc",
+                    help="INDIGO-DataCloud organization URL.")
+parser.add_argument('--dashboard-url',
+                    metavar="URL",
+                    type=str,
+                    default="https://github.com/orviz/indigo-dashboard.git",
+                    help="Template for dashboard URL.")
+parser.add_argument('--workspace',
+                    metavar="PATH",
+                    type=str,
+                    default="/var/tmp/indigo-dc",
+                    help="Location that points to the indigo-dc workspace.")
+parser.add_argument('--automator-path',
+                    metavar="PATH",
+                    type=str,
+                    default="/var/tmp/Automator",
+                    help="Location for Automator tool.")
+parser.add_argument('--automator-url',
+                    metavar="URL",
+                    type=str,
+                    default="https://github.com/orviz/Automator.git",
+                    help="URL location of Automator tool.")
+parser.add_argument('--automator-branch',
+                    metavar="BRANCH",
+                    type=str,
+                    default="indigo",
+                    help="Branch to fetch from Automator repository.")
 args = parser.parse_args()
 
 
@@ -144,6 +165,7 @@ def clone_repo(url, dest, branch=None, backup=True):
 
     lcmd = ["git", "clone", url, dest]
     if branch:
+        logger.debug("Selected branch '%s'" % branch)
         lcmd = ["git", "clone", "-b", branch, "--single-branch", url, dest]
     else:
         lcmd = ["git", "clone", url, dest]
@@ -152,15 +174,15 @@ def clone_repo(url, dest, branch=None, backup=True):
 
 
 def create_workspace():
-    if not os.path.exists(WORKSPACE):
-        os.makedirs(WORKSPACE)
-        logger.debug("Workspace '%s' created" % WORKSPACE)
+    if not os.path.exists(args.workspace):
+        os.makedirs(args.workspace)
+        logger.debug("Workspace '%s' created" % args.workspace)
     else:
-        logger.debug("Skipping workspace creation: '%s' already exists" % WORKSPACE)
+        logger.debug("Skipping workspace creation: '%s' already exists" % args.workspace)
 
 
 def create_area(name):
-    area_dir = os.path.join(WORKSPACE, '.'.join([name, "project"]))
+    area_dir = os.path.join(args.workspace, '.'.join([name, "project"]))
     if not os.path.exists(area_dir):
         os.makedirs(area_dir)
         for d in ["scm", "conf", "log", "tools", "json"]:
@@ -173,13 +195,24 @@ def create_area(name):
     return area_dir
 
 
+def fetch_automator():
+    if not os.path.exists(args.automator_path):
+        logger.debug("Automator tool could not be found at %s" % args.automator_path)
+        if clone_repo(args.automator_url,
+                      args.automator_path,
+                      branch=args.automator_branch,
+                      backup=False):
+            logger.debug("Automator tool cloned under %s" % args.automator_path)
+    else:
+        logger.info("Automator tool already found under %s" % args.automator_path)
+
 def main():
     # CREATE workspace e.g. /srv/indigo-dc
     create_workspace()
     org_data = json.loads(urllib2.urlopen("https://api.github.com/orgs/indigo-dc/repos").read())
     for repo in org_data:
         name = repo["name"]
-        repo_url = os.path.join(HTML_URL, name)
+        repo_url = os.path.join(args.organization_url, name)
 
         logger.debug("Managing project '%s'" % name)
 
@@ -216,8 +249,9 @@ def main():
         logger.debug("Configuration file generated under %s" % conf_dir)
 
         # 5. RUN python Automator.indigo/launch.py -d /srv/indigo-dc/identity-harmonization
+        fetch_automator()
         json_dir = os.path.join(area_dir, "json")
-        lcmd = ["python", os.path.join(AUTOMATOR, "launch.py"), "-d", area_dir]
+        lcmd = ["python", os.path.join(args.automator_path, "launch.py"), "-d", area_dir]
         p = subprocess.Popen(lcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = p.communicate()
         logger.debug("Running: %s" % ' '.join(lcmd))
@@ -237,8 +271,8 @@ def main():
                 logger.debug("gh-pages branch found. Using it for dashboard re-creation")
                 clone_repo(repo_url, dashboard_dir, branch="gh-pages")
             else:
-                logger.debug("gh-pages branch not found. Using template from %s" % DASHBOARD_TEMPLATE)
-                clone_repo(DASHBOARD_TEMPLATE, dashboard_dir)
+                logger.debug("gh-pages branch not found. Using template from %s" % args.dashboard_url)
+                clone_repo(args.dashboard_url, dashboard_dir)
                 subprocess.check_output(["sed", "-i", r"s/project_name/%s/g" % name,
                                          os.path.join(dashboard_dir, "templates/common/navbar.tmpl")])
         logger.debug("Tool VizGrimoireJS added")
