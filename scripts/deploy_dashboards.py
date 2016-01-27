@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+import argparse
 import json
 import logging
 import os
@@ -40,7 +43,7 @@ extensions = CommitsLOC,FileTypes,Metrics
 [bicho]
 # This file contains the information needed to execute Bicho
 backend = github
-backend_token = b408360299dbb3ecbb70600bcdae73b64ca39e3e
+backend_token = ${access_token}
 debug = True
 delay = 1
 log_table = False
@@ -53,7 +56,7 @@ trackers = https://api.github.com/repos/indigo-dc/${name}/issues
 [pullpo]
 owner = indigo-dc
 url = $name
-oauth_key = b408360299dbb3ecbb70600bcdae73b64ca39e3e
+oauth_key = ${access_token}
 
 #[gerrit]
 ## Information about gerrit
@@ -119,6 +122,14 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 
+parser = argparse.ArgumentParser(description="Deploy indigo-dc VizGrimoire dashboards")
+parser.add_argument('access_token',
+                    metavar="OAUTH_TOKEN",
+                    type=str,
+                    help="GitHub OAuth access token.")
+args = parser.parse_args()
+
+
 def clone_repo(url, dest, branch=None, backup=True):
     if os.path.exists(dest):
         if backup:
@@ -162,76 +173,82 @@ def create_area(name):
     return area_dir
 
 
-# CREATE workspace e.g. /srv/indigo-dc
-create_workspace()
-org_data = json.loads(urllib2.urlopen("https://api.github.com/orgs/indigo-dc/repos").read())
-for repo in org_data:
-    name = repo["name"]
-    repo_url = os.path.join(HTML_URL, name)
+def main():
+    # CREATE workspace e.g. /srv/indigo-dc
+    create_workspace()
+    org_data = json.loads(urllib2.urlopen("https://api.github.com/orgs/indigo-dc/repos").read())
+    for repo in org_data:
+        name = repo["name"]
+        repo_url = os.path.join(HTML_URL, name)
 
-    logger.debug("Managing project '%s'" % name)
+        logger.debug("Managing project '%s'" % name)
 
-    # 1. Create area
-    area_dir = create_area(name)
+        # 1. Create area
+        area_dir = create_area(name)
 
-    # 2. Clone repo
-    scm_dir = os.path.join(area_dir, "scm", name)
-    if clone_repo(repo_url, scm_dir):
-        logger.debug("Repository cloned under %s" % scm_dir)
+        # 2. Clone repo
+        scm_dir = os.path.join(area_dir, "scm", name)
+        if clone_repo(repo_url, scm_dir):
+            logger.debug("Repository cloned under %s" % scm_dir)
 
-    # 3. Get tools
-    tool_dir = os.path.join(area_dir, "tools")
+        # 3. Get tools
+        tool_dir = os.path.join(area_dir, "tools")
 
-    clone_repo("https://github.com/VizGrimoire/GrimoireLib.git",
-               os.path.join(tool_dir, "GrimoireLib"),
-               backup=False)
-    logger.debug("Tool GrimoireLib added")
+        clone_repo("https://github.com/VizGrimoire/GrimoireLib.git",
+                   os.path.join(tool_dir, "GrimoireLib"),
+                   backup=False)
+        logger.debug("Tool GrimoireLib added")
 
-    clone_repo("https://github.com/VizGrimoire/VizGrimoireUtils.git",
-               os.path.join(tool_dir, "VizGrimoireUtils"),
-               backup=False)
-    logger.debug("Tool VizGrimoireUtils added")
+        clone_repo("https://github.com/VizGrimoire/VizGrimoireUtils.git",
+                   os.path.join(tool_dir, "VizGrimoireUtils"),
+                   backup=False)
+        logger.debug("Tool VizGrimoireUtils added")
 
-    # 4. conf/main.conf generation
-    conf_dir = os.path.join(area_dir, "conf")
-    name_underscored = name.replace('-', '_')
-    main_conf = string.Template(CONFIG_TEMPLATE).safe_substitute({
-        "name": name,
-        "name_underscored": name_underscored})
-    with open(os.path.join(conf_dir, 'main.conf'), 'w') as f:
-        f.write(main_conf)
-    logger.debug("Configuration file generated under %s" % conf_dir)
+        # 4. conf/main.conf generation
+        conf_dir = os.path.join(area_dir, "conf")
+        name_underscored = name.replace('-', '_')
+        main_conf = string.Template(CONFIG_TEMPLATE).safe_substitute({
+            "name": name,
+            "name_underscored": name_underscored,
+            "access_token": args.access_token})
+        with open(os.path.join(conf_dir, 'main.conf'), 'w') as f:
+            f.write(main_conf)
+        logger.debug("Configuration file generated under %s" % conf_dir)
 
-    # 5. RUN python Automator.indigo/launch.py -d /srv/indigo-dc/identity-harmonization
-    json_dir = os.path.join(area_dir, "json")
-    lcmd = ["python", os.path.join(AUTOMATOR, "launch.py"), "-d", area_dir]
-    p = subprocess.Popen(lcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = p.communicate()
-    logger.debug("Running: %s" % ' '.join(lcmd))
-    if stderr:
-        logger.fail("Error running automator's launch.py script")
-        sys.exit(200)
+        # 5. RUN python Automator.indigo/launch.py -d /srv/indigo-dc/identity-harmonization
+        json_dir = os.path.join(area_dir, "json")
+        lcmd = ["python", os.path.join(AUTOMATOR, "launch.py"), "-d", area_dir]
+        p = subprocess.Popen(lcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = p.communicate()
+        logger.debug("Running: %s" % ' '.join(lcmd))
+        if stderr:
+            logger.fail("Error running automator's launch.py script")
+            sys.exit(200)
 
-    # 6. VizGrimoireJS
-    #
-    # If gh-repos branch exits, fetch it, otherwise (likely only 1st time) create the
-    # dashboard from the template
-    dashboard_dir = os.path.join(tool_dir, "VizGrimoireJS")
-    lcmd = ["git", "--git-dir", os.path.join(scm_dir, ".git"), "branch", "-a"]
-    for line in subprocess.check_output(lcmd, stderr=subprocess.STDOUT).split('\n'):
-        line = line.strip()
-        if line == "remotes/origin/gh-pages":
-            logger.debug("gh-pages branch found. Using it for dashboard re-creation")
-            clone_repo(repo_url, dashboard_dir, branch="gh-pages")
-        else:
-            logger.debug("gh-pages branch not found. Using template from %s" % DASHBOARD_TEMPLATE)
-            clone_repo(DASHBOARD_TEMPLATE, dashboard_dir)
-            subprocess.check_output(["sed", "-i", r"s/project_name/%s/g" % name,
-                                     os.path.join(dashboard_dir, "templates/common/navbar.tmpl")])
-    logger.debug("Tool VizGrimoireJS added")
-    json_dir_dest = os.path.join(dashboard_dir, "browser/data/json")
-    if os.path.exists(json_dir_dest):
-        shutil.rmtree(json_dir_dest)
-        logger.debug("Removing last '%s' json data directory" % json_dir_dest)
-    shutil.copytree(json_dir, json_dir_dest)
-    logger.debug("JSON files copied to '%s'" % json_dir_dest)
+        # 6. VizGrimoireJS
+        #
+        # If gh-repos branch exits, fetch it, otherwise (likely only 1st time) create the
+        # dashboard from the template
+        dashboard_dir = os.path.join(tool_dir, "VizGrimoireJS")
+        lcmd = ["git", "--git-dir", os.path.join(scm_dir, ".git"), "branch", "-a"]
+        for line in subprocess.check_output(lcmd, stderr=subprocess.STDOUT).split('\n'):
+            line = line.strip()
+            if line == "remotes/origin/gh-pages":
+                logger.debug("gh-pages branch found. Using it for dashboard re-creation")
+                clone_repo(repo_url, dashboard_dir, branch="gh-pages")
+            else:
+                logger.debug("gh-pages branch not found. Using template from %s" % DASHBOARD_TEMPLATE)
+                clone_repo(DASHBOARD_TEMPLATE, dashboard_dir)
+                subprocess.check_output(["sed", "-i", r"s/project_name/%s/g" % name,
+                                         os.path.join(dashboard_dir, "templates/common/navbar.tmpl")])
+        logger.debug("Tool VizGrimoireJS added")
+        json_dir_dest = os.path.join(dashboard_dir, "browser/data/json")
+        if os.path.exists(json_dir_dest):
+            shutil.rmtree(json_dir_dest)
+            logger.debug("Removing last '%s' json data directory" % json_dir_dest)
+        shutil.copytree(json_dir, json_dir_dest)
+        logger.debug("JSON files copied to '%s'" % json_dir_dest)
+
+
+if __name__ == "__main__":
+    main()
