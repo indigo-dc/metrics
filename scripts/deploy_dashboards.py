@@ -23,8 +23,8 @@ mail = orviz@ifca.unican.es
 project = $name
 
 # data about the databases
-db_user = indigo
-db_password = indigo.datacloud.omg
+db_user = $db_user
+db_password = $db_password
 db_cvsanaly = INDIGO_${name_underscored}_cvsanaly
 db_bicho = INDIGO_${name_underscored}_bicho
 #bicho_backend = github
@@ -114,8 +114,18 @@ logger.addHandler(ch)
 
 
 parser = argparse.ArgumentParser(description="Deploy indigo-dc VizGrimoire dashboards")
+parser.add_argument('db_user',
+                    metavar="USERID",
+                    type=str,
+                    default="indigo.dc",
+                    help="MetricsDB user ID.")
+parser.add_argument('db_password',
+                    metavar="PASSWORD",
+                    type=str,
+                    default="",
+                    help="MetricsDB user password.")
 parser.add_argument('access_token',
-                    metavar="OAUTH_TOKEN",
+                    metavar="GITHUB_OAUTH_TOKEN",
                     type=str,
                     help="GitHub OAuth access token.")
 parser.add_argument('--organization-url',
@@ -149,7 +159,6 @@ parser.add_argument('--automator-branch',
                     default="indigo",
                     help="Branch to fetch from Automator repository.")
 args = parser.parse_args()
-
 
 def clone_repo(url, dest, branch=None, backup=True):
     if os.path.exists(dest):
@@ -243,7 +252,9 @@ def main():
         main_conf = string.Template(CONFIG_TEMPLATE).safe_substitute({
             "name": name,
             "name_underscored": name_underscored,
-            "access_token": args.access_token})
+            "access_token": args.access_token,
+            "db_user": args.db_user,
+            "db_password": args.db_password})
         with open(os.path.join(conf_dir, 'main.conf'), 'w') as f:
             f.write(main_conf)
         logger.debug("Configuration file generated under %s" % conf_dir)
