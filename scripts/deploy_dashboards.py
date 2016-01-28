@@ -25,6 +25,7 @@ project = $name
 # data about the databases
 db_user = $db_user
 db_password = $db_password
+db_host = $db_host
 db_cvsanaly = INDIGO_${name_underscored}_cvsanaly
 db_bicho = INDIGO_${name_underscored}_bicho
 #bicho_backend = github
@@ -124,6 +125,11 @@ parser.add_argument('db_password',
                     type=str,
                     default="",
                     help="MetricsDB user password.")
+parser.add_argument('db_host',
+                    metavar="HOST",
+                    type=str,
+                    default="metricsdb",
+                    help="MetricsDB host.")
 parser.add_argument('access_token',
                     metavar="GITHUB_OAUTH_TOKEN",
                     type=str,
