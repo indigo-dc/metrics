@@ -260,7 +260,8 @@ def main():
             "name_underscored": name_underscored,
             "access_token": args.access_token,
             "db_user": args.db_user,
-            "db_password": args.db_password})
+            "db_password": args.db_password,
+	    "db_host": args.db_host})
         with open(os.path.join(conf_dir, 'main.conf'), 'w') as f:
             f.write(main_conf)
         logger.debug("Configuration file generated under %s" % conf_dir)
