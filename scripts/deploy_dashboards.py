@@ -270,12 +270,12 @@ def main():
         fetch_automator()
         json_dir = os.path.join(area_dir, "json")
         lcmd = ["python", os.path.join(args.automator_path, "launch.py"), "-d", area_dir]
-        p = subprocess.Popen(lcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = p.communicate()
         logger.debug("Running: %s" % ' '.join(lcmd))
-        if stderr:
-            logger.fail("Error running automator's launch.py script")
-            sys.exit(200)
+	try:
+    	    result = subprocess.check_output(lcmd, stderr=subprocess.STDOUT)
+	except subprocess.CalledProcessError, err:
+            logger.debug("Error running automator's launch.py script: %s" % err.output)
+            sys.exit(err.returncode)
 
         # 6. VizGrimoireJS
         #
