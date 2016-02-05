@@ -9,6 +9,7 @@ import shutil
 import string
 import subprocess
 import sys
+import tempfile
 import urllib2
 
 
@@ -52,7 +53,8 @@ trackers = https://api.github.com/repos/indigo-dc/${name}/issues
 
 [pullpo]
 owner = indigo-dc
-url = $name
+# url = $name
+projects = $name
 oauth_key = ${access_token}
 
 #[gerrit]
@@ -166,27 +168,79 @@ parser.add_argument('--automator-branch',
                     help="Branch to fetch from Automator repository.")
 args = parser.parse_args()
 
-def clone_repo(url, dest, branch=None, backup=True):
-    if os.path.exists(dest):
-        if backup:
-            dest_last = '.'.join([dest, "last"])
-            if os.path.exists(dest_last):
-                shutil.rmtree(dest_last)
-            shutil.move(dest, dest_last)
-            logger.debug("Backup last existing repo directory: %s" % dest_last)
-        else:
-            shutil.rmtree(dest)
-            logger.debug("Remove already existing repo directory: %s" % dest)
 
-    lcmd = ["git", "clone", url, dest]
+def clone_repo(url, dest=None, branch=None, backup=True):
+    lcmd = ["git", "clone"]
     if branch:
-        logger.debug("Selected branch '%s'" % branch)
-        lcmd = ["git", "clone", "-b", branch, "--single-branch", url, dest]
+	lcmd.extend(["-b", branch, "--single-branch"])
+    lcmd.extend([url])
+    if dest:
+        if os.path.exists(dest):
+            if backup:
+                dest_last = '.'.join([dest, "last"])
+                if os.path.exists(dest_last):
+                    shutil.rmtree(dest_last)
+                shutil.move(dest, dest_last)
+                logger.debug("Backup last existing repo directory: %s" % dest_last)
+            else:
+                shutil.rmtree(dest)
+                logger.debug("Remove already existing repo directory: %s" % dest)
+        lcmd.extend([dest])
+    logger.debug("COMMAND: %s" % ' '.join(lcmd))
+    try:
+    	return subprocess.check_output(lcmd, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError, err:
+        logger.debug("Could not clone repository: %s" % err.output)
+
+
+def push_gh_pages(name, repo_url, dashboard_path):
+    last_cwd = os.getcwd()
+    tmpdir = tempfile.mkdtemp()
+    repodir = os.path.join(tmpdir, name)
+    
+    os.chdir(tmpdir)
+    logger.debug("Switching to temporary directory: %s" % tmpdir)
+    clone_error = False
+    logger.debug("1")
+    if not clone_repo(repo_url, branch="gh-pages", backup=False):
+    	logger.debug("No gh-pages branch found. Creating'")
+    	logger.debug("2")
+	if clone_repo(repo_url, backup=False):
+	    logger.debug("Switching to directory: %s" % repodir)
+	    os.chdir(repodir)
+	    exec_command(["git", "checkout", "--orphan", "gh-pages"])
+	    exec_command(["git", "rm", "-rf", "."])
+	else:
+	    clone_error = True	
     else:
-        lcmd = ["git", "clone", url, dest]
+	logger.debug("Switching to directory: %s" % repodir)
+	os.chdir(repodir)
 
-    return subprocess.check_output(lcmd, stderr=subprocess.STDOUT)
+    if clone_error:
+	logger.debug("Could not clone repository: %s" % repo_url)
 
+    logger.debug("Copying dashboard files from '%s' to '%s'" % (dashboard_path, os.getcwd()))
+    dest_dashboard = ''.join([dashboard_path, '/'])
+    exec_command(["rsync", "--exclude", ".git", "-avz", ''.join([dashboard_path, '/']), os.getcwd()], abort=True)
+    try:
+	    logger.debug("Commiting files")
+	    logger.debug(subprocess.check_output(["git", "add", "*"], stderr=subprocess.STDOUT))
+	    logger.debug(subprocess.check_output(["git", "commit", "-a", "-m", "Updated by %s" % SCRIPT_NAME], stderr=subprocess.STDOUT))
+
+	    logger.debug("Pushing files")
+	    logger.debug(subprocess.check_output(["git",
+				     "push",
+				     "https://%s@github.com/indigo-dc/%s.git" % (args.access_token, name),
+				     "gh-pages",
+				     "-f"], stderr=subprocess.STDOUT))
+    except subprocess.CalledProcessError, err:
+        logger.debug("Could not push dashboard files to gh-pages branch: %s" % err.output)
+        sys.exit(err.returncode)
+
+    logger.info("Dashboard files pushed to 'gh-pages' branch")
+    shutil.rmtree(tmpdir)  
+    os.chdir(last_cwd)
+    
 
 def create_workspace():
     if not os.path.exists(args.workspace):
@@ -213,6 +267,7 @@ def create_area(name):
 def fetch_automator():
     if not os.path.exists(args.automator_path):
         logger.debug("Automator tool could not be found at %s" % args.automator_path)
+	logger.debug("4")
         if clone_repo(args.automator_url,
                       args.automator_path,
                       branch=args.automator_branch,
@@ -221,8 +276,21 @@ def fetch_automator():
     else:
         logger.info("Automator tool already found under %s" % args.automator_path)
 
+
+def exec_command(lcmd, abort=False, stderr_to_stdout=True):
+#    if stderr_to_stdout:
+#	lcmd.append("2>&1")
+    p = subprocess.Popen(lcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    if err:
+	logger.debug("Command '%s' did not succeed. Reason: %s" % (' '.join(lcmd), err))
+	if abort:
+	    sys.exit(-1)
+    return out
+
+
 def main():
-    # CREATE workspace e.g. /srv/indigo-dc
+    # CREATE workspace
     create_workspace()
     org_data = json.loads(urllib2.urlopen("https://api.github.com/orgs/indigo-dc/repos").read())
     for repo in org_data:
@@ -242,13 +310,17 @@ def main():
         # 3. Get tools
         tool_dir = os.path.join(area_dir, "tools")
 
-        clone_repo("https://github.com/VizGrimoire/GrimoireLib.git",
+        #clone_repo("https://github.com/VizGrimoire/GrimoireLib.git",
+        clone_repo("https://github.com/orviz/GrimoireLib.git",
                    os.path.join(tool_dir, "GrimoireLib"),
+		   branch="remote_host_db_support",
                    backup=False)
         logger.debug("Tool GrimoireLib added")
 
-        clone_repo("https://github.com/VizGrimoire/VizGrimoireUtils.git",
+        #clone_repo("https://github.com/VizGrimoire/VizGrimoireUtils.git",
+        clone_repo("https://github.com/orviz/VizGrimoireUtils.git",
                    os.path.join(tool_dir, "VizGrimoireUtils"),
+		   branch="remote_db_for_domains_analysis",
                    backup=False)
         logger.debug("Tool VizGrimoireUtils added")
 
@@ -279,28 +351,20 @@ def main():
 
         # 6. VizGrimoireJS
         #
-        # If gh-repos branch exits, fetch it, otherwise (likely only 1st time) create the
-        # dashboard from the template
         dashboard_dir = os.path.join(tool_dir, "VizGrimoireJS")
-        lcmd = ["git", "--git-dir", os.path.join(scm_dir, ".git"), "branch", "-a"]
-        for line in subprocess.check_output(lcmd, stderr=subprocess.STDOUT).split('\n'):
-            line = line.strip()
-            if line == "remotes/origin/gh-pages":
-                logger.debug("gh-pages branch found. Using it for dashboard re-creation")
-                clone_repo(repo_url, dashboard_dir, branch="gh-pages")
-            else:
-                logger.debug("gh-pages branch not found. Using template from %s" % args.dashboard_url)
-                clone_repo(args.dashboard_url, dashboard_dir)
-                subprocess.check_output(["sed", "-i", r"s/project_name/%s/g" % name,
-                                         os.path.join(dashboard_dir, "templates/common/navbar.tmpl")])
-        logger.debug("Tool VizGrimoireJS added")
+	if clone_repo(args.dashboard_url, dashboard_dir):
+            logger.debug("Tool VizGrimoireJS added")
+            exec_command(["sed", "-i", r"s/project_name/%s/g" % name,
+                          os.path.join(dashboard_dir, "templates/common/navbar.tmpl")])
+
         json_dir_dest = os.path.join(dashboard_dir, "browser/data/json")
         if os.path.exists(json_dir_dest):
             shutil.rmtree(json_dir_dest)
             logger.debug("Removing last '%s' json data directory" % json_dir_dest)
         shutil.copytree(json_dir, json_dir_dest)
         logger.debug("JSON files copied to '%s'" % json_dir_dest)
-
+	
+	push_gh_pages(name, repo_url, dashboard_dir)
 
 if __name__ == "__main__":
     main()
