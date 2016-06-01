@@ -14,8 +14,8 @@ import yaml
 code_style = {
     "pep8": {
         "name": "PEP 8 -- Style Guide for Python Code",
-        "url": "https://www.python.org/dev/peps/pep-0008/"},
-        "de_facto": "Yes",
+        "url": "https://www.python.org/dev/peps/pep-0008/",
+        "defacto": "Yes"},
 }
 
 

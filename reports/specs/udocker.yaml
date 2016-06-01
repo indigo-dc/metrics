@@ -23,9 +23,12 @@ repository:
     url: https://github.com/indigo-dc/udocker
 code_style: 
     standard: "pep8"
+    de_facto: yes
     exceptions: None
     richness:  
 unit_test: 
     jenkins_job: udocker-unittest
     graph: None
     data: []
+gitbook:
+    url: https://www.gitbook.com/book/indigo-dc/udocker/

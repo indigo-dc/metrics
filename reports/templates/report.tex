@@ -99,14 +99,14 @@
 \BLOCK{if product.repository.url}
 Repository exists under \texttt{indigo-dc} GitHub organization: \url{\VAR{product.repository.url}}.
 \BLOCK{else}
-Repository is currently \textbf{not available} under \texttt{indigo-dc} GitHub organization.
+Repository is currently \textbf{not available} under \href{https://github.com/indigo-dc/}{\texttt{indigo-dc}} GitHub organization.
 \BLOCK{endif}
 
 
 \input{title_codestyle.tex}
 Code style definition:
 \href{\VAR{product.code_style.data.url}}{\VAR{product.code_style.data.name}} \\
-Community/de-facto standard: \VAR{product.code_style.data.de_facto} \\
+Community/de-facto standard: \VAR{product.code_style.data.defacto} \\
 Exceptions: \VAR{product.code_style.exceptions} \\
 Richness: \VAR{product.code_style.richness} \\
  
@@ -152,5 +152,10 @@ Richness: \VAR{product.code_style.richness} \\
 
 \input{title_functional_integration.tex}
 \input{title_gitbook.tex}
+\BLOCK{if product.gitbook.url}
+Documentation available under \texttt{indigo-dc} GitBook organization: \url{\VAR{product.gitbook.url}}.
+\BLOCK{else}
+Documentation is currently \textbf{not available} under \href{https://www.gitbook.com/@indigo-dc/dashboard}{\texttt{indigo-dc}} GitBook organization.
+\BLOCK{endif}
 
 \end{document}
