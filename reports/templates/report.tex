@@ -23,21 +23,6 @@
 }
 \urlstyle{same}
 
-\begin{document}
-
-\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report: \VAR{product.id}\\
-       \VAR{period} \\
-}
-
-
-\maketitle
-
-\newpage
-
-
-%
-% OpenProject tasks - pgfgantt
-%
 \definecolor{barblue}{RGB}{153,204,254}
 \definecolor{groupblue}{RGB}{51,102,254}
 \definecolor{linkred}{RGB}{165,0,33}
@@ -48,6 +33,56 @@
 \setganttlinklabel{f-s}{FINISH-TO-START}
 \setganttlinklabel{f-f}{FINISH-TO-FINISH}
 \sffamily
+
+\newcommand{\yesbox}{\colorbox{green!90}{\textcolor{white!90}{\textsf{Yes}}}}
+\newcommand{\nobox}{\colorbox{red!90}{\textcolor{white!90}{\textsf{No}}}}
+
+\begin{document}
+
+\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report: \VAR{product.id}\\
+       \VAR{period} \\
+}
+
+
+\maketitle
+
+\vspace{5em}
+
+\begin{center}
+\Large
+\begin{tabular}{ll}
+    \multicolumn{2}{c}{\underline{SQA Progress Summary}} \vspace{1em}\\
+    GitHub repository & \BLOCK{if product.repository.url}\yesbox\BLOCK{else}\nobox\BLOCK{endif} \vspace{0.6em}\\
+    Code style adherence & \BLOCK{if product.code_style.data}\yesbox\BLOCK{else}\nobox\BLOCK{endif} \vspace{-1.7em} \\
+    Code coverage & \begin{ganttchart}[
+        canvas/.append style={fill=none, draw=none},
+        hgrid style/.style={draw=none, fill=none},
+        vgrid={*1{draw=none, fill=none}},
+        title/.style={draw=none, fill=none},
+        title label font=\bfseries\footnotesize,
+        title label node/.append style={below=7pt},
+        include title in canvas=false,
+        bar label font=\mdseries\small\color{black!70},
+        bar label node/.append style={left=2cm},
+        bar/.append style={draw=none, fill=black!63},
+        bar incomplete/.append style={fill=barblue},
+        bar progress label font=\mdseries\footnotesize\color{black!70},
+        bar top shift=1, bar height=0.8
+        ]{1}{5}
+        \ganttbar[progress=80]{}{1}{5}
+    \end{ganttchart} \vspace{0.6em}\\
+    GitBook documentation & \BLOCK{if product.gitbook.url}\yesbox\BLOCK{else}\nobox\BLOCK{endif} \\
+\end{tabular}
+\end{center}
+
+
+\normalsize 
+\newpage
+
+
+%
+% OpenProject tasks - pgfgantt
+%
 \begin{ganttchart}[
     canvas/.append style={fill=none, draw=black!5, line width=.75pt},
     hgrid style/.style={draw=black!5, line width=.75pt},
