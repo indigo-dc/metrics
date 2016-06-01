@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
 import argparse
+import glob
 import os
+import shutil
 
 import jenkins
 import jinja2
 from jinja2 import Template
+import yaml
 
 
 code_style = {
@@ -15,38 +18,29 @@ code_style = {
         "de_facto": "Yes",
 }
 
-# FIXME(orviz) Tasks must be taken from OpenProject API
-products = {
-    "udocker": {
-        "tasks": {
-            "parent": {"id": "3641", "progress": "57"},
-            "children": [
-                {"name": "Repository synchronization", "id": "3647", "progress": "53"},
-                {"name": "Code style specification", "id": "3650", "progress": "100"},
-                {"name": "Unit testing coverage", "id": "3653", "progress": "100"},
-                {"name": "Functional and integration testing coverage", "id": "3656", "progress": "0"},
-                {"name": "GitBook documentation", "id": "3659", "progress": "53"}],
-        },
-        #"repository": {"url": "https://github.com/indigo-dc/udocker"},
-        "repository": {"url": ""},
-        "code_style": {"data": code_style["pep8"], "exceptions": None, "richness": "-"},
-        "unittest": {"jenkins_job": "udocker-unittest", "graph": None, "data": []},
-    }
-}
-
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Generate INDIGO-DataCloud SQA reports")
     parser.add_argument('template',
-			metavar="FILE",
+			metavar="LATEX_TEMPLATE",
 			type=str,
 			help="LaTeX template location.")
+    parser.add_argument('specdir',
+			metavar="YAML_SPECS_DIR",
+			type=str,
+			help="Directory with the YAML specs for each product.")
     parser.add_argument('--report',
 			metavar="FILE",
-                        #default="indigo_sqa.tex",
 			type=str,
 			help="LaTeX report file location.")
+    parser.add_argument('--compile',
+			action="store_true",
+                        help="Compile resulting LaTeX rendered file.")
     return parser.parse_args()
+
+
+def load_yaml(fname):
+    return yaml.load(open(fname, 'r'))
 
 
 def load_jinja(fname):
@@ -70,32 +64,39 @@ def load_jinja(fname):
     )
 
 
-def main(fname, output=None):
+def main(fname, specdir, output=None, do_compile=False):
     latex_jinja_env = load_jinja(fname)
-    for product in products.keys():
+    spec_yaml_files = glob.glob(os.path.join(specdir, "*.yaml"))
+
+    for f in spec_yaml_files:
+        specs = load_yaml(f)
         # jenkins
-        products[product]["unittest"]["graph"] = jenkins.save_cobertura_graph(
-            products[product]["unittest"]["jenkins_job"],
+        specs["code_style"]["data"] = code_style[specs["code_style"]["standard"]]
+        specs["unit_test"]["graph"] = jenkins.save_cobertura_graph(
+            specs["unit_test"]["jenkins_job"],
             dest_dir="figs")
-        products[product]["unittest"]["data"] = jenkins.get_cobertura_data(
-            products[product]["unittest"]["jenkins_job"])
+        specs["unit_test"]["data"] = jenkins.get_cobertura_data(
+            specs["unit_test"]["jenkins_job"])
 
         # latex
         template = latex_jinja_env.get_template(os.path.basename(fname))
         r = template.render(
-                product=product,
+                product=specs,
                 period="Apr-May 2016",
-                tasks=products[product]["tasks"],
-                repository=products[product]["repository"],
-                code_style=products[product]["code_style"],
-                unit_test=products[product]["unittest"],
         )
         if output:
             open(args.report, 'w').write(r)
         else:
             print(r)
+    if do_compile:
+        for f in glob.glob(os.path.join(os.path.dirname(fname), "title_*.tex")):
+            shutil.copy(f, '.')
+        # FIXME(orviz) pdflatex command missing
 
 
 if __name__ == "__main__":
     args = parse_args()
-    main(args.template, output=args.report)
+    main(args.template,
+         args.specdir,
+         output=args.report,
+         do_compile=args.compile)

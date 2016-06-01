@@ -1,0 +1,31 @@
+id: udocker
+tasks: 
+    parent: 
+        id: 3641
+        progress: 57
+    children: 
+        - name: "Repository synchronization"
+          id: 3647
+          progress: 53
+        - name: "Code style specification"
+          id: 3650
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3653
+          progress: 100
+        - name: "Functional and integration testing coverage"
+          id: 3656
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3659
+          progress: 53
+repository: 
+    url: https://github.com/indigo-dc/udocker
+code_style: 
+    standard: "pep8"
+    exceptions: None
+    richness:  
+unit_test: 
+    jenkins_job: udocker-unittest
+    graph: None
+    data: []
