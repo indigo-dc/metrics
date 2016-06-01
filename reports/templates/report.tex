@@ -23,21 +23,23 @@
 }
 \urlstyle{same}
 
+
 \definecolor{barblue}{RGB}{153,204,254}
 \definecolor{groupblue}{RGB}{51,102,254}
 \definecolor{linkred}{RGB}{165,0,33}
 \renewcommand\sfdefault{phv}
-\renewcommand\mddefault{mc}
+%\renewcommand\mddefault{mc} % this causes bold, italic not to be displayed
 \renewcommand\bfdefault{bc}
 \setganttlinklabel{s-s}{START-TO-START}
 \setganttlinklabel{f-s}{FINISH-TO-START}
 \setganttlinklabel{f-f}{FINISH-TO-FINISH}
 \sffamily
 
-\newcommand{\yesbox}{\colorbox{green!90}{\textcolor{white!90}{\textsf{Yes}}}}
-\newcommand{\nobox}{\colorbox{red!90}{\textcolor{white!90}{\textsf{No}}}}
 
 \begin{document}
+
+\newcommand{\yesbox}{\colorbox{green!90}{\textcolor{white!90}{\textsf{Yes}}}}
+\newcommand{\nobox}{\colorbox{red!90}{\textcolor{white!90}{\textsf{No}}}}
 
 \title{INDIGO-DataCloud Software Quality Assurance (SQA) Report: \VAR{product.id}\\
        \VAR{period} \\
