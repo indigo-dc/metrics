@@ -1,4 +1,5 @@
 id: udocker
+status_rejected: True
 tasks: 
     parent: 
         id: 3641
@@ -26,9 +27,24 @@ code_style:
     de_facto: yes
     exceptions: None
     richness:  
-unit_test: 
+unit_test:
+    coverage: 18
     jenkins_job: udocker-unittest
     graph: None
     data: []
 gitbook:
-    url: https://www.gitbook.com/book/indigo-dc/udocker/
+    url: https://indigo-dc.gitbooks.io/udocker/content/
+    types:
+        - Readme
+        - User documentation
+config_management:
+    tool: ansible
+    url: https://example.org
+    level: installation
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful: True
+          url: https://example.org
+        - version: CentOS7
+          successful: False
+          url: https://example.org

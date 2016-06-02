@@ -1,12 +1,38 @@
 
-\appendix
+\part{How to read this document}
+\setcounter{section}{0}
 
-\section{How to read this document}
+% Front/summary page
+\section{Summary (front) page}
+Both the overall product's SQA adherence and per-task status codes are explained below: \\
+\begin{tabular}{l L{10cm}}
+    \greenbox{ACCEPTED} & Task has been successfully completed and fulfills the project's SQA requirements, listed in \href{https://owncloud.indigo-datacloud.eu/index.php/s/yDklCrWjKnjutVA}{Deliverable D3.1} and \href{https://    project.indigo-datacloud.eu/projects/wp3/wiki/Extensions_to_SQA}{Extensions to Software Quality Assurance} documents. \\ 
+    \redbox{NOT ACCEPTED} & Task has not been completed, yet some missing required bits have not been provided. \\
+    \graybox{IN PROGRESS} & Task has not been completed, but can proceed as it is. \\[0.1em]
+    \graybox{WP3 PENDING} & Task has some pending work from WP3 side, meaning that the product already submitted the required data but it has not been already analyzed by WP3. \\
+\end{tabular}
 
-\begin{description}[style=nextline]
-\item[What are the \texttt{SQA Progress Status} possible values?] Answer: See the table below: \\[1em]
-	\begin{tabular}{l L{10cm}}
-		ACCEPTED & Product's SQA is compliant with the project's requirements, listed in \href{https://owncloud.indigo-datacloud.eu/index.php/s/yDklCrWjKnjutVA}{Deliverable D3.1} and \href{https://project.indigo-datacloud.eu/projects/wp3/wiki/Extensions_to_SQA}{Extensions to Software Quality Assurance} documents. \\
-		NOT ACCEPTED & Product fails to fulfill one or more of the required project's SQA statements.
-	\end{tabular}
-\end{description}
+
+% Task progress
+\section{Task Progress}
+
+\subsection{Code style}
+
+\subsection{Unit testing}
+This section will display the a) \texttt{trend graph} with the evolution of the code coverage over time and b) the \texttt{Cobertura report}, with the coverage results of different methods. Both are taken from the project's Jenkins continuous integration service. \\
+
+\underline{Note}: the lower coverage value is the current coverage value of the code.
+
+\subsection{Functional/Integration testing}
+
+\subsection{GitBook documentation}
+Whenever the documentation of the product is available at the project's GitBook repository, both the a) \texttt{link} to the documentation index and b) \texttt{type of documentation} provided will be displayed in the report.
+
+\subsection{Configuration Management}
+Whenever the product has an recipe to be deployed automatically the following information will be available: \\[0.5em]
+\begin{tabular}{l L{10cm}}
+    \graybox{Tool} & Configuration management tool used. \\
+    \graybox{Manifest link} & URL pointing to the manifest/s. \\
+    \graybox{Deployment level} & Whether \texttt{installation}, \texttt{configuration} or both. \\
+    \graybox{Build status} & Current build status for the project's supported OS distributions. \\
+\end{tabular}

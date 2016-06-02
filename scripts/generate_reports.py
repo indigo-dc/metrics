@@ -81,8 +81,10 @@ def main(fname, specdir, output=None, do_compile=False):
         # latex
         template = latex_jinja_env.get_template(os.path.basename(fname))
         r = template.render(
-                product=specs,
-                period="Apr-May 2016",
+            product=specs,
+            period="Apr-Jun 2016",
+            weeks=12,
+            current_week=9,
         )
         if output:
             open(args.report, 'w').write(r)
