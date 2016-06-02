@@ -28,7 +28,7 @@
 \definecolor{groupblue}{RGB}{51,102,254}
 \definecolor{linkred}{RGB}{165,0,33}
 \renewcommand\sfdefault{phv}
-%\renewcommand\mddefault{mc} % this causes bold, italic not to be displayed
+%\renewcommand\mddefault{mc} % this causes bold, italic, .. not to be displayed
 \renewcommand\bfdefault{bc}
 \setganttlinklabel{s-s}{START-TO-START}
 \setganttlinklabel{f-s}{FINISH-TO-START}
@@ -38,11 +38,11 @@
 
 \begin{document}
 
-\newcommand{\yesbox}{\colorbox{green!90}{\textcolor{white!90}{\textsf{Yes}}}}
-\newcommand{\nobox}{\colorbox{red!90}{\textcolor{white!90}{\textsf{No}}}}
+\newcommand{\yesbox}{\colorbox{green!90}{\textcolor{white!90}{\textsf{\textbf{Yes}}}}}
+\newcommand{\nobox}{\colorbox{red!90}{\textcolor{white!90}{\textsf{\textbf{No}}}}}
 
-\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report: \VAR{product.id}\\
-       \VAR{period} \\
+\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report \VAR{period}\\[0.5em] 
+       \huge{\texttt{\VAR{product.id}}}\\
 }
 
 
@@ -194,5 +194,7 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \url{\VAR
 \BLOCK{else}
 Documentation is currently \textbf{not available} under \href{https://www.gitbook.com/@indigo-dc/dashboard}{\texttt{indigo-dc}} GitBook organization.
 \BLOCK{endif}
+
+\input{title_configuration.tex}
 
 \end{document}
