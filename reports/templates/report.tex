@@ -7,13 +7,19 @@
 \usepackage{hyperref}
 \usepackage{longtable}
 \usepackage{fancyhdr}
-\pagestyle{fancy}
 \usepackage{graphicx}
 
 \usepackage{xcolor}
 \usepackage{textcomp}
 
 \usepackage{pgfgantt}
+
+\usepackage{enumitem}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\pagestyle{fancy}
 
 \hypersetup{
     colorlinks=true,
@@ -41,19 +47,24 @@
 \newcommand{\yesbox}{\colorbox{green!90}{\textcolor{white!90}{\textsf{\textbf{Yes}}}}}
 \newcommand{\nobox}{\colorbox{red!90}{\textcolor{white!90}{\textsf{\textbf{No}}}}}
 
-\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report \VAR{period}\\[0.5em] 
+\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report \VAR{period}\\[1.5em] 
        \huge{\texttt{\VAR{product.id}}}\\
 }
 
-
+\date{} 
 \maketitle
 
-\vspace{5em}
-
-\begin{center}
 \Large
+
+\vspace{-3em}
+\begin{center}
+\colorbox{gray!50}{\textcolor{white}{\textsf{\textbf{\strut SQA Progress Status}}}}\colorbox{blue!50}{\textcolor{white}{\textsf{\textbf{\strut ACCEPTED}}}} \\
+\end{center}
+\vspace{4em}
+%\colorbox{gray!50}{\textcolor{white}{\textsf{\textbf{SQA Progress Summary}}}} \vspace{0.1em}\\
+\begin{center}
 \begin{tabular}{ll}
-    \multicolumn{2}{c}{\underline{SQA Progress Summary}} \vspace{1em}\\
+    %\multicolumn{2}{l}{\colorbox{gray!50}{\textcolor{white}{\textsf{\textbf{SQA Progress Summary}}}}} \vspace{1em}\\
     GitHub repository & \BLOCK{if product.repository.url}\yesbox\BLOCK{else}\nobox\BLOCK{endif} \vspace{0.6em}\\
     Code style adherence & \BLOCK{if product.code_style.data}\yesbox\BLOCK{else}\nobox\BLOCK{endif} \vspace{-1.7em} \\
     Code coverage & \begin{ganttchart}[
@@ -134,18 +145,19 @@
 
 \input{title_repository.tex}
 \BLOCK{if product.repository.url}
-Repository exists under \texttt{indigo-dc} GitHub organization: \url{\VAR{product.repository.url}}.
+Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{\VAR{product.repository.url}}\end{center}
 \BLOCK{else}
 Repository is currently \textbf{not available} under \href{https://github.com/indigo-dc/}{\texttt{indigo-dc}} GitHub organization.
 \BLOCK{endif}
 
 
 \input{title_codestyle.tex}
-Code style definition:
-\href{\VAR{product.code_style.data.url}}{\VAR{product.code_style.data.name}} \\
-Community/de-facto standard: \VAR{product.code_style.data.defacto} \\
-Exceptions: \VAR{product.code_style.exceptions} \\
-Richness: \VAR{product.code_style.richness} \\
+\begin{tabular}{ll}
+    Code style definition & \href{\VAR{product.code_style.data.url}}{\VAR{product.code_style.data.name}} \\
+    Community/de-facto standard & \VAR{product.code_style.data.defacto} \\
+    Exceptions & \VAR{product.code_style.exceptions} \\
+    Richness & \VAR{product.code_style.richness} \\
+\end{tabular}
  
  
 \input{title_unittest.tex}
@@ -188,13 +200,19 @@ Richness: \VAR{product.code_style.richness} \\
 
 
 \input{title_functional_integration.tex}
+
+
 \input{title_gitbook.tex}
 \BLOCK{if product.gitbook.url}
-Documentation available under \texttt{indigo-dc} GitBook organization: \url{\VAR{product.gitbook.url}}.
+Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0.1em} \begin{center}\url{\VAR{product.gitbook.url}}\end{center}
 \BLOCK{else}
 Documentation is currently \textbf{not available} under \href{https://www.gitbook.com/@indigo-dc/dashboard}{\texttt{indigo-dc}} GitBook organization.
 \BLOCK{endif}
 
 \input{title_configuration.tex}
+
+
+\newpage
+\input{title_annex.tex}
 
 \end{document}
