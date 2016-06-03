@@ -3,6 +3,7 @@ import os.path
 import requests
 from StringIO import StringIO
 
+import jenkinsapi
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.utils.requester import Requester
 from PIL import Image
@@ -17,6 +18,14 @@ def get_last_buildno(job_name):
     #j = Jenkins(JENKINS_URL, requester=Requester(username, password, baseurl=JENKINS_URL, ssl_verify=False))
     j = Jenkins(JENKINS_URL, ssl_verify=False)
     return j.get_job(job_name).get_last_good_build().buildno
+
+
+def get_last_job_url(job_name):
+    try:
+        buildno = get_last_buildno(job_name)
+    except jenkinsapi.custom_exceptions.UnknownJob:
+        return None
+    return '/'.join([JENKINS_URL, "job/%s/%s" % (job_name, buildno)])
 
 
 def save_cobertura_graph(job_name, dest_dir):

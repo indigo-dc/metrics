@@ -1,50 +1,56 @@
 id: udocker
-status_rejected: True
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks: 
     parent: 
         id: 3641
-        progress: 57
+        progress: 53
     children: 
         - name: "Repository synchronization"
-          id: 3647
-          progress: 53
+          id: 3644
+          progress: 100
         - name: "Code style specification"
-          id: 3650
+          id: 3647
           progress: 100
         - name: "Unit testing coverage"
+          id: 3650
+          progress: 18
+        - name: "Functional and integration testing coverage"
           id: 3653
           progress: 100
-        - name: "Functional and integration testing coverage"
+        - name: "Configuration management"
           id: 3656
           progress: 0
         - name: "GitBook documentation"
           id: 3659
-          progress: 53
+          progress: 50
 repository: 
     url: https://github.com/indigo-dc/udocker
 code_style: 
     standard: "pep8"
-    de_facto: yes
     exceptions: 0
-    richness: "-" 
+    jenkins_job: udocker-codestyle
 unit_test:
     coverage: 18
     jenkins_job: udocker-unittest
-    graph: None
-    data: []
+func_int_test:
+    comments:
+        - "Product leader provided both functional and integration tests. WP3 is currently working on the Jenkins CI job definition."
 gitbook:
     url: https://indigo-dc.gitbooks.io/udocker/content/
     types:
         - Readme
         - User documentation
+    comments: # latex
+        - "Task is at 50\\% of progress since WP3 is waiting for the confirmation about the completeness of the documentation already provided."
 config_management:
-    tool: ansible
-    url: https://example.org
-    level: installation
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
     build:
         - version: Ubuntu 14.04 LTS
-          successful: True
-          url: https://example.org
+          successful:   # True, False
+          url:
         - version: CentOS7
-          successful: False
-          url: https://example.org
+          successful:   # True, False
+          url:

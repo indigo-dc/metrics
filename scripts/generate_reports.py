@@ -71,13 +71,21 @@ def main(fname, specdir, code_style=None, output=None, do_compile=False):
 
     for f in spec_yaml_files:
         specs = load_yaml(f)
-        # jenkins
+        # specs - code_style
+        specs["code_style"]["job_url"] = jenkins.get_last_job_url(
+            specs["code_style"]["jenkins_job"])
         specs["code_style"]["data"] = code_style[specs["code_style"]["standard"]]
+        # specs - unit_test
+        specs["unit_test"]["job_url"] = jenkins.get_last_job_url(
+            specs["unit_test"]["jenkins_job"])
         specs["unit_test"]["graph"] = jenkins.save_cobertura_graph(
             specs["unit_test"]["jenkins_job"],
             dest_dir="figs")
         specs["unit_test"]["data"] = jenkins.get_cobertura_data(
             specs["unit_test"]["jenkins_job"])
+        # specs - config_management
+        specs["config_management"]["job_url"] = jenkins.get_last_job_url(
+            specs["config_management"]["jenkins_job"])
 
         # latex
         template = latex_jinja_env.get_template(os.path.basename(fname))

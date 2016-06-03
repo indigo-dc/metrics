@@ -1,0 +1,9 @@
+pep8:
+    name: "PEP 8 -- Style Guide for Python Code"
+    url: https://www.python.org/dev/peps/pep-0008/
+    defacto: "Yes"
+    richness: 
+        number: 73
+        no_errors: 63
+        no_warnings: 10
+        url: http://pep8.readthedocs.io/en/latest/intro.html#error-codes

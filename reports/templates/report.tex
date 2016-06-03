@@ -1,4 +1,5 @@
 \documentclass[a4wide,11pt]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage[dvips]{graphicx}
 \usepackage{url}
 \usepackage{epstopdf}
@@ -33,6 +34,8 @@
 \definecolor{barblue}{RGB}{153,204,254}
 \definecolor{groupblue}{RGB}{51,102,254}
 \definecolor{linkred}{RGB}{165,0,33}
+\definecolor{statusred}{RGB}{204,0,0}
+\definecolor{statusgreen}{RGB}{0,153,0}
 \renewcommand\sfdefault{phv}
 %\renewcommand\mddefault{mc} % this causes bold, italic, .. not to be displayed
 \renewcommand\bfdefault{bc}
@@ -44,10 +47,10 @@
 
 \begin{document}
 
-\newcommand{\greenbox}[1]{\colorbox{green!90}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
+\newcommand{\greenbox}[1]{\colorbox{statusgreen!90}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 \newcommand{\graybox}[1]{\colorbox{gray!90}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 \newcommand{\lightgraybox}[1]{\colorbox{gray!40}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
-\newcommand{\redbox}[1]{\colorbox{red!90}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
+\newcommand{\redbox}[1]{\colorbox{statusred}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
 \title{INDIGO-DataCloud Software Quality Assurance (SQA) Report \VAR{period}\\[1.5em] 
        \huge{\texttt{\VAR{product.id}}}\\
@@ -59,7 +62,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\BLOCK{if product.status_accepted }\greenbox{\strut ACCEPTED}\BLOCK{elif product.status_rejected}\redbox{\strut NOT ACCEPTED}\BLOCK{else}\graybox{\strut PENDING}\BLOCK{endif} \\
+    \graybox{\strut SQA Progress Status}\BLOCK{if product.status_complete }\greenbox{\strut COMPLETE}\BLOCK{elif product.status_notcomplete}\redbox{\strut NOT COMPLETE}\BLOCK{elif product.status_inprogress}\graybox{\strut IN PROGRESS}\BLOCK{endif} \\
 \end{center}
 
 \vspace{4em}
@@ -67,8 +70,8 @@
 \large
 \begin{center}
 \begin{tabular}{ll}
-    \hyperref[sec:repository]{GitHub repository} & \BLOCK{if product.repository.url}\greenbox{Yes}\BLOCK{else}\redbox{No}\BLOCK{endif} \\
-    \hyperref[sec:code_style]{Code style adherence} & \BLOCK{if product.code_style.data}\greenbox{Yes}\BLOCK{else}\redbox{No}\BLOCK{endif} \\
+    \hyperref[sec:repository]{GitHub repository} & \BLOCK{if product.repository.url}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
+    \hyperref[sec:code_style]{Code style adherence} & \BLOCK{if product.code_style.data}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
     \hyperref[sec:unit_test]{Code coverage} & \graybox{\VAR{product.unit_test.coverage}\%} \\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -88,8 +91,8 @@
     %    \ganttbar[progress=\VAR{product.unit_test.coverage}]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
-    \hyperref[sec:gitbook]{GitBook documentation} & \BLOCK{if product.gitbook.url}\greenbox{Yes}\BLOCK{else}\redbox{No}\BLOCK{endif} \\
-    \hyperref[sec:configuration]{Automated deployment} & \BLOCK{if product.config_management.tool}\greenbox{Yes}\BLOCK{else}\redbox{No}\BLOCK{endif} \\
+    \hyperref[sec:gitbook]{GitBook documentation} & \BLOCK{if product.gitbook.url}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
+    \hyperref[sec:configuration]{Automated deployment} & \BLOCK{if product.config_management.tool}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
 \end{tabular}
 \end{center}
 
@@ -102,7 +105,7 @@
 %
 % OpenProject tasks - pgfgantt
 %
-\hspace{-10em}
+\hspace{-5em}
 \begin{ganttchart}[
     canvas/.append style={fill=none, draw=black!5, line width=.75pt},
     hgrid style/.style={draw=black!5, line width=.75pt},
@@ -156,6 +159,14 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 \BLOCK{else}
 Repository is currently \textbf{not available} under \href{https://github.com/indigo-dc/}{\texttt{indigo-dc}} GitHub organization.
 \BLOCK{endif}
+\BLOCK{if product.repository.comments}
+\subsection{Observations}
+\begin{enumerate}
+    \BLOCK{for comment in product.repository.comments}
+    \item \VAR{comment}
+    \BLOCK{endfor}
+\end{enumerate}
+\BLOCK{endif}
 
 
 \input{title_codestyle.tex}
@@ -166,6 +177,18 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
     Exceptions & \graybox{\VAR{product.code_style.exceptions}} \\
     Richness & \graybox{\strut \VAR{product.code_style.data.richness.number}} \hspace{0.3em} \graybox{\strut Errors \VAR{product.code_style.data.richness.no_errors}} \graybox{\strut Warnings \VAR{product.code_style.data.richness.no_warnings}} \href{\VAR{product.code_style.data.richness.url}}{link}\\
 \end{tabular}
+\subsection{Build status}
+Last build status on Jenkins CI \href{\VAR{product.code_style.job_url}}{\VAR{product.code_style.jenkins_job}}.
+
+\BLOCK{if product.code_style.comments}
+\subsection{Observations}
+\begin{enumerate}
+    \BLOCK{for comment in product.code_style.comments}
+    \item \VAR{comment}
+    \BLOCK{endfor}
+\end{enumerate}
+\BLOCK{endif}
+
  
  
 \input{title_unittest.tex}
@@ -175,7 +198,7 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
 \textbf{Trend graph}\par\medskip
 \includegraphics[scale=0.5]{\VAR{product.unit_test.graph}}
 \\
-\vspace{1em}
+%\vspace{0.5em}
 % Cobertura report (gantt chart)
 %\textbf{Cobertura report}\par\medskip
 \begin{ganttchart}[
@@ -210,19 +233,35 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
     \BLOCK{ endfor } [grid]
 \end{ganttchart}
 \end{center}
+\subsection{Build status}
+Last build status on Jenkins CI \href{\VAR{product.unit_test.job_url}}{\VAR{product.unit_test.jenkins_job}}.
+\BLOCK{if product.unit_test.comments}
+\subsection{Observations}
+\begin{enumerate}
+    \BLOCK{for comment in product.unit_test.comments}
+    \item \VAR{comment}
+    \BLOCK{endfor}
+\end{enumerate}
+\BLOCK{endif}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+\BLOCK{if product.func_int_test.comments}
+\subsection{Observations}
+\begin{enumerate}
+    \BLOCK{for comment in product.func_int_test.comments}
+    \item \VAR{comment}
+    \BLOCK{endfor}
+\end{enumerate}
+\BLOCK{endif}
 
 
 \input{title_gitbook.tex}
 \label{sec:gitbook}
 \BLOCK{if product.gitbook.url}
 Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0.1em} \begin{center}\url{\VAR{product.gitbook.url}}\end{center} 
-\vspace{0.3em}
-Types of documentation currently provided:
-\vspace{0.3em}
+\subsection{Types of documentation currently provided}
 \begin{center}
 \BLOCK{for t in product.gitbook.types}
 \graybox{\VAR{t}}
@@ -230,6 +269,14 @@ Types of documentation currently provided:
 \end{center}
 \BLOCK{else}
 Documentation is currently \textbf{not available} under \href{https://www.gitbook.com/@indigo-dc/dashboard}{\texttt{indigo-dc}} GitBook organization.
+\BLOCK{endif}
+\BLOCK{if product.gitbook.comments}
+\subsection{Observations}
+\begin{enumerate}
+    \BLOCK{for comment in product.gitbook.comments}
+    \item \VAR{comment}
+    \BLOCK{endfor}
+\end{enumerate}
 \BLOCK{endif}
 
 
@@ -243,10 +290,9 @@ Documentation is currently \textbf{not available} under \href{https://www.gitboo
     Manifest link & \url{\VAR{product.config_management.url}} \\
 \end{tabular}
 \end{center}
-\vspace{2em}
+\subsection{Build status}
 \begin{center}
 \begin{tabular}{ll}
-    \multicolumn{2}{c}{\underline{Build status}} \vspace{0.5em}\\
     \BLOCK{for os in product.config_management.build}
     \href{\VAR{os.url}}{\VAR{os.version}} & \BLOCK{if os.successful}\greenbox{successful}\BLOCK{else}\redbox{failed}\BLOCK{endif}\\
     \BLOCK{endfor}
@@ -254,6 +300,14 @@ Documentation is currently \textbf{not available} under \href{https://www.gitboo
 \end{center}
 \BLOCK{else}
 Product does not currently provide a automated deployment solution. 
+\BLOCK{endif}
+\BLOCK{if product.config_management.comments}
+\subsection{Observations}
+\begin{enumerate}
+    \BLOCK{for comment in product.config_management.comments}
+    \item \VAR{comment}
+    \BLOCK{endfor}
+\end{enumerate}
 \BLOCK{endif}
 
 
