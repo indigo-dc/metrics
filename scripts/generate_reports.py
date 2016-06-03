@@ -11,14 +11,6 @@ from jinja2 import Template
 import yaml
 
 
-code_style = {
-    "pep8": {
-        "name": "PEP 8 -- Style Guide for Python Code",
-        "url": "https://www.python.org/dev/peps/pep-0008/",
-        "defacto": "Yes"},
-}
-
-
 def parse_args():
     parser = argparse.ArgumentParser(description="Generate INDIGO-DataCloud SQA reports")
     parser.add_argument('template',
@@ -29,6 +21,10 @@ def parse_args():
 			metavar="YAML_SPECS_DIR",
 			type=str,
 			help="Directory with the YAML specs for each product.")
+    parser.add_argument('--code-style',
+                        metavar="YAML_FILE",
+                        type=str,
+                        help="Compile resulting LaTeX rendered file.")
     parser.add_argument('--report',
 			metavar="FILE",
 			type=str,
@@ -64,9 +60,14 @@ def load_jinja(fname):
     )
 
 
-def main(fname, specdir, output=None, do_compile=False):
+def main(fname, specdir, code_style=None, output=None, do_compile=False):
     latex_jinja_env = load_jinja(fname)
     spec_yaml_files = glob.glob(os.path.join(specdir, "*.yaml"))
+    if not code_style:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        code_style = load_yaml(os.path.join(current_dir,
+                               os.pardir,
+                               "reports/data/code_style.yaml"))
 
     for f in spec_yaml_files:
         specs = load_yaml(f)
@@ -100,5 +101,6 @@ if __name__ == "__main__":
     args = parse_args()
     main(args.template,
          args.specdir,
+         code_style=args.code_style,
          output=args.report,
          do_compile=args.compile)

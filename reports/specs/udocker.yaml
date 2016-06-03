@@ -25,8 +25,8 @@ repository:
 code_style: 
     standard: "pep8"
     de_facto: yes
-    exceptions: None
-    richness:  
+    exceptions: 0
+    richness: "-" 
 unit_test:
     coverage: 18
     jenkins_job: udocker-unittest
