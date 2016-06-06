@@ -37,7 +37,7 @@ def save_cobertura_graph(job_name, dest_dir):
     fname = os.path.join(dest_dir, "graph_%s.png" % job_name)
     i = Image.open(StringIO(r.content))
     i.save(fname)
-    return fname
+    return os.path.abspath(fname)
 
 
 def get_cobertura_data(job_name):

@@ -25,13 +25,10 @@ def parse_args():
                         metavar="YAML_FILE",
                         type=str,
                         help="Compile resulting LaTeX rendered file.")
-    parser.add_argument('--report',
-			metavar="FILE",
+    parser.add_argument('--output-dir',
+			metavar="OUTPUT_DIR",
 			type=str,
-			help="LaTeX report file location.")
-    parser.add_argument('--compile',
-			action="store_true",
-                        help="Compile resulting LaTeX rendered file.")
+                        help="Directory to store the generated reports.")
     return parser.parse_args()
 
 
@@ -60,7 +57,7 @@ def load_jinja(fname):
     )
 
 
-def main(fname, specdir, code_style=None, output=None, do_compile=False):
+def main(fname, specdir, output=None, code_style=None):
     latex_jinja_env = load_jinja(fname)
     spec_yaml_files = glob.glob(os.path.join(specdir, "*.yaml"))
     if not code_style:
@@ -68,6 +65,8 @@ def main(fname, specdir, code_style=None, output=None, do_compile=False):
         code_style = load_yaml(os.path.join(current_dir,
                                os.pardir,
                                "reports/data/code_style.yaml"))
+    if not output:
+        output = '.'
 
     for f in spec_yaml_files:
         specs = load_yaml(f)
@@ -80,7 +79,7 @@ def main(fname, specdir, code_style=None, output=None, do_compile=False):
             specs["unit_test"]["jenkins_job"])
         specs["unit_test"]["graph"] = jenkins.save_cobertura_graph(
             specs["unit_test"]["jenkins_job"],
-            dest_dir="figs")
+            dest_dir=os.path.join(output, "figs"))
         specs["unit_test"]["data"] = jenkins.get_cobertura_data(
             specs["unit_test"]["jenkins_job"])
         # specs - config_management
@@ -95,13 +94,16 @@ def main(fname, specdir, code_style=None, output=None, do_compile=False):
             weeks=12,
             current_week=9,
         )
+
+        texfile = os.path.basename(f).split('.')[0] + '.tex'
         if output:
-            open(args.report, 'w').write(r)
+            open(os.path.join(output, texfile), 'w').write(r)
         else:
             print(r)
-    if do_compile:
+
+    if output:
         for f in glob.glob(os.path.join(os.path.dirname(fname), "title_*.tex")):
-            shutil.copy(f, '.')
+            shutil.copy(f, output)
         # FIXME(orviz) pdflatex command missing
 
 
@@ -110,5 +112,4 @@ if __name__ == "__main__":
     main(args.template,
          args.specdir,
          code_style=args.code_style,
-         output=args.report,
-         do_compile=args.compile)
+         output=args.output_dir)
