@@ -8,14 +8,24 @@ pep8:
         no_warnings: 10
         url: http://pep8.readthedocs.io/en/latest/intro.html#error-codes
 
+java_google:
+    name: "Google Java Style"
+    url: https://google.github.io/styleguide/javaguide.html 
+    defacto: "Yes"
+    richness: 
+        number: 54
+        no_errors: 54 
+        no_warnings: 0
+        url: https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml
+
 java_sun:
     name: "Code Conventions for the JavaTM Programming Language"
     url: http://web.archive.org/web/20090911103851/http://java.sun.com/docs/codeconv/html/CodeConvTOC.doc.html 
     defacto: "Yes"
     richness: 
-        number: 66
-        no_errors: 
-        no_warnings: 
+        number: 63
+        no_errors: 63 
+        no_warnings: 0
         url: https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml
 
 blank:
