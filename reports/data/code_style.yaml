@@ -17,3 +17,13 @@ java_sun:
         no_errors: 
         no_warnings: 
         url: https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml
+
+blank:
+    name:
+    url:
+    defacto:
+    richness:
+        number:
+        no_errors:
+        no_warnings:
+        url:

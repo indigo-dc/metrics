@@ -1,36 +1,34 @@
-id: ""
+id: "Ophidia analytics workflow interfaces"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3434
-        progress: 17
+        id: 3452
+        progress: 0
     children:
         - name: "Repository synchronization"
-          id: 3830
-          progress: 100
+          id: 3455 
+          progress: 0
         - name: "Code style specification"
-          id: 3449
+          id: 3458
           progress: 0
         - name: "Unit testing coverage"
-          id: 3437
+          id: 3461
           progress: 0
         - name: "Functional and integration testing coverage"
-          id: 3440
+          id: 3464
           progress: 0
         - name: "Configuration management"
-          id: 3443
+          id: 3467
           progress: 0
         - name: "GitBook documentation"
-          id: 3446
+          id: 3470
           progress: 0
 repository: 
     url: 
 code_style: 
     standard: 
-    exceptions:
+    exceptions: 
     jenkins_job:
-    comments:
-        - "Product leader/s did not provide this information. WP3 will check for the \\href{https://source.android.com/source/code-style.html}{official Android guidelines} otherwise."
 unit_test:
     coverage: 0
     jenkins_job:
