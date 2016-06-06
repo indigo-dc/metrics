@@ -58,22 +58,28 @@ def load_jinja(fname):
 
 
 def main(fname, specdir, output=None, code_style=None):
+    texfiles = []
     latex_jinja_env = load_jinja(fname)
     spec_yaml_files = glob.glob(os.path.join(specdir, "*.yaml"))
+    current_dir = os.path.dirname(os.path.abspath(__file__))
     if not code_style:
-        current_dir = os.path.dirname(os.path.abspath(__file__))
         code_style = load_yaml(os.path.join(current_dir,
                                os.pardir,
                                "reports/data/code_style.yaml"))
-    if not output:
-        output = '.'
+    if output:
+        output = os.path.abspath(output)
+    else:
+        output = current_dir
 
     for f in spec_yaml_files:
         specs = load_yaml(f)
         # specs - code_style
         specs["code_style"]["job_url"] = jenkins.get_last_job_url(
             specs["code_style"]["jenkins_job"])
-        specs["code_style"]["data"] = code_style[specs["code_style"]["standard"]]
+        try:
+            specs["code_style"]["data"] = code_style[specs["code_style"]["standard"]]
+        except KeyError:
+            specs["code_style"]["data"] = code_style["blank"]
         # specs - unit_test
         specs["unit_test"]["job_url"] = jenkins.get_last_job_url(
             specs["unit_test"]["jenkins_job"])
@@ -96,15 +102,26 @@ def main(fname, specdir, output=None, code_style=None):
         )
 
         texfile = os.path.basename(f).split('.')[0] + '.tex'
+        texfiles.append(texfile)
         if output:
             open(os.path.join(output, texfile), 'w').write(r)
+
         else:
             print(r)
 
     if output:
+        pdfdir = os.path.join(output, "pdf")
+        if not os.path.exists(pdfdir):
+            os.makedirs(pdfdir)
         for f in glob.glob(os.path.join(os.path.dirname(fname), "title_*.tex")):
             shutil.copy(f, output)
-        # FIXME(orviz) pdflatex command missing
+        for texfile in texfiles:
+            f = os.path.join(output, texfile)
+            from subprocess import Popen, PIPE
+            #p = Popen(["pdflatex", "-output-directory=%s" % pdfdir, f], stdout=PIPE, stderr=PIPE)
+            p = Popen(["pdflatex", "-output-directory=%s" % pdfdir, f])
+            stdout, stderr = p.communicate()
+            print dir(p)
 
 
 if __name__ == "__main__":

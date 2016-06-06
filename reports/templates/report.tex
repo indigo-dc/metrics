@@ -193,6 +193,8 @@ Last build status on Jenkins CI \href{\VAR{product.code_style.job_url}}{\VAR{pro
  
 \input{title_unittest.tex}
 \label{sec:unit_test}
+\BLOCK{if product.unit_test.graph}
+
 \begin{center}
 % Trend graph (jenkins)
 \textbf{Trend graph}\par\medskip
@@ -235,6 +237,7 @@ Last build status on Jenkins CI \href{\VAR{product.code_style.job_url}}{\VAR{pro
 \end{center}
 \subsection{Build status}
 Last build status on Jenkins CI \href{\VAR{product.unit_test.job_url}}{\VAR{product.unit_test.jenkins_job}}.
+\BLOCK{endif}
 \BLOCK{if product.unit_test.comments}
 \subsection{Observations}
 \begin{enumerate}
