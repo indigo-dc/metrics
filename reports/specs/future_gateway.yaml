@@ -3,7 +3,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 3809
-        progress: 0
+        progress: 33 
     children:
         - name: "Repository synchronization"
           id: 3812
@@ -33,6 +33,7 @@ unit_test:
     coverage: 0
     jenkins_job: futuregateway-unittest
 func_int_test:
+    url:
 gitbook:
     url: 
     types:

@@ -33,6 +33,8 @@ unit_test:
     coverage: 18
     jenkins_job: udocker-unittest
 func_int_test:
+    wp3_in_progress: True
+    url:
     comments:
         - "Product leader provided both functional and integration tests. WP3 is currently working on the Jenkins CI job definition."
 gitbook:

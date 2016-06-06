@@ -62,7 +62,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\BLOCK{if product.status_complete }\greenbox{\strut COMPLETE}\BLOCK{elif product.status_notcomplete}\redbox{\strut NOT COMPLETE}\BLOCK{elif product.status_inprogress}\graybox{\strut IN PROGRESS}\BLOCK{endif} \\
+    \graybox{\strut SQA Progress Status}\BLOCK{if product.status_complete }\greenbox{\strut COMPLETE}\BLOCK{elif product.status_notcomplete}\redbox{\strut NOT COMPLETE (\VAR{product.tasks.parent.progress}\% done)}\BLOCK{elif product.status_inprogress}\graybox{\strut IN PROGRESS}\BLOCK{endif} \\
 \end{center}
 
 \vspace{4em}
@@ -90,7 +90,7 @@
     %    ]{1}{5}
     %    \ganttbar[progress=\VAR{product.unit_test.coverage}]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \BLOCK{if product.func_int_test.wp3_in_progress}\graybox{IN PROGRESS - WP3}\BLOCK{elif product.func_int_test.url}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \BLOCK{if product.gitbook.url}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
     \hyperref[sec:configuration]{Automated deployment} & \BLOCK{if product.config_management.tool}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
 \end{tabular}
