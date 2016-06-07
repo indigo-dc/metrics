@@ -19,6 +19,8 @@ def get_last_buildno(job_name):
     j = Jenkins(JENKINS_URL, ssl_verify=False)
     try:
         return j.get_job(job_name).get_last_good_build().buildno
+    except jenkinsapi.custom_exceptions.NoBuildData:
+        return j.get_job(job_name).get_last_build().buildno
     except jenkinsapi.custom_exceptions.UnknownJob:
         raise
 

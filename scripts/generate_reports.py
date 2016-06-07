@@ -121,7 +121,6 @@ def main(fname, specdir, output=None, code_style=None):
             #p = Popen(["pdflatex", "-output-directory=%s" % pdfdir, f], stdout=PIPE, stderr=PIPE)
             p = Popen(["pdflatex", "-output-directory=%s" % pdfdir, f])
             stdout, stderr = p.communicate()
-            print dir(p)
 
 
 if __name__ == "__main__":
