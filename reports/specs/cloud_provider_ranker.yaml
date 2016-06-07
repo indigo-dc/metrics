@@ -29,26 +29,26 @@ code_style:
     standard: java_google
     exceptions: 0
     jenkins_job: cloudproviderranker-codestyle
-	comments:
-		- "Progress is set to 50\\%: code style is defined but the current code is not compliant with it. For further information please check last build at Jenkins CI."
+    comments:
+        - "Progress is set to 50\\%: code style is defined but the current code is not compliant with it. For further information please check last build at Jenkins CI."
 unit_test:
     coverage: 1 
     jenkins_job: cloudproviderranker-unittest
-	comments:
-		- "Even though there are quite some work in unit testing in the code, the overall coverage is just 1\%% since conditional testing is just 1/150 covered."
+    comments:
+        - "Even though there are quite some work in unit testing in the code, the overall coverage is just 1\\% since conditional testing is just 1/150 covered."
 func_int_test:
     wp3_in_progress: True
     url:
-	comments:
-		- "Progress set to 50\\%: guidelines for testing the server are documented in \\href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}."
+    comments:
+        - "Progress set to 50\\%: guidelines for testing the server are documented in \\href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}."
 gitbook:
-    url: https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/ 
+    url: https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/
     types:
         - Readme
-		- Deployment/user documentation
+        - Deployment/user documentation
 config_management:
-	comments:
-		- "Configuration for CloudProviderRanker server is trivial: zero configuration, or NO configuration at all (puppet or other). It can be launched without any configuration but the editing of two support files in json notation that define weights and priorities used by the internal engine rule."
+    comments:
+        - "Configuration for CloudProviderRanker server is trivial: zero configuration, or NO configuration at all (puppet or other). It can be launched without any configuration but the editing of two support files in json notation that define weights and priorities used by the internal engine rule."
     tool:   # e.g. ansible, ..
     url:
     level:  # values: installation, configuration, installation/configuration
