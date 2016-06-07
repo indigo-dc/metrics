@@ -4,6 +4,7 @@ import argparse
 import glob
 import os
 import shutil
+from subprocess import Popen, PIPE
 
 import jenkins
 import jinja2
@@ -105,7 +106,6 @@ def main(fname, specdir, output=None, code_style=None):
         texfiles.append(texfile)
         if output:
             open(os.path.join(output, texfile), 'w').write(r)
-
         else:
             print(r)
 
@@ -117,10 +117,11 @@ def main(fname, specdir, output=None, code_style=None):
             shutil.copy(f, output)
         for texfile in texfiles:
             f = os.path.join(output, texfile)
-            from subprocess import Popen, PIPE
-            #p = Popen(["pdflatex", "-output-directory=%s" % pdfdir, f], stdout=PIPE, stderr=PIPE)
-            p = Popen(["pdflatex", "-output-directory=%s" % pdfdir, f])
+            # dirty way of setting timeout
+            p = Popen(["pdflatex", "-output-directory=%s" % pdfdir, f], stdout=PIPE, stderr=PIPE)
             stdout, stderr = p.communicate()
+            if stderr:
+                print(stdout)
 
 
 if __name__ == "__main__":
