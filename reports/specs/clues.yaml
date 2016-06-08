@@ -1,0 +1,60 @@
+id: "CLUES"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3086
+        progress: 0 
+    children:
+        - name: "Repository synchronization"
+          id: 3863
+          progress: 100
+        - name: "Code style specification"
+          id: 3866
+          progress: 50
+        - name: "Unit testing coverage"
+          id: 3137
+          progress: 0
+        - name: "Functional and integration testing coverage"
+          id: 3140
+          progress: 0
+        - name: "Configuration management"
+          id: 3143
+          progress: 50
+        - name: "GitBook documentation"
+          id: 3146
+          progress: 0
+repository: 
+    url: https://github.com/indigo-dc/clues-indigo.git
+code_style:
+    wp3_in_progress: True
+    standard:
+    exceptions:
+    jenkins_job:
+    comments:
+        - "Progress is 50\\% since the product is adhered to a standard but the job has not been defined (WP3 duty)."
+unit_test:
+    wp3_in_progress: True
+    coverage:
+    jenkins_job:
+    comments:
+        - "Progress is 50\\% since the product has implemented unit tests but the job has not yet been defined (WP3 duty)."
+func_int_test:
+    url:
+gitbook:
+    url: https://indigo-dc.gitbooks.io/clues-plugins/content/
+    types:
+        - Readme
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:
+    comments:
+        - "Progress is 50\\% since the product has provided the Ansible playbooks but the job has not already been defined (WP3 duty)."
