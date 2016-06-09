@@ -171,14 +171,27 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
+\BLOCK{if product.code_style.data}
+\BLOCK{for standard_name, standard_data in product.code_style.data.iteritems()}
 \begin{tabular}{ll}
-    Code style definition & \href{\VAR{product.code_style.data.url}}{\VAR{product.code_style.data.name}} \\
-    Community/de-facto standard & \graybox{\VAR{product.code_style.data.defacto}} \\
-    Exceptions & \graybox{\VAR{product.code_style.exceptions}} \\
-    Richness & \graybox{\strut \VAR{product.code_style.data.richness.number}} \hspace{0.3em} \graybox{\strut Errors \VAR{product.code_style.data.richness.no_errors}} \graybox{\strut Warnings \VAR{product.code_style.data.richness.no_warnings}} \href{\VAR{product.code_style.data.richness.url}}{link}\\
+    Code style definition &
+        \href{\VAR{standard_data.url}}{\VAR{standard_data.name}} \\
+    Community/de-facto standard &
+        \graybox{\VAR{standard_data.defacto}} \\ 
+    Exceptions & 
+        \graybox{\VAR{product.code_style.exceptions}} \\
+    Richness & \graybox{\strut \VAR{standard_data.richness.number}} \hspace{0.3em} \graybox{\strut Errors \VAR{standard_data.richness.no_errors}} \graybox{\strut Warnings \VAR{standard_data.richness.no_warnings}} \href{\VAR{standard_data.richness.url}}{link}\\
 \end{tabular}
+\BLOCK{endfor}
+\BLOCK{endif}
+
+\BLOCK{if product.code_style.jobs}
 \subsection{Build status}
-Last build status on Jenkins CI \href{\VAR{product.code_style.job_url}}{\VAR{product.code_style.jenkins_job}}.
+Last build status on Jenkins CI
+\BLOCK{for job_name, job_data in product.code_style.jobs.iteritems()}
+\href{\VAR{job_data.job_url}}{\VAR{job_name}}.
+\BLOCK{endfor}
+\BLOCK{endif}
 
 \BLOCK{if product.code_style.comments}
 \subsection{Observations}

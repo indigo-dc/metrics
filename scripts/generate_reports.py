@@ -75,12 +75,22 @@ def main(fname, specdir, output=None, code_style=None):
     for f in spec_yaml_files:
         specs = load_yaml(f)
         # specs - code_style
-        specs["code_style"]["job_url"] = jenkins.get_last_job_url(
-            specs["code_style"]["jenkins_job"])
-        try:
-            specs["code_style"]["data"] = code_style[specs["code_style"]["standard"]]
-        except KeyError:
-            specs["code_style"]["data"] = code_style["blank"]
+        if specs["code_style"]["jenkins_job"]:
+            specs["code_style"]["jobs"] = {}
+            for j in specs["code_style"]["jenkins_job"]:
+                specs["code_style"]["jobs"][j] = {}
+                specs["code_style"]["jobs"][j]["job_url"] = jenkins.get_last_job_url(j)
+                specs["code_style"]["jobs"][j]["job_name"] = j
+        if specs["code_style"]["standard"]:
+            try:
+                for standard in specs["code_style"]["standard"]:
+                    try:
+                        specs["code_style"]["data"]
+                    except KeyError:
+                        specs["code_style"]["data"] = {}
+                    specs["code_style"]["data"][standard] = code_style[standard]
+            except KeyError, e:
+                specs["code_style"]["data"] = code_style["blank"]
         # specs - unit_test
         specs["unit_test"]["job_url"] = jenkins.get_last_job_url(
             specs["unit_test"]["jenkins_job"])
