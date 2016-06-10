@@ -1,47 +1,46 @@
-id: "Orchestrator"
-status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+id: "im-java-api (Infrastructure Manager Java API)"
+status_complete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3089
-        progress: 55 
+        id: 2981
+        progress: 97
     children:
         - name: "Repository synchronization"
-          id: 3854
+          id: 3929
           progress: 100
         - name: "Code style specification"
-          id: 3857
+          id: 3932
           progress: 100
         - name: "Unit testing coverage"
-          id: 3425
-          progress: 30
+          id: 2993
+          progress: 80
         - name: "Functional and integration testing coverage"
-          id: 3428
-          progress: 0
+          id: 2984
+          progress: 100
         - name: "Configuration management"
-          id: 3092
-          progress: 0
+          id: 2987
+          progress: 100
         - name: "GitBook documentation"
-          id: 3098
+          id: 2990
           progress: 100
 repository: 
-    url: https://github.com/indigo-dc/orchestrator.git
+    url: https://github.com/indigo-dc/im-java-api
 code_style:
-    standard:
-        - java_google 
+    standard: java_google
     exceptions: 0
     jenkins_job:
-        - orchestrator-codestyle
+		- im-java-api-codestyle
 unit_test:
-    coverage: 30 
-    jenkins_job: orchestrator-unittest
+    coverage: 76 
+    jenkins_job: im-java-api-unittest
 func_int_test:
-    url:
+    url: https://jenkins.indigo-datacloud.eu:8080/job/im-java-api-functional/
 gitbook:
-    url: https://indigo-dc.gitbooks.io/orchestrator/content/
+    url: https://indigo-dc.gitbooks.io/im-java-api/content/ 
     types:
-        - "Readme"
-        - "API documentation"
-        - "Deployment documentation"
+		- Readme
+		- Deployment documentation
+		- User documentation
 config_management:
     tool:   # e.g. ansible, ..
     url:
@@ -54,3 +53,5 @@ config_management:
         - version: CentOS7
           successful:   # True, False
           url:
+	comments:
+		- "IM-Java-API will be deployable as a JAR file."

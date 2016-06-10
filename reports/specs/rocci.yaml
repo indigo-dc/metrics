@@ -1,51 +1,52 @@
-id: udocker
+id: "rOCCI"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
-tasks: 
-    parent: 
-        id: 3641
-        progress: 53
-    children: 
+tasks:
+    parent:
+        id: 2906
+        progress: 67 
+    children:
         - name: "Repository synchronization"
-          id: 3644
+          id: 3938
           progress: 100
         - name: "Code style specification"
-          id: 3647
+          id: 2909
           progress: 100
         - name: "Unit testing coverage"
-          id: 3650
-          progress: 18
+          id: 2912
+          progress: 50
         - name: "Functional and integration testing coverage"
-          id: 3653
+          id: 2915
           progress: 100
         - name: "Configuration management"
-          id: 3656
+          id: 2918
           progress: 0
         - name: "GitBook documentation"
-          id: 3659
+          id: 2921
           progress: 50
 repository: 
-    url: https://github.com/indigo-dc/udocker
-code_style: 
-    standard:
-        - pep8
-    exceptions: 0
-    jenkins_job: 
-        - udocker-codestyle
+    url: https://github.com/indigo-dc/rOCCI-server.git 
+code_style:
+    standard: ruby_style_guide 
+    exceptions: "just lint cops checked"
+    jenkins_job:
+		- rocci-codestyle
 unit_test:
-    coverage: 18
-    jenkins_job: udocker-unittest
+    wp3_in_progress: True
+    coverage: 
+    jenkins_job: rocci-unittest
+    comments:
+        - "WP3 facing some errors while running the cobertura tool. Setting to 50\\% until the job is running fine."
 func_int_test:
     wp3_in_progress: True
     url:
     comments:
-        - "Product leader provided both functional and integration tests. WP3 is currently working on the Jenkins CI job definition."
+        - "Pending job definition: The set of functional tests is documented here: https://github.com/arax/kitchen-occi"
 gitbook:
-    url: https://indigo-dc.gitbooks.io/udocker/content/
+    url: https://indigo-dc.gitbooks.io/rocci/content/
     types:
         - Readme
-        - User documentation
-    comments: # latex
-        - "Task is at 50\\% of progress since WP3 is waiting for the confirmation about the completeness of the documentation already provided."
+    comments:
+        - "The documentation for the contribution/s to INDIGO is missing."
 config_management:
     tool:   # e.g. ansible, ..
     url:

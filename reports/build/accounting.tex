@@ -53,7 +53,7 @@
 \newcommand{\redbox}[1]{\colorbox{statusred}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
 \title{INDIGO-DataCloud Software Quality Assurance (SQA) Report Apr-Jun 2016\\[1.5em] 
-       \huge{\texttt{CloudProviderRanker}}\\
+       \huge{\texttt{Accounting}}\\
 }
 
 \date{} 
@@ -62,7 +62,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE (67\% done)} \\
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE (0\% done)} \\
 \end{center}
 
 \vspace{4em}
@@ -72,7 +72,7 @@
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
     \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{1\%} \\ 
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{None\%} \\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -88,10 +88,10 @@
     %    bar progress label font=\mdseries\footnotesize\color{black!70},
     %    bar top shift=1, bar height=0.8
     %    ]{1}{5}
-    %    \ganttbar[progress=1]{}{1}{5}
+    %    \ganttbar[progress=None]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
-    \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:gitbook]{GitBook documentation} & \redbox{NOT COMPLETE} \\
     \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
 \end{tabular}
 \end{center}
@@ -141,31 +141,31 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=67]{\textbf{\#3287} CloudProviderRanker SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=0]{\textbf{\#3269} Accounting SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
-        ]{\textbf{\#3836} Repository synchronization}{1}{12} \\
+        ]{\textbf{\#3272} Repository synchronization}{1}{12} \\
             \ganttbar[
             progress=50,
             name=WBS1A
-        ]{\textbf{\#3839} Code style specification}{1}{12} \\
+        ]{\textbf{\#3842} Code style specification}{1}{12} \\
             \ganttbar[
-            progress=1,
+            progress=0,
             name=WBS1A
-        ]{\textbf{\#3290} Unit testing coverage}{1}{12} \\
+        ]{\textbf{\#3275} Unit testing coverage}{1}{12} \\
             \ganttbar[
-            progress=50,
+            progress=0,
             name=WBS1A
-        ]{\textbf{\#3293} Functional and integration testing coverage}{1}{12} \\
+        ]{\textbf{\#3278} Functional and integration testing coverage}{1}{12} \\
             \ganttbar[
-            progress=100,
+            progress=0,
             name=WBS1A
-        ]{\textbf{\#3296} Configuration management}{1}{12} \\
+        ]{\textbf{\#3281} Configuration management}{1}{12} \\
             \ganttbar[
-            progress=100,
+            progress=0,
             name=WBS1A
-        ]{\textbf{\#3299} GitBook documentation}{1}{12} \\
+        ]{\textbf{\#3284} GitBook documentation}{1}{12} \\
      [grid]
 \end{ganttchart}
 
@@ -173,28 +173,38 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/CloudProviderRanker.git}\end{center}
+Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/Accounting.git}\end{center}
 
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
 \begin{tabular}{ll}
     Code style definition &
-        \href{https://google.github.io/styleguide/javaguide.html}{Google Java Style} \\
+        \href{https://www.python.org/dev/peps/pep-0008/}{PEP 8 -- Style Guide for Python Code} \\
     Community/de-facto standard &
         \graybox{Yes} \\ 
     Exceptions & 
         \graybox{0} \\
-    Richness & \graybox{\strut 54} \hspace{0.3em} \graybox{\strut Errors 54} \graybox{\strut Warnings 0} \href{https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml}{link}\\
+    Richness & \graybox{\strut 73} \hspace{0.3em} \graybox{\strut Errors 63} \graybox{\strut Warnings 10} \href{http://pep8.readthedocs.io/en/latest/intro.html#error-codes}{link}\\
+\end{tabular}
+\begin{tabular}{ll}
+    Code style definition &
+        \href{https://www.python.org/dev/peps/pep-0257/}{PEP 257 -- Docstring Conventions} \\
+    Community/de-facto standard &
+        \graybox{Yes} \\ 
+    Exceptions & 
+        \graybox{0} \\
+    Richness & \graybox{\strut 28} \hspace{0.3em} \graybox{\strut Errors 28} \graybox{\strut Warnings 0} \href{http://pydocstyle.readthedocs.io/en/latest/error_codes.html}{link}\\
 \end{tabular}
 
 \subsection{Build status}
 Last build status on Jenkins CI
-\href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-codestyle/8}{cloudproviderranker-codestyle}.
+\href{https://jenkins.indigo-datacloud.eu:8080//job/accounting-codestyle/1}{accounting-codestyle}.
+\href{https://jenkins.indigo-datacloud.eu:8080//job/accounting-codestyle-pep257/1}{accounting-codestyle-pep257}.
 
 \subsection{Observations}
 \begin{enumerate}
-        \item Progress is set to 50\%: code style is defined but the current code is not compliant with it. For further information please check last build at Jenkins CI.
+        \item Task is at 50\% of progress since the standards are defined but the Jenkins jobs are failing.
     \end{enumerate}
 
  
@@ -202,83 +212,19 @@ Last build status on Jenkins CI
 \input{title_unittest.tex}
 \label{sec:unit_test}
 
-\begin{center}
-% Trend graph (jenkins)
-\textbf{Trend graph}\par\medskip
-\includegraphics[scale=0.5]{/srv/metrics/reports/build/figs/graph_cloudproviderranker-unittest.png}
-\\
-%\vspace{0.5em}
-% Cobertura report (gantt chart)
-%\textbf{Cobertura report}\par\medskip
-\begin{ganttchart}[
-    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
-    hgrid style/.style={draw=black!5, line width=.75pt},
-    vgrid={*1{draw=black!5, line width=.75pt}},
-    title/.style={draw=none, fill=none},
-    %title label font=\bfseries\footnotesize,
-    title label font=\normalsize,
-    title label node/.append style={below=7pt},
-    include title in canvas=false,
-    bar label font=\mdseries\small\color{black!70},
-    bar label node/.append style={left=2cm},
-    bar/.append style={draw=none, fill=black!63},
-    bar incomplete/.append style={fill=barblue},
-    bar progress label font=\mdseries\footnotesize\color{black!70},
-    group incomplete/.append style={fill=groupblue},
-    group left shift=0,
-    group right shift=0,
-    group height=.5,
-    group peaks tip position=0,
-    group label node/.append style={left=.6cm},
-    group progress label font=\bfseries\small,
-    link/.style={-latex, line width=1.5pt, linkred},
-    link label font=\scriptsize\bfseries,
-    link label node/.append style={below left=-2pt and 0pt}
-    ]{1}{5}
-    \gantttitle{Cobertura Report}{-3} \\
-    %\ganttgroup[progress=45]{Group 1}{1}{12} \\
-            \ganttbar[progress=100.0]{Packages (1.0/1.0)}{1}{3} \\
-            \ganttbar[progress=88.23529]{Files (15.0/17.0)}{1}{3} \\
-            \ganttbar[progress=88.23529]{Classes (15.0/17.0)}{1}{3} \\
-            \ganttbar[progress=59.420288]{Methods (41.0/69.0)}{1}{3} \\
-            \ganttbar[progress=19.07131]{Lines (115.0/603.0)}{1}{3} \\
-            \ganttbar[progress=0.6666667]{Conditionals (1.0/150.0)}{1}{3} \\
-     [grid]
-\end{ganttchart}
-\end{center}
-\subsection{Build status}
-Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-unittest/4}{cloudproviderranker-unittest}.
-\subsection{Observations}
-\begin{enumerate}
-        \item Even though there are quite some work in unit testing in the code, the overall coverage is just 1\% since conditional testing is just 1/150 covered.
-    \end{enumerate}
-
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
-\subsection{Observations}
-\begin{enumerate}
-        \item Progress set to 50\%: guidelines for testing the server are documented in \href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}.
-    \end{enumerate}
 
 
 \input{title_gitbook.tex}
 \label{sec:gitbook}
-Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0.1em} \begin{center}\url{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/}\end{center} 
-\subsection{Types of documentation currently provided}
-\begin{center}
-\graybox{\strut Readme}
-\graybox{\strut Deployment/user documentation}
-\end{center}
+Documentation is currently \textbf{not available} under \href{https://www.gitbook.com/@indigo-dc/dashboard}{\texttt{indigo-dc}} GitBook organization.
 
 
 \input{title_configuration.tex}
 \label{sec:configuration}
 Product does not currently provide a automated deployment solution. 
-\subsection{Observations}
-\begin{enumerate}
-        \item Configuration for CloudProviderRanker server is trivial: zero configuration, or NO configuration at all (puppet or other). It can be launched without any configuration but the editing of two support files in json notation that define weights and priorities used by the internal engine rule.
-    \end{enumerate}
 
 
 \newpage

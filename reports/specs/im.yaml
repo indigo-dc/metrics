@@ -1,0 +1,58 @@
+id: "Infrastructure Manager"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 2963
+        progress: 72 
+    children:
+        - name: "Repository synchronization"
+          id: 3872
+          progress: 100
+        - name: "Code style specification"
+          id: 2966 
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 2969
+          progress: 30
+        - name: "Functional and integration testing coverage"
+          id: 2972
+          progress: 0
+        - name: "Configuration management"
+          id: 2975
+          progress: 100
+        - name: "GitBook documentation"
+          id: 2978
+          progress: 100
+repository: 
+    url: https://github.com/indigo-dc/im.git 
+code_style:
+    standard:
+        - pep8
+    exceptions: "2 (E501, E402)"
+    jenkins_job:
+        - im-codestyle
+unit_test:
+    coverage: 31
+    jenkins_job: im-unittest
+func_int_test:
+    url:
+gitbook:
+    url: https://indigo-dc.gitbooks.io/im/content/
+    types:
+        - "Readme"
+        - "Deployment documentation"
+        - "API documentation"
+config_management:
+    tool: ansible  # e.g. ansible, ..
+    url: https://raw.githubusercontent.com/indigo-dc/im/master/ansible_install.yaml
+    level: installation # values: installation, configuration, installation/configuration
+    jenkins_job: im-ansible
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful: False  # True, False
+          url: https://jenkins.indigo-datacloud.eu:8080/job/im-ansible/label=ansible-ubuntu/
+        - version: CentOS7
+          successful: True  # True, False
+          url: https://jenkins.indigo-datacloud.eu:8080/job/im-ansible/label=ansible-centos/
+    comments:
+        - "Task is at 50\\% since the Ansible playbook does not cover configuration."

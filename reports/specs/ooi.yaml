@@ -1,47 +1,43 @@
-id: "Orchestrator"
+id: "OOI (OpenStack OCCI Interface)"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3089
-        progress: 55 
+        id: 2843 
+        progress: 48 
     children:
         - name: "Repository synchronization"
-          id: 3854
+          id: 3902 
           progress: 100
         - name: "Code style specification"
-          id: 3857
+          id: 3905
           progress: 100
         - name: "Unit testing coverage"
-          id: 3425
-          progress: 30
+          id: 3908
+          progress: 91
         - name: "Functional and integration testing coverage"
-          id: 3428
+          id: 3911
           progress: 0
         - name: "Configuration management"
-          id: 3092
+          id: 2849
           progress: 0
         - name: "GitBook documentation"
-          id: 3098
-          progress: 100
+          id: 2846
+          progress: 0
 repository: 
-    url: https://github.com/indigo-dc/orchestrator.git
+    url: https://github.com/indigo-dc/ooi.git 
 code_style:
-    standard:
-        - java_google 
+    standard: hacking
     exceptions: 0
     jenkins_job:
-        - orchestrator-codestyle
+        - ooi-codestyle
 unit_test:
-    coverage: 30 
-    jenkins_job: orchestrator-unittest
+    coverage: 91 
+    jenkins_job: ooi-unittest
 func_int_test:
     url:
 gitbook:
-    url: https://indigo-dc.gitbooks.io/orchestrator/content/
+    url:
     types:
-        - "Readme"
-        - "API documentation"
-        - "Deployment documentation"
 config_management:
     tool:   # e.g. ansible, ..
     url:

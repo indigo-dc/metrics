@@ -26,9 +26,11 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/FutureGateway-APIServer.git
 code_style: 
-    standard: "java_sun"
+    standard:
+        - java_sun
     exceptions: "1 (DesignForExtension)" 
-    jenkins_job: futuregateway-codestyle
+    jenkins_job:
+        - futuregateway-codestyle
 unit_test:
     coverage: 0
     jenkins_job: futuregateway-unittest

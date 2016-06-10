@@ -1,47 +1,44 @@
-id: "Orchestrator"
+id: "python-openstackclient"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3089
-        progress: 55 
+        id: 3599 
+        progress: 58
     children:
         - name: "Repository synchronization"
-          id: 3854
+          id: 3602
           progress: 100
         - name: "Code style specification"
-          id: 3857
+          id: 3605
           progress: 100
         - name: "Unit testing coverage"
-          id: 3425
-          progress: 30
+          id: 3608
+          progress: 50
         - name: "Functional and integration testing coverage"
-          id: 3428
-          progress: 0
+          id: 3611
+          progress: 100
         - name: "Configuration management"
-          id: 3092
+          id: 3614
           progress: 0
         - name: "GitBook documentation"
-          id: 3098
-          progress: 100
+          id: 3617
+          progress: 0
 repository: 
-    url: https://github.com/indigo-dc/orchestrator.git
+    url: https://github.com/indigo-dc/python-openstackclient 
 code_style:
-    standard:
-        - java_google 
+    standard: hacking 
     exceptions: 0
     jenkins_job:
-        - orchestrator-codestyle
+		- openstackclient-codestyle 
 unit_test:
-    coverage: 30 
-    jenkins_job: orchestrator-unittest
+    wp3_in_progress: True
+    coverage: 
+    jenkins_job: openstackclient-unittest
 func_int_test:
     url:
 gitbook:
-    url: https://indigo-dc.gitbooks.io/orchestrator/content/
+    url:
     types:
-        - "Readme"
-        - "API documentation"
-        - "Deployment documentation"
 config_management:
     tool:   # e.g. ansible, ..
     url:

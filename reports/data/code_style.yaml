@@ -8,6 +8,36 @@ pep8:
         no_warnings: 10
         url: http://pep8.readthedocs.io/en/latest/intro.html#error-codes
 
+pep257:
+    name: "PEP 257 -- Docstring Conventions"
+    url: https://www.python.org/dev/peps/pep-0257/
+    defacto: "Yes"
+    richness: 
+        number: 28 
+        no_errors: 28
+        no_warnings: 0
+        url: http://pydocstyle.readthedocs.io/en/latest/error_codes.html
+
+hacking:
+    name: "OpenStack Style Guidelines"
+    url: http://docs.openstack.org/developer/hacking/ 
+    defacto: "Yes"
+    richness: 
+        number: "111 (+pep8 +flake8)" 
+        no_errors:
+        no_warnings: 
+        url: http://docs.openstack.org/developer/hacking/ 
+
+flake8:
+    name: "Flake8 -- PyFlakes + PEP 8 + McCabe"
+    url: https://flake8.readthedocs.io/en/latest/ 
+    defacto: "Yes"
+    richness: 
+        number: "84 (+pep8)" 
+        no_errors:
+        no_warnings: 
+        url: https://flake8.readthedocs.io/en/latest/warnings.html 
+
 java_google:
     name: "Google Java Style"
     url: https://google.github.io/styleguide/javaguide.html 
@@ -28,12 +58,32 @@ java_sun:
         no_warnings: 0
         url: https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml
 
-blank:
-    name:
-    url:
-    defacto:
-    richness:
-        number:
-        no_errors:
-        no_warnings:
+ruby:
+    name: "Ruby Style Guide"
+    url: https://github.com/bbatsov/ruby-style-guide 
+    defacto: "Yes"
+    richness: 
+        number: "<to check>"
+        no_errors: 
+        no_warnings: 
         url:
+
+erlang:
+    name: "Erlang Programming Rules and Conventions"
+    url: http://www.erlang.se/doc/programming_rules.shtml
+    defacto: "Yes"
+    richness: 
+        number: 22
+        no_errors: 
+        no_warnings: 
+        url: https://github.com/inaka/elvis_core/wiki/Rules
+
+dcache:
+    name: "Custom Java dCache Style Guide"
+    url: https://goo.gl/4Ra3Na
+    defacto: "Yes"
+    richness: 
+        number: 6 
+        no_errors: 
+        no_warnings: 
+        url: https://goo.gl/4Ra3Na

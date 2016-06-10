@@ -26,9 +26,11 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/CloudProviderRanker.git 
 code_style:
-    standard: java_google
+    standard:
+        - java_google
     exceptions: 0
-    jenkins_job: cloudproviderranker-codestyle
+    jenkins_job:
+        - cloudproviderranker-codestyle
     comments:
         - "Progress is set to 50\\%: code style is defined but the current code is not compliant with it. For further information please check last build at Jenkins CI."
 unit_test:

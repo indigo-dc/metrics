@@ -1,47 +1,47 @@
-id: "Orchestrator"
+id: "INDIGO-DataCloud CDMI Server"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3089
-        progress: 55 
+        id: 2888
+        progress: 50 
     children:
         - name: "Repository synchronization"
-          id: 3854
+          id: 3941 
           progress: 100
         - name: "Code style specification"
-          id: 3857
+          id: 3944
           progress: 100
         - name: "Unit testing coverage"
-          id: 3425
-          progress: 30
+          id: 2891
+          progress: 0
         - name: "Functional and integration testing coverage"
-          id: 3428
+          id: 2897
           progress: 0
         - name: "Configuration management"
-          id: 3092
+          id: 2900
           progress: 0
         - name: "GitBook documentation"
-          id: 3098
+          id: 2903
           progress: 100
 repository: 
-    url: https://github.com/indigo-dc/orchestrator.git
+    url: https://github.com/indigo-dc/CDMI
 code_style:
-    standard:
-        - java_google 
+    standard: java_google 
     exceptions: 0
     jenkins_job:
-        - orchestrator-codestyle
+		- qos-codestyle
 unit_test:
-    coverage: 30 
-    jenkins_job: orchestrator-unittest
+    coverage: 0 
+    jenkins_job: qos-unittest
 func_int_test:
     url:
 gitbook:
-    url: https://indigo-dc.gitbooks.io/orchestrator/content/
+    url: https://indigo-dc.gitbooks.io/cdmi-qos/content/
     types:
-        - "Readme"
-        - "API documentation"
-        - "Deployment documentation"
+		- "Readme"
+		- "Deployment documentation"
+		- "Administration documentation"
+		- "User documentation"
 config_management:
     tool:   # e.g. ansible, ..
     url:

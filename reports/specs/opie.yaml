@@ -1,47 +1,43 @@
-id: "Orchestrator"
+id: "opie (OpenStack Preemptible Instances Extension)"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3089
-        progress: 55 
+        id: 3767 
+        progress: 50 
     children:
         - name: "Repository synchronization"
-          id: 3854
+          id: 3770
           progress: 100
         - name: "Code style specification"
-          id: 3857
+          id: 3773
           progress: 100
         - name: "Unit testing coverage"
-          id: 3425
-          progress: 30
+          id: 3776
+          progress: 44 
         - name: "Functional and integration testing coverage"
-          id: 3428
+          id: 3779
           progress: 0
         - name: "Configuration management"
-          id: 3092
+          id: 3782
           progress: 0
         - name: "GitBook documentation"
-          id: 3098
-          progress: 100
+          id: 3785
+          progress: 0
 repository: 
-    url: https://github.com/indigo-dc/orchestrator.git
+    url: https://github.com/indigo-dc/opie 
 code_style:
-    standard:
-        - java_google 
+    standard: hacking
     exceptions: 0
     jenkins_job:
-        - orchestrator-codestyle
+		- opie-codestyle
 unit_test:
-    coverage: 30 
-    jenkins_job: orchestrator-unittest
+    coverage: 44
+    jenkins_job: opie-unittest
 func_int_test:
     url:
 gitbook:
-    url: https://indigo-dc.gitbooks.io/orchestrator/content/
+    url:
     types:
-        - "Readme"
-        - "API documentation"
-        - "Deployment documentation"
 config_management:
     tool:   # e.g. ansible, ..
     url:

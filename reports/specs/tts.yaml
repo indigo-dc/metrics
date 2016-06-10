@@ -1,47 +1,46 @@
-id: "Orchestrator"
+id: "Token Translation Service"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3089
-        progress: 55 
+        id: 2867
+        progress: 65 
     children:
         - name: "Repository synchronization"
-          id: 3854
+          id: 3956 
           progress: 100
         - name: "Code style specification"
-          id: 3857
+          id: 3959
           progress: 100
         - name: "Unit testing coverage"
-          id: 3425
-          progress: 30
+          id: 3389
+          progress: 40
         - name: "Functional and integration testing coverage"
-          id: 3428
-          progress: 0
+          id: 3392
+          progress: 100
         - name: "Configuration management"
-          id: 3092
+          id: 2870
           progress: 0
         - name: "GitBook documentation"
-          id: 3098
-          progress: 100
+          id: 2873
+          progress: 50
 repository: 
-    url: https://github.com/indigo-dc/orchestrator.git
+    url: https://github.com/indigo-dc/tts 
 code_style:
-    standard:
-        - java_google 
-    exceptions: 0
+    standard: erlang
+    exceptions: 0 
     jenkins_job:
-        - orchestrator-codestyle
+		- tts-codestyle
 unit_test:
-    coverage: 30 
-    jenkins_job: orchestrator-unittest
+    coverage: 40 
+    jenkins_job: tts-unittest
 func_int_test:
-    url:
+    url: https://jenkins.indigo-datacloud.eu:8080/job/tts-functional/
 gitbook:
-    url: https://indigo-dc.gitbooks.io/orchestrator/content/
+    url: https://indigo-dc.gitbooks.io/token-translation-service/content/
     types:
-        - "Readme"
-        - "API documentation"
-        - "Deployment documentation"
+		- "Readme"
+	comments:
+		- "Checking with the product team if the documentation is complete. Setting progress to 50\%%"
 config_management:
     tool:   # e.g. ansible, ..
     url:
