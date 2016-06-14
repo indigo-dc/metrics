@@ -71,7 +71,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE (53\% done)} \\
+    \graybox{\strut SQA Progress Status}\greenbox{\strut COMPLETE} \\
 \end{center}
 
 \vspace{4em}
@@ -81,7 +81,7 @@
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
     \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{18\%}\\ 
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{25\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -97,7 +97,7 @@
     %    bar progress label font=\mdseries\footnotesize\color{black!70},
     %    bar top shift=1, bar height=0.8
     %    ]{1}{5}
-    %    \ganttbar[progress=18]{}{1}{5}
+    %    \ganttbar[progress=25]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
@@ -150,7 +150,7 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=53]{\textbf{\#3641} udocker SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=72]{\textbf{\#3641} udocker SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
@@ -160,7 +160,7 @@
             name=WBS1A
         ]{\textbf{\#3647} Code style specification}{1}{12} \\
             \ganttbar[
-            progress=18,
+            progress=30,
             name=WBS1A
         ]{\textbf{\#3650} Unit testing coverage}{1}{12} \\
             \ganttbar[
@@ -168,11 +168,11 @@
             name=WBS1A
         ]{\textbf{\#3653} Functional and integration testing coverage}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=50,
             name=WBS1A
         ]{\textbf{\#3656} Configuration management}{1}{12} \\
             \ganttbar[
-            progress=50,
+            progress=100,
             name=WBS1A
         ]{\textbf{\#3659} GitBook documentation}{1}{12} \\
      [grid]
@@ -256,6 +256,7 @@ Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+No functional or integration testing provided.
 \subsection{Observations}
 \begin{enumerate}
         \item Product leader provided both functional and integration tests. WP3 is currently working on the Jenkins CI job definition.
@@ -270,15 +271,15 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 \graybox{\strut Readme}
 \graybox{\strut User documentation}
 \end{center}
-\subsection{Observations}
-\begin{enumerate}
-        \item Task is at 50\% of progress since WP3 is waiting for the confirmation about the completeness of the documentation already provided.
-    \end{enumerate}
 
 
 \input{title_configuration.tex}
 \label{sec:configuration}
 Product does not currently provide a automated deployment solution. 
+\subsection{Observations}
+\begin{enumerate}
+        \item Ansible playbook provided by the product team. Work in progress by WP3; setting progress to 50\%.
+    \end{enumerate}
 
 
 \newpage

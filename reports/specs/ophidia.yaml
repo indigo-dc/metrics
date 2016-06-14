@@ -30,7 +30,7 @@ code_style:
     exceptions:
     jenkins_job:
     comments:
-        - "Product team uses K&R indent style. The Jenkins job will be defined whenever the code is available in indigo-dc."
+        - "Product team uses K\\&R indent style. The Jenkins job will be defined whenever the code is available in indigo-dc."
 unit_test:
     coverage: 0
     jenkins_job:
