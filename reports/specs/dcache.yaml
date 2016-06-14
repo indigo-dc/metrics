@@ -36,7 +36,7 @@ unit_test:
     coverage: 
     jenkins_job:
     comments:
-        - "Jenkins job still not defined."
+        - "Product team needs to point to the unit testing check within the dCache CI server at https://ci.dcache.org."
 func_int_test:
     url:
     comments:
@@ -48,6 +48,7 @@ gitbook:
     comments:
         - "Documentation does not reflect the contributions of dCache to INDIGO project. Setting progress to 50\\%."
 config_management:
+    wp3_in_progress: True
     tool: puppet   # e.g. ansible, ..
     url: https://github.com/dCache/dcache-puppet
     level: "installation/configuration" # values: installation, configuration, installation/configuration
@@ -59,3 +60,5 @@ config_management:
         - version: CentOS7
           successful:   # True, False
           url:
+    comments:
+        - "Please indicate what Puppet classes are the ones that match the contributions to INDIGO-DataCloud." 

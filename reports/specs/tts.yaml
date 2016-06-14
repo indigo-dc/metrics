@@ -3,7 +3,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 2867
-        progress: 65 
+        progress: 67 
     children:
         - name: "Repository synchronization"
           id: 3956 
@@ -13,7 +13,7 @@ tasks:
           progress: 100
         - name: "Unit testing coverage"
           id: 3389
-          progress: 40
+          progress: 49
         - name: "Functional and integration testing coverage"
           id: 3392
           progress: 100
@@ -31,7 +31,7 @@ code_style:
     jenkins_job:
         - tts-codestyle
 unit_test:
-    coverage: 40 
+    coverage: 49 
     jenkins_job: tts-unittest
 func_int_test:
     url: https://jenkins.indigo-datacloud.eu:8080/job/tts-functional/

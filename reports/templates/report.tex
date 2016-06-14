@@ -61,7 +61,7 @@
 \newcommand{\lightgraybox}[1]{\colorbox{gray!40}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 \newcommand{\redbox}[1]{\colorbox{statusred}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
-\title{Software Quality Assurance (SQA) Report \VAR{period}\\[1.5em] 
+\title{Software Quality Assurance (SQA) Report \\[0.7em] \large{\VAR{period}}\\[1.5em] 
        \huge{\texttt{\VAR{product.id}}}\\
 }
 
@@ -81,7 +81,7 @@
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \BLOCK{if product.repository.url}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
     \hyperref[sec:code_style]{Code style adherence} & \BLOCK{if product.code_style.data}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{\VAR{product.unit_test.coverage}\%} \\ 
+    \hyperref[sec:unit_test]{Code coverage} & \BLOCK{if product.unit_test.wp3_in_progress}\graybox{IN PROGRESS - WP3}\BLOCK{else}\graybox{\VAR{product.unit_test.coverage}\%}\BLOCK{endif}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -189,8 +189,9 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
         \graybox{\VAR{standard_data.defacto}} \\ 
     Exceptions & 
         \graybox{\VAR{product.code_style.exceptions}} \\
-    Richness & \graybox{\strut \VAR{standard_data.richness.number}} \hspace{0.3em} \graybox{\strut Errors \VAR{standard_data.richness.no_errors}} \graybox{\strut Warnings \VAR{standard_data.richness.no_warnings}} \href{\VAR{standard_data.richness.url}}{link}\\
+    Richness & \graybox{\strut \VAR{standard_data.richness.number}} \hspace{0.3em} \graybox{\strut Errors \VAR{standard_data.richness.no_errors}} \graybox{\strut Warnings \VAR{standard_data.richness.no_warnings}} \href{\VAR{standard_data.richness.url}}{link}
 \end{tabular}
+\BLOCK{if loop.index < product.code_style.data|length} \\[1.5em]\BLOCK{endif}
 \BLOCK{endfor}
 \BLOCK{endif}
 

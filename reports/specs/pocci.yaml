@@ -3,7 +3,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 2945 
-        progress: 55 
+        progress: 72
     children:
         - name: "Repository synchronization"
           id: 3935 
@@ -54,3 +54,5 @@ config_management:
         - version: CentOS7
           successful:   # True, False
           url:
+    comments:
+        - "Configuration management is probably not needed here. This tool have a simple config file and most of the parameters can be set also at the command line."

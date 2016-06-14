@@ -44,6 +44,15 @@
 \setganttlinklabel{f-f}{FINISH-TO-FINISH}
 \sffamily
 
+\usepackage{titling}
+
+\pretitle{%
+    \begin{center}
+    \LARGE
+    \includegraphics[scale=1.2]{../logo/INDIGO_logo_transparent.png}\\[\bigskipamount]
+}
+\posttitle{\end{center}}
+
 
 \begin{document}
 
@@ -52,7 +61,7 @@
 \newcommand{\lightgraybox}[1]{\colorbox{gray!40}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 \newcommand{\redbox}[1]{\colorbox{statusred}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
-\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report Apr-Jun 2016\\[1.5em] 
+\title{Software Quality Assurance (SQA) Report \\[0.7em] \large{13-17 Jun 2016}\\[1.5em] 
        \huge{\texttt{CloudProviderRanker}}\\
 }
 
@@ -72,7 +81,7 @@
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
     \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{1\%} \\ 
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{1\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -110,7 +119,7 @@
     canvas/.append style={fill=none, draw=black!5, line width=.75pt},
     hgrid style/.style={draw=black!5, line width=.75pt},
     vgrid={*1{draw=black!5, line width=.75pt}},
-    today=9,
+    today=10,
     today rule/.style={
     draw=black!64,
     dash pattern=on 3.5pt off 4.5pt,
@@ -185,7 +194,7 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
         \graybox{Yes} \\ 
     Exceptions & 
         \graybox{0} \\
-    Richness & \graybox{\strut 54} \hspace{0.3em} \graybox{\strut Errors 54} \graybox{\strut Warnings 0} \href{https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml}{link}\\
+    Richness & \graybox{\strut 54} \hspace{0.3em} \graybox{\strut Errors 54} \graybox{\strut Warnings 0} \href{https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml}{link}
 \end{tabular}
 
 \subsection{Build status}
@@ -250,7 +259,7 @@ Last build status on Jenkins CI
 Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-unittest/4}{cloudproviderranker-unittest}.
 \subsection{Observations}
 \begin{enumerate}
-        \item Even though there are quite some work in unit testing in the code, the overall coverage is just 1\% since conditional testing is just 1/150 covered.
+        \item Even though there are quite some work in unit testing in the code, the overall coverage is just 1\% since conditional coverage is 1/150 covered.
     \end{enumerate}
 
 

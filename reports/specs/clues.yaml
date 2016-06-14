@@ -3,17 +3,17 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 3086
-        progress: 0 
+        progress: 72
     children:
         - name: "Repository synchronization"
           id: 3863
           progress: 100
         - name: "Code style specification"
           id: 3866
-          progress: 50
+          progress: 100
         - name: "Unit testing coverage"
           id: 3137
-          progress: 0
+          progress: 80
         - name: "Functional and integration testing coverage"
           id: 3140
           progress: 0
@@ -22,22 +22,20 @@ tasks:
           progress: 50
         - name: "GitBook documentation"
           id: 3146
-          progress: 0
+          progress: 100
 repository: 
     url: https://github.com/indigo-dc/clues-indigo.git
 code_style:
-    wp3_in_progress: True
-    standard:
-    exceptions:
+    standard: pep8
+    exceptions: "1 (max_line_length)"
     jenkins_job:
-    comments:
-        - "Progress is 50\\% since the product is adhered to a standard but the job has not been defined (WP3 duty)."
+        - clues-codestyle
 unit_test:
     wp3_in_progress: True
     coverage:
     jenkins_job:
     comments:
-        - "Progress is 50\\% since the product has implemented unit tests but the job has not yet been defined (WP3 duty)."
+        - "Job has not yet been defined (WP3 duty). There are some errors arising when using pytest (for cobertura support)."
 func_int_test:
     url:
 gitbook:
@@ -45,6 +43,7 @@ gitbook:
     types:
         - Readme
 config_management:
+    wp3_in_progress: True
     tool:   # e.g. ansible, ..
     url:
     level:  # values: installation, configuration, installation/configuration

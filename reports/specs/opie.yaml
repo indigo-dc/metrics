@@ -3,7 +3,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 3767 
-        progress: 50 
+        progress: 48
     children:
         - name: "Repository synchronization"
           id: 3770
@@ -13,7 +13,7 @@ tasks:
           progress: 100
         - name: "Unit testing coverage"
           id: 3776
-          progress: 44 
+          progress: 92 
         - name: "Functional and integration testing coverage"
           id: 3779
           progress: 0
@@ -31,7 +31,7 @@ code_style:
     jenkins_job:
         - opie-codestyle
 unit_test:
-    coverage: 44
+    coverage: 92
     jenkins_job: opie-unittest
 func_int_test:
     url:

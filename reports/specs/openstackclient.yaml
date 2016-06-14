@@ -34,6 +34,8 @@ unit_test:
     wp3_in_progress: True
     coverage: 
     jenkins_job: openstackclient-unittest
+    comments:
+        - "Unit testing have been provided, but currently errors arise when gathering code coverage. Setting progress to 50\\%."
 func_int_test:
     url:
 gitbook:

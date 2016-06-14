@@ -32,8 +32,11 @@ code_style:
     jenkins_job:
         - im-codestyle
 unit_test:
+    wp3_in_progress: True
     coverage: 31
     jenkins_job: im-unittest
+    comments:
+        - "Product team has added new unit tests not currently being integrated in Jenkins service (WP3 in progress)."
 func_int_test:
     url:
 gitbook:
@@ -55,4 +58,4 @@ config_management:
           successful: True  # True, False
           url: https://jenkins.indigo-datacloud.eu:8080/job/im-ansible/label=ansible-centos/
     comments:
-        - "Task is at 50\\% since the Ansible playbook does not cover configuration."
+        - "Task is at 50\\% since the Ansible playbook does not cover configuration. Product team has confirmed that configuration will be added as well."

@@ -36,6 +36,7 @@ unit_test:
     comments:
         - "Suggested \\href{https://code.google.com/archive/p/shunit2/}{shunit2} framework."
 func_int_test:
+    wp3_in_progress: True
     url:
     comments:
         - "Integration testing recipe has been provided, requiring an OpenNebula installation. Still considering to implement this in Jenkins."

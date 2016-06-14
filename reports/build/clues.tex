@@ -44,6 +44,15 @@
 \setganttlinklabel{f-f}{FINISH-TO-FINISH}
 \sffamily
 
+\usepackage{titling}
+
+\pretitle{%
+    \begin{center}
+    \LARGE
+    \includegraphics[scale=1.2]{../logo/INDIGO_logo_transparent.png}\\[\bigskipamount]
+}
+\posttitle{\end{center}}
+
 
 \begin{document}
 
@@ -52,7 +61,7 @@
 \newcommand{\lightgraybox}[1]{\colorbox{gray!40}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 \newcommand{\redbox}[1]{\colorbox{statusred}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
-\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report Apr-Jun 2016\\[1.5em] 
+\title{Software Quality Assurance (SQA) Report \\[0.7em] \large{13-17 Jun 2016}\\[1.5em] 
        \huge{\texttt{CLUES}}\\
 }
 
@@ -62,7 +71,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE (0\% done)} \\
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE (63\% done)} \\
 \end{center}
 
 \vspace{4em}
@@ -72,7 +81,7 @@
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
     \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{None\%} \\ 
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{IN PROGRESS - WP3}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -110,7 +119,7 @@
     canvas/.append style={fill=none, draw=black!5, line width=.75pt},
     hgrid style/.style={draw=black!5, line width=.75pt},
     vgrid={*1{draw=black!5, line width=.75pt}},
-    today=9,
+    today=10,
     today rule/.style={
     draw=black!64,
     dash pattern=on 3.5pt off 4.5pt,
@@ -141,7 +150,7 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=0]{\textbf{\#3086} CLUES SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=63]{\textbf{\#3086} CLUES SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
@@ -151,7 +160,7 @@
             name=WBS1A
         ]{\textbf{\#3866} Code style specification}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=80,
             name=WBS1A
         ]{\textbf{\#3137} Unit testing coverage}{1}{12} \\
             \ganttbar[
@@ -163,7 +172,7 @@
             name=WBS1A
         ]{\textbf{\#3143} Configuration management}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=100,
             name=WBS1A
         ]{\textbf{\#3146} GitBook documentation}{1}{12} \\
      [grid]
@@ -179,10 +188,13 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 \input{title_codestyle.tex}
 \label{sec:code_style}
 
+\subsection{Build status}
+Last build status on Jenkins CI
+\href{https://jenkins.indigo-datacloud.eu:8080//job/clues-codestyle/2}{clues-codestyle}.
 
 \subsection{Observations}
 \begin{enumerate}
-        \item Progress is 50\% since the product is adhered to a standard but the job has not been defined (WP3 duty).
+        \item Progress is 50\% since the product is adhered to a standard (pep8) but the code is not yet compliant.
     \end{enumerate}
 
  
@@ -191,7 +203,7 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 \label{sec:unit_test}
 \subsection{Observations}
 \begin{enumerate}
-        \item Progress is 50\% since the product has implemented unit tests but the job has not yet been defined (WP3 duty).
+        \item Job has not yet been defined (WP3 duty). There are some errors arising when using pytest (for cobertura support).
     \end{enumerate}
 
 

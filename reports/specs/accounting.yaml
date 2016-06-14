@@ -3,7 +3,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 3269
-        progress: 0 
+        progress: 25 
     children:
         - name: "Repository synchronization"
           id: 3272 
@@ -34,10 +34,10 @@ code_style:
         - accounting-codestyle
         - accounting-codestyle-pep257
     comments:
-        - "Task is at 50\\% of progress since the standards are defined but the Jenkins jobs are failing."
+        - "Task is at 50\\% of progress since the standards are defined (PEP 8, PEP 257) but the Jenkins jobs are failing."
 unit_test:
     wp3_in_progress: True
-    coverage: 
+    coverage:
     jenkins_job: #accounting-unittest
     comments:
         - "Jenkins job is currently being deployed by WP3."

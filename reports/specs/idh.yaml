@@ -34,7 +34,7 @@ unit_test:
     coverage: 0
     jenkins_job: idh-unittest
     comments:
-        - "The command provided for running the tests is currently failing."
+        - "The command provided by the product team for running the tests is currently failing."
 func_int_test:
     url:
 gitbook:

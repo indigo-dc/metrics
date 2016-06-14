@@ -3,7 +3,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks: 
     parent: 
         id: 3641
-        progress: 53
+        progress: 72
     children: 
         - name: "Repository synchronization"
           id: 3644
@@ -13,16 +13,16 @@ tasks:
           progress: 100
         - name: "Unit testing coverage"
           id: 3650
-          progress: 18
+          progress: 30
         - name: "Functional and integration testing coverage"
           id: 3653
           progress: 100
         - name: "Configuration management"
           id: 3656
-          progress: 0
+          progress: 50
         - name: "GitBook documentation"
           id: 3659
-          progress: 50
+          progress: 100
 repository: 
     url: https://github.com/indigo-dc/udocker
 code_style: 
@@ -32,7 +32,7 @@ code_style:
     jenkins_job: 
         - udocker-codestyle
 unit_test:
-    coverage: 18
+    coverage: 25
     jenkins_job: udocker-unittest
 func_int_test:
     wp3_in_progress: True
@@ -44,9 +44,8 @@ gitbook:
     types:
         - Readme
         - User documentation
-    comments: # latex
-        - "Task is at 50\\% of progress since WP3 is waiting for the confirmation about the completeness of the documentation already provided."
 config_management:
+    wp3_in_progress: True
     tool:   # e.g. ansible, ..
     url:
     level:  # values: installation, configuration, installation/configuration
@@ -58,3 +57,5 @@ config_management:
         - version: CentOS7
           successful:   # True, False
           url:
+    comments:
+        - "Ansible playbook provided by the product team. Work in progress by WP3; setting progress to 50\\%."

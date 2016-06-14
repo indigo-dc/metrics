@@ -54,4 +54,4 @@ config_management:
           successful:   # True, False
           url:
     comments:
-        - "IM-Java-API will be deployable as a JAR file."
+        - "No configuration management tool will be used for deploying the product: IM-Java-API will be deployable as a JAR file."

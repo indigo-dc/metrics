@@ -3,7 +3,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 3089
-        progress: 55 
+        progress: 72 
     children:
         - name: "Repository synchronization"
           id: 3854
@@ -19,7 +19,7 @@ tasks:
           progress: 0
         - name: "Configuration management"
           id: 3092
-          progress: 0
+          progress: 100
         - name: "GitBook documentation"
           id: 3098
           progress: 100
@@ -54,3 +54,5 @@ config_management:
         - version: CentOS7
           successful:   # True, False
           url:
+    comments:
+        - "The orchestrator is a dockerized service that runs on the kubernetes cluster, and the few configurations that it needs can be expressed via environment variables, so it doesn't really need any configuration management tool."

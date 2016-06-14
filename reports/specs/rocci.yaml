@@ -3,7 +3,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 2906
-        progress: 67 
+        progress: 75
     children:
         - name: "Repository synchronization"
           id: 3938
@@ -22,7 +22,7 @@ tasks:
           progress: 0
         - name: "GitBook documentation"
           id: 2921
-          progress: 50
+          progress: 100
 repository: 
     url: https://github.com/indigo-dc/rOCCI-server.git 
 code_style:
@@ -45,8 +45,6 @@ gitbook:
     url: https://indigo-dc.gitbooks.io/rocci/content/
     types:
         - Readme
-    comments:
-        - "The documentation for the contribution/s to INDIGO is missing."
 config_management:
     tool:   # e.g. ansible, ..
     url:

@@ -37,7 +37,7 @@ unit_test:
     coverage: 1 
     jenkins_job: cloudproviderranker-unittest
     comments:
-        - "Even though there are quite some work in unit testing in the code, the overall coverage is just 1\\% since conditional testing is just 1/150 covered."
+        - "Even though there are quite some work in unit testing in the code, the overall coverage is just 1\\% since conditional coverage is 1/150 covered."
 func_int_test:
     wp3_in_progress: True
     url:
