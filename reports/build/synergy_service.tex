@@ -1,0 +1,279 @@
+\documentclass[a4wide,11pt]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{csvsimple}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\usepackage{xcolor}
+\usepackage{textcomp}
+
+\usepackage{pgfgantt}
+
+\usepackage{enumitem}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\pagestyle{fancy}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+\urlstyle{same}
+
+
+\definecolor{barblue}{RGB}{153,204,254}
+\definecolor{groupblue}{RGB}{51,102,254}
+\definecolor{linkred}{RGB}{165,0,33}
+\definecolor{statusred}{RGB}{204,0,0}
+\definecolor{statusgreen}{RGB}{0,153,0}
+\renewcommand\sfdefault{phv}
+%\renewcommand\mddefault{mc} % this causes bold, italic, .. not to be displayed
+\renewcommand\bfdefault{bc}
+\setganttlinklabel{s-s}{START-TO-START}
+\setganttlinklabel{f-s}{FINISH-TO-START}
+\setganttlinklabel{f-f}{FINISH-TO-FINISH}
+\sffamily
+
+
+\begin{document}
+
+\newcommand{\greenbox}[1]{\colorbox{statusgreen!90}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
+\newcommand{\graybox}[1]{\colorbox{gray!90}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
+\newcommand{\lightgraybox}[1]{\colorbox{gray!40}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
+\newcommand{\redbox}[1]{\colorbox{statusred}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
+
+\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report Apr-Jun 2016\\[1.5em] 
+       \huge{\texttt{Synergy Service}}\\
+}
+
+\date{} 
+\maketitle
+
+\Large
+\vspace{-3em}
+\begin{center}
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE (52\% done)} \\
+\end{center}
+
+\vspace{4em}
+
+\large
+\begin{center}
+\begin{tabular}{ll}
+    \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{0\%} \\ 
+    %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
+    %    canvas/.append style={fill=none, draw=none},
+    %    hgrid style/.style={draw=none, fill=none},
+    %    vgrid={*1{draw=none, fill=none}},
+    %    title/.style={draw=none, fill=none},
+    %    title label font=\bfseries\footnotesize,
+    %    title label node/.append style={below=7pt},
+    %    include title in canvas=false,
+    %    bar label font=\mdseries\small\color{black!70},
+    %    bar label node/.append style={left=2cm},
+    %    bar/.append style={draw=none, fill=black!63},
+    %    bar incomplete/.append style={fill=barblue},
+    %    bar progress label font=\mdseries\footnotesize\color{black!70},
+    %    bar top shift=1, bar height=0.8
+    %    ]{1}{5}
+    %    \ganttbar[progress=0]{}{1}{5}
+    %\end{ganttchart} \vspace{0.6em}\\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
+    \hyperref[sec:configuration]{Automated deployment} & \greenbox{COMPLETE} \\
+\end{tabular}
+\end{center}
+
+
+\normalsize 
+\newpage
+
+\part{Task Progress}
+
+%
+% OpenProject tasks - pgfgantt
+%
+\hspace{-5em}
+\begin{ganttchart}[
+    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+    hgrid style/.style={draw=black!5, line width=.75pt},
+    vgrid={*1{draw=black!5, line width=.75pt}},
+    today=9,
+    today rule/.style={
+    draw=black!64,
+    dash pattern=on 3.5pt off 4.5pt,
+    line width=1.5pt
+    },
+    today label font=\small\bfseries,
+    title/.style={draw=none, fill=none},
+    title label font=\bfseries\footnotesize,
+    title label node/.append style={below=7pt},
+    include title in canvas=false,
+    bar label font=\mdseries\small\color{black!70},
+    bar label node/.append style={left=2cm},
+    bar/.append style={draw=none, fill=black!63},
+    bar incomplete/.append style={fill=barblue},
+    bar progress label font=\mdseries\footnotesize\color{black!70},
+    group incomplete/.append style={fill=groupblue},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\bfseries\small,
+    link/.style={-latex, line width=1.5pt, linkred},
+    link label font=\scriptsize\bfseries,
+    link label node/.append style={below left=-2pt and 0pt}
+]{1}{12}
+    \gantttitle[
+        title label node/.append style={below left=7pt and -3pt}
+    ]{WEEKS:\quad1}{1}
+    \gantttitlelist{2,...,12}{1} \\
+    \ganttgroup[progress=52]{\textbf{\#2996} Synergy Service SQA FOR 1ST RELEASE}{1}{12} \\
+            \ganttbar[
+            progress=100,
+            name=WBS1A
+        ]{\textbf{\#2999} Repository synchronization}{1}{12} \\
+            \ganttbar[
+            progress=100,
+            name=WBS1A
+        ]{\textbf{\#3920} Code style specification}{1}{12} \\
+            \ganttbar[
+            progress=0,
+            name=WBS1A
+        ]{\textbf{\#3923} Unit testing coverage}{1}{12} \\
+            \ganttbar[
+            progress=0,
+            name=WBS1A
+        ]{\textbf{\#3926} Functional and integration testing coverage}{1}{12} \\
+            \ganttbar[
+            progress=40,
+            name=WBS1A
+        ]{\textbf{\#3002} Configuration management}{1}{12} \\
+            \ganttbar[
+            progress=70,
+            name=WBS1A
+        ]{\textbf{\#3005} GitBook documentation}{1}{12} \\
+     [grid]
+\end{ganttchart}
+
+%\newpage
+
+\input{title_repository.tex}
+\label{sec:repository}
+Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/synergy-service}\end{center}
+
+
+\input{title_codestyle.tex}
+\label{sec:code_style}
+
+\subsection{Build status}
+Last build status on Jenkins CI
+\href{https://jenkins.indigo-datacloud.eu:8080//job/synergy-codestyle/5}{synergy-codestyle}.
+
+
+ 
+ 
+\input{title_unittest.tex}
+\label{sec:unit_test}
+
+\begin{center}
+% Trend graph (jenkins)
+\textbf{Trend graph}\par\medskip
+\includegraphics[scale=0.5]{/srv/metrics/reports/build/figs/graph_synergy-unittest.png}
+\\
+%\vspace{0.5em}
+% Cobertura report (gantt chart)
+%\textbf{Cobertura report}\par\medskip
+\begin{ganttchart}[
+    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+    hgrid style/.style={draw=black!5, line width=.75pt},
+    vgrid={*1{draw=black!5, line width=.75pt}},
+    title/.style={draw=none, fill=none},
+    %title label font=\bfseries\footnotesize,
+    title label font=\normalsize,
+    title label node/.append style={below=7pt},
+    include title in canvas=false,
+    bar label font=\mdseries\small\color{black!70},
+    bar label node/.append style={left=2cm},
+    bar/.append style={draw=none, fill=black!63},
+    bar incomplete/.append style={fill=barblue},
+    bar progress label font=\mdseries\footnotesize\color{black!70},
+    group incomplete/.append style={fill=groupblue},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\bfseries\small,
+    link/.style={-latex, line width=1.5pt, linkred},
+    link label font=\scriptsize\bfseries,
+    link label node/.append style={below left=-2pt and 0pt}
+    ]{1}{5}
+    \gantttitle{Cobertura Report}{-3} \\
+    %\ganttgroup[progress=45]{Group 1}{1}{12} \\
+            \ganttbar[progress=50.0]{Packages (2.0/4.0)}{1}{3} \\
+            \ganttbar[progress=23.076923]{Files (3.0/13.0)}{1}{3} \\
+            \ganttbar[progress=23.076923]{Classes (3.0/13.0)}{1}{3} \\
+            \ganttbar[progress=5.5753264]{Lines (47.0/843.0)}{1}{3} \\
+            \ganttbar[progress=0.0]{Conditionals (0.0/218.0)}{1}{3} \\
+     [grid]
+\end{ganttchart}
+\end{center}
+\subsection{Build status}
+Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/synergy-unittest/4}{synergy-unittest}.
+\subsection{Observations}
+\begin{enumerate}
+        \item Percentage is 0\% because of the conditional coverage, but other methods have higher coverage rates.
+    \end{enumerate}
+
+
+\input{title_functional_integration.tex}
+\label{sec:func_int_test}
+
+
+\input{title_gitbook.tex}
+\label{sec:gitbook}
+Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0.1em} \begin{center}\url{https://indigo-dc.gitbooks.io/synergy/content/}\end{center} 
+\subsection{Types of documentation currently provided}
+\begin{center}
+\graybox{\strut Readme}
+\graybox{\strut Deployment documentation}
+\graybox{\strut Administration documentation}
+\end{center}
+
+
+\input{title_configuration.tex}
+\label{sec:configuration}
+\begin{center}
+\begin{tabular}{ll}
+    Tool & \graybox{puppet} \\
+    Deployment coverage & \graybox{installation/configuration} \\
+    Manifest link & \url{https://github.com/indigo-dc/puppet-synergy} \\
+\end{tabular}
+\end{center}
+\subsection{Build status}
+\begin{center}
+\begin{tabular}{ll}
+        \href{None}{Ubuntu 14.04 LTS} & \redbox{failed}\\
+        \href{None}{CentOS7} & \redbox{failed}\\
+    \end{tabular}
+\end{center}
+
+
+\newpage
+\input{title_annex.tex}
+
+\end{document}
