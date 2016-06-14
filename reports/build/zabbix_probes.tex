@@ -62,7 +62,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE (17\% done)} \\
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE (25\% done)} \\
 \end{center}
 
 \vspace{4em}
@@ -141,13 +141,13 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=17]{\textbf{\#3221} Zabbix Probes SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=25]{\textbf{\#3221} Zabbix Probes SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
         ]{\textbf{\#3224} Repository synchronization}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=50,
             name=WBS1A
         ]{\textbf{\#3845} Code style specification}{1}{12} \\
             \ganttbar[
@@ -179,6 +179,9 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 \input{title_codestyle.tex}
 \label{sec:code_style}
 
+\subsection{Build status}
+Last build status on Jenkins CI
+\href{https://jenkins.indigo-datacloud.eu:8080//job/zabbix-probes-codestyle/1}{zabbix-probes-codestyle}.
 
 
  

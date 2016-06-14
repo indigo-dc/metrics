@@ -29,7 +29,7 @@ code_style:
     standard: erlang
     exceptions: 0 
     jenkins_job:
-		- tts-codestyle
+        - tts-codestyle
 unit_test:
     coverage: 40 
     jenkins_job: tts-unittest
@@ -38,9 +38,9 @@ func_int_test:
 gitbook:
     url: https://indigo-dc.gitbooks.io/token-translation-service/content/
     types:
-		- "Readme"
-	comments:
-		- "Checking with the product team if the documentation is complete. Setting progress to 50\%%"
+        - "Readme"
+    comments:
+        - "Checking with the product team if the documentation is complete. Setting progress to 50\\%"
 config_management:
     tool:   # e.g. ansible, ..
     url:

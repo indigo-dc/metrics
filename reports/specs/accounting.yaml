@@ -38,7 +38,7 @@ code_style:
 unit_test:
     wp3_in_progress: True
     coverage: 
-    jenkins_job: accounting-unittest
+    jenkins_job: #accounting-unittest
     comments:
         - "Jenkins job is currently being deployed by WP3."
 func_int_test:

@@ -29,7 +29,7 @@ code_style:
     standard: ruby_style_guide 
     exceptions: "just lint cops checked"
     jenkins_job:
-		- rocci-codestyle
+        - rocci-codestyle
 unit_test:
     wp3_in_progress: True
     coverage: 

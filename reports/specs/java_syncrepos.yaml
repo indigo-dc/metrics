@@ -27,10 +27,10 @@ repository:
     url: https://github.com/indigo-dc/java-syncrepos 
 code_style:
     standard:
-		- java_google 
+        - java_google 
     exceptions: 0
     jenkins_job:
-		- syncrepos-codestyle
+        - syncrepos-codestyle
 unit_test:
     coverage: 41 
     jenkins_job: syncrepos-unittest

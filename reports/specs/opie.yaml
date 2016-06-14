@@ -29,7 +29,7 @@ code_style:
     standard: hacking
     exceptions: 0
     jenkins_job:
-		- opie-codestyle
+        - opie-codestyle
 unit_test:
     coverage: 44
     jenkins_job: opie-unittest

@@ -43,6 +43,8 @@ def save_cobertura_graph(job_name, dest_dir):
         os.makedirs(dest_dir)
     url = '/'.join([JENKINS_URL, "job/%s/%s/cobertura/graph" % (job_name, last_build)])
     r = requests.get(url, verify=False)
+    if r.status_code == 500:
+        return None
     fname = os.path.join(dest_dir, "graph_%s.png" % job_name)
     i = Image.open(StringIO(r.content))
     i.save(fname)

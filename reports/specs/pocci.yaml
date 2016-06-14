@@ -29,7 +29,7 @@ code_style:
     standard: flake8 
     exceptions: "5 (E265,E303,E501,F403,E402 )" 
     jenkins_job:
-		- pocci-codestyle
+        - pocci-codestyle
 unit_test:
     coverage: 22 
     jenkins_job: pocci-unittest

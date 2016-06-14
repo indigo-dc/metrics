@@ -29,7 +29,7 @@ code_style:
     standard: java_google 
     exceptions: 0
     jenkins_job:
-		- qos-codestyle
+        - qos-codestyle
 unit_test:
     coverage: 0 
     jenkins_job: qos-unittest
@@ -38,10 +38,10 @@ func_int_test:
 gitbook:
     url: https://indigo-dc.gitbooks.io/cdmi-qos/content/
     types:
-		- "Readme"
-		- "Deployment documentation"
-		- "Administration documentation"
-		- "User documentation"
+        - "Readme"
+        - "Deployment documentation"
+        - "Administration documentation"
+        - "User documentation"
 config_management:
     tool:   # e.g. ansible, ..
     url:

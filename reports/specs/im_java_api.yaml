@@ -29,7 +29,7 @@ code_style:
     standard: java_google
     exceptions: 0
     jenkins_job:
-		- im-java-api-codestyle
+        - im-java-api-codestyle
 unit_test:
     coverage: 76 
     jenkins_job: im-java-api-unittest
@@ -38,9 +38,9 @@ func_int_test:
 gitbook:
     url: https://indigo-dc.gitbooks.io/im-java-api/content/ 
     types:
-		- Readme
-		- Deployment documentation
-		- User documentation
+        - "Readme"
+        - "Deployment documentation"
+        - "User documentation"
 config_management:
     tool:   # e.g. ansible, ..
     url:
@@ -53,5 +53,5 @@ config_management:
         - version: CentOS7
           successful:   # True, False
           url:
-	comments:
-		- "IM-Java-API will be deployable as a JAR file."
+    comments:
+        - "IM-Java-API will be deployable as a JAR file."

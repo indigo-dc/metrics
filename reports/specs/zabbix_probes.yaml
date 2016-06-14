@@ -3,14 +3,14 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 3221
-        progress: 17 
+        progress: 25
     children:
         - name: "Repository synchronization"
           id: 3224 
           progress: 100
         - name: "Code style specification"
           id: 3845
-          progress: 0
+          progress: 50
         - name: "Unit testing coverage"
           id: 3233
           progress: 0
@@ -26,9 +26,10 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/Zabbix-probes.git 
 code_style:
-    standard: 
-    exceptions: 
-    jenkins_job: 
+    standard: java_google
+    exceptions: 0
+    jenkins_job:
+        - zabbix-probes-codestyle
 unit_test:
     coverage: 
     jenkins_job:

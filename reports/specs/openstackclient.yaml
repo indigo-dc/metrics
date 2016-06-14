@@ -29,7 +29,7 @@ code_style:
     standard: hacking 
     exceptions: 0
     jenkins_job:
-		- openstackclient-codestyle 
+        - openstackclient-codestyle 
 unit_test:
     wp3_in_progress: True
     coverage: 

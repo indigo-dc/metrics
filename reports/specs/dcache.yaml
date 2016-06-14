@@ -46,7 +46,7 @@ gitbook:
     types:
         - Readme
     comments:
-        - "Documentation does not reflect the contributions of dCache to INDIGO project. Setting progress to 50\%%."
+        - "Documentation does not reflect the contributions of dCache to INDIGO project. Setting progress to 50\\%."
 config_management:
     tool: puppet   # e.g. ansible, ..
     url: https://github.com/dCache/dcache-puppet

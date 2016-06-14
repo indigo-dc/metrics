@@ -29,12 +29,12 @@ code_style:
     standard: pep8
     exceptions: 0
     jenkins_job:
-		- onedock-codestyle
+        - onedock-codestyle
 unit_test:
     coverage: 
     jenkins_job:
-	comments:
-		- "Suggested \href{https://code.google.com/archive/p/shunit2/}{shunit2} framework."
+    comments:
+        - "Suggested \\href{https://code.google.com/archive/p/shunit2/}{shunit2} framework."
 func_int_test:
     url:
     comments:

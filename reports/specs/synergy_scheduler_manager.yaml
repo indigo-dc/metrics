@@ -29,20 +29,20 @@ code_style:
     standard: hacking 
     exceptions: 0
     jenkins_job:
-		- synergy-scheduler-codestyle
+        - synergy-scheduler-codestyle
 unit_test:
     coverage: 0 
     jenkins_job: synergy-scheduler-unittest
-	comments:
-		- "Percentage is 0\\% because of the conditional coverage, but other methods have higher coverage rates."
+    comments:
+        - "Percentage is 0\\% because of the conditional coverage, but other methods have higher coverage rates."
 func_int_test:
     url:
 gitbook:
     url: https://indigo-dc.gitbooks.io/synergy/content/
     types:
-		- Readme
-		- Deployment documentation
-		- Administration documentation
+        - "Readme"
+        - "Deployment documentation"
+        - "Administration documentation"
 config_management:
     tool: puppet   # e.g. ansible, ..
     url: https://github.com/indigo-dc/puppet-synergy
@@ -55,5 +55,5 @@ config_management:
         - version: CentOS7
           successful:   # True, False
           url:
-	comments:
-		- "Jenkins jobs pending (WP3 duty)."
+    comments:
+        - "Jenkins jobs pending (WP3 duty)."
