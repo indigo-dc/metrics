@@ -44,6 +44,15 @@
 \setganttlinklabel{f-f}{FINISH-TO-FINISH}
 \sffamily
 
+\usepackage{titling}
+
+\pretitle{%
+    \begin{center}
+    \LARGE
+    \includegraphics[scale=1.2]{../logo/INDIGO_logo_transparent.png}\\[\bigskipamount]
+}
+\posttitle{\end{center}}
+
 
 \begin{document}
 
@@ -52,7 +61,7 @@
 \newcommand{\lightgraybox}[1]{\colorbox{gray!40}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 \newcommand{\redbox}[1]{\colorbox{statusred}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
-\title{INDIGO-DataCloud Software Quality Assurance (SQA) Report \VAR{period}\\[1.5em] 
+\title{Software Quality Assurance (SQA) Report \VAR{period}\\[1.5em] 
        \huge{\texttt{\VAR{product.id}}}\\
 }
 
