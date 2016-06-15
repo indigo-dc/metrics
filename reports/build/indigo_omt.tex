@@ -66,7 +66,7 @@
 \newcommand{\yellowbox}[1]{\colorbox{statusyellow}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
 \title{Software Quality Assurance (SQA) Report \\[0.7em] \large{13-17 Jun 2016}\\[1.5em] 
-       \huge{\texttt{}}\\
+       \huge{\texttt{indigo-omt}}\\
 }
 
 \date{} 
@@ -76,9 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}17\% done\end{huge}} 
-    %\\[0.5em] 
-    %    %    \redbox{\strut \begin{huge}17\% done\end{huge}}
-    % \\
 \end{center}
 
 \vspace{4em}
@@ -116,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -157,7 +154,7 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=17]{\textbf{\#3434}  SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=17]{\textbf{\#3434} indigo-omt SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
@@ -197,9 +194,9 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
 
 
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Product leader/s did not provide this information. WP3 will check for the \href{https://source.android.com/source/code-style.html}{official Android guidelines} otherwise.
-    \end{enumerate}
+    \end{itemize}
 
  
  
@@ -209,7 +206,11 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+
+%%%No functional or integration testing provided.
+%%
 No functional or integration testing provided.
+
 
 
 \input{title_gitbook.tex}
@@ -219,7 +220,10 @@ Documentation is currently \textbf{not available} under \href{https://www.gitboo
 
 \input{title_configuration.tex}
 \label{sec:configuration}
-Product does not currently provide a automated deployment solution. 
+
+
+Product does not currently provide a automated deployment solution.
+
 
 
 \newpage

@@ -76,9 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}67\% done\end{huge}} 
-    %\\[0.5em] 
-    %    %    \yellowbox{\strut \begin{huge}67\% done\end{huge}}
-    % \\
 \end{center}
 
 \vspace{4em}
@@ -87,7 +84,7 @@
 \begin{center}
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
     \hyperref[sec:unit_test]{Code coverage} & \graybox{IN PROGRESS - WP3}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -108,7 +105,7 @@
     %\end{ganttchart} \vspace{0.6em}\\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
-    \hyperref[sec:configuration]{Automated deployment} & \greenbox{COMPLETE} \\
+    \hyperref[sec:configuration]{Automated deployment} & \graybox{IN PROGRESS - WP3} \\
 \end{tabular}
 \end{center}
 
@@ -116,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -194,30 +191,43 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
+\begin{tabular}{ll}
+    Code style definition &
+        \href{https://goo.gl/4Ra3Na}{Custom Java dCache Style Guide} \\
+    Community/de-facto standard &
+        \graybox{Yes} \\ 
+    Exceptions & 
+        \graybox{0} \\
+    Richness & \graybox{\strut 6} \hspace{0.3em} \graybox{\strut Errors None} \graybox{\strut Warnings None} \href{https://goo.gl/4Ra3Na}{link}
+\end{tabular}
 
 
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Jenkins job cannot be implemented since the code-style is IDE-specific and cannot be ran through command-line.
-    \end{enumerate}
+    \end{itemize}
 
  
  
 \input{title_unittest.tex}
 \label{sec:unit_test}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Product team needs to point to the unit testing check within the dCache CI server at https://ci.dcache.org.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+
+%%%No functional or integration testing provided.
+%%
 No functional or integration testing provided.
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item WP3 needs to track the functionality checks for the specific parts of the contribution to INDIGO project. Please provide them by either pointing to already existant CI jobs, documentation, etc.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_gitbook.tex}
@@ -228,13 +238,14 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 \graybox{\strut Readme}
 \end{center}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Documentation does not reflect the contributions of dCache to INDIGO project. Setting progress to 50\%.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_configuration.tex}
 \label{sec:configuration}
+
 \begin{center}
 \begin{tabular}{ll}
     Tool & \graybox{puppet} \\
@@ -242,17 +253,12 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
     Manifest link & \url{https://github.com/dCache/dcache-puppet} \\
 \end{tabular}
 \end{center}
-\subsection{Build status}
-\begin{center}
-\begin{tabular}{ll}
-        \href{None}{Ubuntu 14.04 LTS} & \redbox{failed}\\
-        \href{None}{CentOS7} & \redbox{failed}\\
-    \end{tabular}
-\end{center}
+
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Please indicate what Puppet classes are the ones that match the contributions to INDIGO-DataCloud.
-    \end{enumerate}
+    \end{itemize}
 
 
 \newpage

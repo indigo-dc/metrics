@@ -40,7 +40,7 @@ unit_test:
         - "Even though there are quite some work in unit testing in the code, the overall coverage is just 1\\% since conditional coverage is 1/150 covered."
 func_int_test:
     wp3_in_progress: True
-    url:
+    url: # links to external CIs
     comments:
         - "Progress set to 50\\%: guidelines for testing the server are documented in \\href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}."
 gitbook:
@@ -49,6 +49,7 @@ gitbook:
         - Readme
         - Deployment/user documentation
 config_management:
+    wont_be_provided: True
     comments:
         - "Configuration for CloudProviderRanker server is trivial: zero configuration, or NO configuration at all (puppet or other). It can be launched without any configuration but the editing of two support files in json notation that define weights and priorities used by the internal engine rule."
     tool:   # e.g. ansible, ..

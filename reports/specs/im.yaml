@@ -1,4 +1,5 @@
-id: "Infrastructure Manager"
+id: "IM"
+name: "Infrastructure Manager"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
@@ -38,7 +39,7 @@ unit_test:
     comments:
         - "Product team has added new unit tests not currently being integrated in Jenkins service (WP3 in progress)."
 func_int_test:
-    url:
+    url: # links to external CIs
 gitbook:
     url: https://indigo-dc.gitbooks.io/im/content/
     types:

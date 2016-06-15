@@ -26,7 +26,8 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/onedock
 code_style:
-    standard: pep8
+    standard:
+        - pep8
     exceptions: 0
     jenkins_job:
         - onedock-codestyle

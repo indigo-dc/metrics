@@ -76,9 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}67\% done\end{huge}} 
-    %\\[0.5em] 
-    %    %    \yellowbox{\strut \begin{huge}67\% done\end{huge}}
-    % \\
 \end{center}
 
 \vspace{4em}
@@ -108,7 +105,7 @@
     %\end{ganttchart} \vspace{0.6em}\\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
-    \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:configuration]{Automated deployment} & \greenbox{COMPLETE} \\
 \end{tabular}
 \end{center}
 
@@ -116,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -209,9 +206,9 @@ Last build status on Jenkins CI
 \href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-codestyle/8}{cloudproviderranker-codestyle}.
 
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Progress is set to 50\%: code style is defined but the current code is not compliant with it. For further information please check last build at Jenkins CI.
-    \end{enumerate}
+    \end{itemize}
 
  
  
@@ -265,17 +262,22 @@ Last build status on Jenkins CI
 \subsection{Build status}
 Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-unittest/4}{cloudproviderranker-unittest}.
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Even though there are quite some work in unit testing in the code, the overall coverage is just 1\% since conditional coverage is 1/150 covered.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+
+%%%Tests currently being defined at Jenkins CI service.
+%%
+Tests currently being defined at Jenkins CI service.
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Progress set to 50\%: guidelines for testing the server are documented in \href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_gitbook.tex}
@@ -290,11 +292,13 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 
 \input{title_configuration.tex}
 \label{sec:configuration}
-Product does not currently provide a automated deployment solution. 
+
+
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Configuration for CloudProviderRanker server is trivial: zero configuration, or NO configuration at all (puppet or other). It can be launched without any configuration but the editing of two support files in json notation that define weights and priorities used by the internal engine rule.
-    \end{enumerate}
+    \end{itemize}
 
 
 \newpage

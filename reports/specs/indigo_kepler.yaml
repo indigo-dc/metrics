@@ -1,4 +1,5 @@
-id: "INDIGO Plug-ins for scientific workflow systems"
+id: "indigo-kepler"
+name: "INDIGO Plug-ins for scientific workflow systems"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
@@ -27,7 +28,8 @@ repository:
     url: https://github.com/indigo-dc/indigokepler
 code_style:
     wp3_in_progress: True
-    standard: java_sun
+    standard:
+        - java_sun
     exceptions: 0
     jenkins_job:
         - indigokepler-codestyle
@@ -41,7 +43,7 @@ unit_test:
     comments:
         - "Job fails to run due to a dependency issue (with indigoclient)."
 func_int_test:
-    url:
+    url: # links to external CIs
 gitbook:
     url: 
     types:

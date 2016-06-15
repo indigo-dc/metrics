@@ -76,9 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\greenbox{\strut COMPLETE}\\[0.5em]\greenbox{\strut \begin{huge}72\% done\end{huge}} 
-    %\\[0.5em] 
-    %    %    \yellowbox{\strut \begin{huge}72\% done\end{huge}}
-    % \\
 \end{center}
 
 \vspace{4em}
@@ -108,7 +105,7 @@
     %\end{ganttchart} \vspace{0.6em}\\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
-    \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:configuration]{Automated deployment} & \graybox{IN PROGRESS - WP3} \\
 \end{tabular}
 \end{center}
 
@@ -116,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -263,10 +260,15 @@ Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+
+%%%Tests currently being defined at Jenkins CI service.
+%%
+Tests currently being defined at Jenkins CI service.
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Product leader provided both functional and integration tests. WP3 is currently working on the Jenkins CI job definition.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_gitbook.tex}
@@ -281,11 +283,13 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 
 \input{title_configuration.tex}
 \label{sec:configuration}
-Product does not currently provide a automated deployment solution. 
+
+
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Ansible playbook provided by the product team. Work in progress by WP3; setting progress to 50\%.
-    \end{enumerate}
+    \end{itemize}
 
 
 \newpage

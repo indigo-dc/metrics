@@ -43,6 +43,7 @@ gitbook:
         - "API documentation"
         - "Deployment documentation"
 config_management:
+    wont_be_provided: True
     tool:   # e.g. ansible, ..
     url:
     level:  # values: installation, configuration, installation/configuration

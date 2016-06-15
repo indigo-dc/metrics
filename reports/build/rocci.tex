@@ -76,9 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}75\% done\end{huge}} 
-    %\\[0.5em] 
-    %    %    \graybox{\strut \begin{huge}75\% done\end{huge}}
-    % \\
 \end{center}
 
 \vspace{4em}
@@ -87,7 +84,7 @@
 \begin{center}
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
     \hyperref[sec:unit_test]{Code coverage} & \graybox{IN PROGRESS - WP3}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -116,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -194,6 +191,15 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
+\begin{tabular}{ll}
+    Code style definition &
+        \href{https://github.com/bbatsov/ruby-style-guide}{Ruby Style Guide} \\
+    Community/de-facto standard &
+        \graybox{Yes} \\ 
+    Exceptions & 
+        \graybox{just lint cops checked} \\
+    Richness & \graybox{\strut <to check>} \hspace{0.3em} \graybox{\strut Errors None} \graybox{\strut Warnings None} \href{None}{link}
+\end{tabular}
 
 \subsection{Build status}
 Last build status on Jenkins CI
@@ -205,17 +211,22 @@ Last build status on Jenkins CI
 \input{title_unittest.tex}
 \label{sec:unit_test}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item WP3 facing some errors while running the cobertura tool. Setting to 50\% until the job is running fine.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+
+%%%Tests currently being defined at Jenkins CI service.
+%%
+Tests currently being defined at Jenkins CI service.
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Pending job definition: The set of functional tests is documented here: https://github.com/arax/kitchen-occi
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_gitbook.tex}
@@ -229,7 +240,10 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 
 \input{title_configuration.tex}
 \label{sec:configuration}
-Product does not currently provide a automated deployment solution. 
+
+
+Product does not currently provide a automated deployment solution.
+
 
 
 \newpage

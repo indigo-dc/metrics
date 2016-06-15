@@ -1,4 +1,5 @@
 id: "INDIGO IAM"
+name: "INDIGO Identity Access Management"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
@@ -33,7 +34,7 @@ unit_test:
     coverage: 
     jenkins_job:
 func_int_test:
-    url:
+    url: # links to external CIs
 gitbook:
     url:
     types:

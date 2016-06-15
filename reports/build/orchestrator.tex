@@ -76,9 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}72\% done\end{huge}} 
-    %\\[0.5em] 
-    %    %    \yellowbox{\strut \begin{huge}72\% done\end{huge}}
-    % \\
 \end{center}
 
 \vspace{4em}
@@ -108,7 +105,7 @@
     %\end{ganttchart} \vspace{0.6em}\\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
-    \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:configuration]{Automated deployment} & \greenbox{COMPLETE} \\
 \end{tabular}
 \end{center}
 
@@ -116,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -264,7 +261,11 @@ Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+
+%%%No functional or integration testing provided.
+%%
 No functional or integration testing provided.
+
 
 
 \input{title_gitbook.tex}
@@ -280,11 +281,13 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 
 \input{title_configuration.tex}
 \label{sec:configuration}
-Product does not currently provide a automated deployment solution. 
+
+
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item The orchestrator is a dockerized service that runs on the kubernetes cluster, and the few configurations that it needs can be expressed via environment variables, so it doesn't really need any configuration management tool.
-    \end{enumerate}
+    \end{itemize}
 
 
 \newpage

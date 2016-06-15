@@ -1,4 +1,5 @@
-id: "INDIGO-DataCLoud Identity-Harmonization Service"
+id: "idh"
+name: "INDIGO-DataCLoud Identity-Harmonization Service"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
@@ -26,7 +27,8 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/identity-harmonization.git
 code_style:
-    standard: java_google
+    standard:
+        - java_google
     exceptions: 0
     jenkins_job:
         - idh-codestyle
@@ -36,7 +38,7 @@ unit_test:
     comments:
         - "The command provided by the product team for running the tests is currently failing."
 func_int_test:
-    url:
+    url: # links to external CIs
 gitbook:
     url: https://indigo-dc.gitbooks.io/identity-harmonization/content/
     types:

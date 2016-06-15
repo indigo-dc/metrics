@@ -1,5 +1,6 @@
 id: "CLUES"
-status_complete: True   # values: status_accepted, status_notcomplete, status_inprogress
+name: "Cluster Energy Saving"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
         id: 3086
@@ -26,8 +27,9 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/clues-indigo.git
 code_style:
-    standard: pep8
-    exceptions: "1 (max_line_length)"
+    standard:
+        - pep8
+    exceptions: "1 (max line length)"
     jenkins_job:
         - clues-codestyle
 unit_test:
@@ -37,7 +39,7 @@ unit_test:
     comments:
         - "Job has not yet been defined (WP3 duty). There are some errors arising when using pytest (for cobertura support)."
 func_int_test:
-    url:
+    url: # links to external CIs
 gitbook:
     url: https://indigo-dc.gitbooks.io/clues-plugins/content/
     types:

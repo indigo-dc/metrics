@@ -1,4 +1,4 @@
-id: "INDIGO IAM"
+id: "onedata client"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 
 tasks:

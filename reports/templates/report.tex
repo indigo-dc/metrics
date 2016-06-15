@@ -66,7 +66,7 @@
 \newcommand{\yellowbox}[1]{\colorbox{statusyellow}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
 \title{Software Quality Assurance (SQA) Report \\[0.7em] \large{\VAR{period}}\\[1.5em] 
-       \huge{\texttt{\VAR{product.id}}}\\
+       \huge{\texttt{\VAR{product.id}\BLOCK{if product.name} (\VAR{product.name})\BLOCK{endif}}}\\
 }
 
 \date{} 
@@ -76,16 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\BLOCK{if product.status_complete}\greenbox{\strut COMPLETE}\\[0.5em]\greenbox{\strut \begin{huge}\VAR{product.tasks.parent.progress}\% done\end{huge}}\BLOCK{elif product.status_notcomplete}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}\VAR{product.tasks.parent.progress}\% done\end{huge}}\BLOCK{elif product.status_inprogress}\graybox{\strut IN PROGRESS}\\[0.5em]\graybox{\strut \begin{huge}\VAR{product.tasks.parent.progress}\% done\end{huge}}\BLOCK{endif} 
-    %\\[0.5em] 
-    %\BLOCK{if product.tasks.parent.progress < 25}
-    %    \redbox{\strut \begin{huge}\VAR{product.tasks.parent.progress}\% done\end{huge}}
-    %\BLOCK{elif product.tasks.parent.progress < 50}
-    %    \orangebox{\strut \begin{huge}\VAR{product.tasks.parent.progress}\% done\end{huge}}
-    %\BLOCK{elif product.tasks.parent.progress < 75}
-    %    \yellowbox{\strut \begin{huge}\VAR{product.tasks.parent.progress}\% done\end{huge}}
-    %\BLOCK{else}
-    %    \graybox{\strut \begin{huge}\VAR{product.tasks.parent.progress}\% done\end{huge}}
-    %\BLOCK{endif} \\
 \end{center}
 
 \vspace{4em}
@@ -113,9 +103,9 @@
     %    ]{1}{5}
     %    \ganttbar[progress=\VAR{product.unit_test.coverage}]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \BLOCK{if product.func_int_test.wp3_in_progress}\graybox{IN PROGRESS - WP3}\BLOCK{elif product.func_int_test.url}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \BLOCK{if product.func_int_test.wp3_in_progress}\graybox{IN PROGRESS - WP3}\BLOCK{elif product.func_int_test.url}\greenbox{COMPLETE}\BLOCK{elif product.func_int_test.jobs}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \BLOCK{if product.gitbook.url}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
-    \hyperref[sec:configuration]{Automated deployment} & \BLOCK{if product.config_management.tool}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
+    \hyperref[sec:configuration]{Automated deployment} & \BLOCK{if product.config_management.wp3_in_progress}\graybox{IN PROGRESS - WP3}\BLOCK{elif product.config_management.tool}\greenbox{COMPLETE}\BLOCK{elif product.config_management.wont_be_provided}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
 \end{tabular}
 \end{center}
 
@@ -123,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -184,11 +174,11 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
 \BLOCK{endif}
 \BLOCK{if product.repository.comments}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
     \BLOCK{for comment in product.repository.comments}
     \item \VAR{comment}
     \BLOCK{endfor}
-\end{enumerate}
+\end{itemize}
 \BLOCK{endif}
 
 
@@ -219,11 +209,11 @@ Last build status on Jenkins CI
 
 \BLOCK{if product.code_style.comments}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
     \BLOCK{for comment in product.code_style.comments}
     \item \VAR{comment}
     \BLOCK{endfor}
-\end{enumerate}
+\end{itemize}
 \BLOCK{endif}
 
  
@@ -277,26 +267,50 @@ Last build status on Jenkins CI \href{\VAR{product.unit_test.job_url}}{\VAR{prod
 \BLOCK{endif}
 \BLOCK{if product.unit_test.comments}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
     \BLOCK{for comment in product.unit_test.comments}
     \item \VAR{comment}
     \BLOCK{endfor}
-\end{enumerate}
+\end{itemize}
 \BLOCK{endif}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
-\BLOCK{if not product.func_int_test.url and not product.func_int_test.wp3_in_progress}
+
+%\BLOCK{if product.func_int_test.url}
+%Test at \VAR{product.func_int_test.url}.
+%\BLOCK{else}
+%\BLOCK{if product.func_int_test.wp3_in_progress}
+%Tests currently being defined at Jenkins CI service.
+%\BLOCK{else}
+%No functional or integration testing provided.
+%\BLOCK{endif}
+%\BLOCK{endif}
+
+\BLOCK{if product.func_int_test.jobs}
+\subsection{Build status}
+Last build status on Jenkins CI
+\BLOCK{for job_name, job_data in product.func_int_test.jobs.iteritems()}
+\href{\VAR{job_data.job_url}}{\VAR{job_name}}.
+\BLOCK{endfor}
+\BLOCK{elif product.func_int_test.url}
+Tests are defined in a \href{\VAR{product.func_int_test.url}}{external CI service}.
+\BLOCK{else}
+\BLOCK{if product.func_int_test.wp3_in_progress}
+Tests currently being defined at Jenkins CI service.
+\BLOCK{else}
 No functional or integration testing provided.
 \BLOCK{endif}
+\BLOCK{endif}
+
 \BLOCK{if product.func_int_test.comments}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
     \BLOCK{for comment in product.func_int_test.comments}
     \item \VAR{comment}
     \BLOCK{endfor}
-\end{enumerate}
+\end{itemize}
 \BLOCK{endif}
 
 
@@ -315,16 +329,17 @@ Documentation is currently \textbf{not available} under \href{https://www.gitboo
 \BLOCK{endif}
 \BLOCK{if product.gitbook.comments}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
     \BLOCK{for comment in product.gitbook.comments}
     \item \VAR{comment}
     \BLOCK{endfor}
-\end{enumerate}
+\end{itemize}
 \BLOCK{endif}
 
 
 \input{title_configuration.tex}
 \label{sec:configuration}
+
 \BLOCK{if product.config_management.tool}
 \begin{center}
 \begin{tabular}{ll}
@@ -333,6 +348,11 @@ Documentation is currently \textbf{not available} under \href{https://www.gitboo
     Manifest link & \url{\VAR{product.config_management.url}} \\
 \end{tabular}
 \end{center}
+\BLOCK{endif}
+
+\BLOCK{if product.config_management.wp3_in_progress}
+\BLOCK{elif product.config_management.wont_be_provided}
+\BLOCK{elif product.config_management.tool}
 \subsection{Build status}
 \begin{center}
 \begin{tabular}{ll}
@@ -342,15 +362,16 @@ Documentation is currently \textbf{not available} under \href{https://www.gitboo
 \end{tabular}
 \end{center}
 \BLOCK{else}
-Product does not currently provide a automated deployment solution. 
+Product does not currently provide a automated deployment solution.
 \BLOCK{endif}
+
 \BLOCK{if product.config_management.comments}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
     \BLOCK{for comment in product.config_management.comments}
     \item \VAR{comment}
     \BLOCK{endfor}
-\end{enumerate}
+\end{itemize}
 \BLOCK{endif}
 
 

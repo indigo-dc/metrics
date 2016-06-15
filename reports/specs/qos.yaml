@@ -26,7 +26,8 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/CDMI
 code_style:
-    standard: java_google 
+    standard:
+        - java_google 
     exceptions: 0
     jenkins_job:
         - qos-codestyle

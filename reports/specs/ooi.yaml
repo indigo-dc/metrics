@@ -26,7 +26,8 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/ooi.git 
 code_style:
-    standard: hacking
+    standard:
+        - hacking
     exceptions: 0
     jenkins_job:
         - ooi-codestyle

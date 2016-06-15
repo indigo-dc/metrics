@@ -76,9 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}58\% done\end{huge}} 
-    %\\[0.5em] 
-    %    %    \yellowbox{\strut \begin{huge}58\% done\end{huge}}
-    % \\
 \end{center}
 
 \vspace{4em}
@@ -87,7 +84,7 @@
 \begin{center}
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
     \hyperref[sec:unit_test]{Code coverage} & \graybox{IN PROGRESS - WP3}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -116,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -194,6 +191,15 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
+\begin{tabular}{ll}
+    Code style definition &
+        \href{http://docs.openstack.org/developer/hacking/}{OpenStack Style Guidelines} \\
+    Community/de-facto standard &
+        \graybox{Yes} \\ 
+    Exceptions & 
+        \graybox{0} \\
+    Richness & \graybox{\strut 111 (+pep8 +flake8)} \hspace{0.3em} \graybox{\strut Errors None} \graybox{\strut Warnings None} \href{http://docs.openstack.org/developer/hacking/}{link}
+\end{tabular}
 
 \subsection{Build status}
 Last build status on Jenkins CI
@@ -205,14 +211,18 @@ Last build status on Jenkins CI
 \input{title_unittest.tex}
 \label{sec:unit_test}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Unit testing have been provided, but currently errors arise when gathering code coverage. Setting progress to 50\%.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+
+%%%No functional or integration testing provided.
+%%
 No functional or integration testing provided.
+
 
 
 \input{title_gitbook.tex}
@@ -222,7 +232,10 @@ Documentation is currently \textbf{not available} under \href{https://www.gitboo
 
 \input{title_configuration.tex}
 \label{sec:configuration}
-Product does not currently provide a automated deployment solution. 
+
+
+Product does not currently provide a automated deployment solution.
+
 
 
 \newpage

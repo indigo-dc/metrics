@@ -35,7 +35,7 @@ unit_test:
     coverage: 0
     jenkins_job: futuregateway-unittest
 func_int_test:
-    url:
+    url: # links to external CIs
 gitbook:
     url: 
     types:

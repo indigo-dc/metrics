@@ -76,9 +76,6 @@
 \vspace{-3em}
 \begin{center}
     \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}58\% done\end{huge}} 
-    %\\[0.5em] 
-    %    %    \yellowbox{\strut \begin{huge}58\% done\end{huge}}
-    % \\
 \end{center}
 
 \vspace{4em}
@@ -87,7 +84,7 @@
 \begin{center}
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
     \hyperref[sec:unit_test]{Code coverage} & \graybox{None\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -116,7 +113,7 @@
 \normalsize 
 \newpage
 
-\part{Task Progress}
+\part{Task Progress for the 1st Release}
 
 %
 % OpenProject tasks - pgfgantt
@@ -194,10 +191,19 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
+\begin{tabular}{ll}
+    Code style definition &
+        \href{https://www.python.org/dev/peps/pep-0008/}{PEP 8 -- Style Guide for Python Code} \\
+    Community/de-facto standard &
+        \graybox{Yes} \\ 
+    Exceptions & 
+        \graybox{0} \\
+    Richness & \graybox{\strut 73} \hspace{0.3em} \graybox{\strut Errors 63} \graybox{\strut Warnings 10} \href{http://pep8.readthedocs.io/en/latest/intro.html#error-codes}{link}
+\end{tabular}
 
 \subsection{Build status}
 Last build status on Jenkins CI
-\href{https://jenkins.indigo-datacloud.eu:8080//job/onedock-codestyle/24}{onedock-codestyle}.
+\href{https://jenkins.indigo-datacloud.eu:8080//job/onedock-codestyle/25}{onedock-codestyle}.
 
 
  
@@ -205,17 +211,22 @@ Last build status on Jenkins CI
 \input{title_unittest.tex}
 \label{sec:unit_test}
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Suggested \href{https://code.google.com/archive/p/shunit2/}{shunit2} framework.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
+
+%%%Tests currently being defined at Jenkins CI service.
+%%
+Tests currently being defined at Jenkins CI service.
+
 \subsection{Observations}
-\begin{enumerate}
+\begin{itemize}
         \item Integration testing recipe has been provided, requiring an OpenNebula installation. Still considering to implement this in Jenkins.
-    \end{enumerate}
+    \end{itemize}
 
 
 \input{title_gitbook.tex}
@@ -230,7 +241,10 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 
 \input{title_configuration.tex}
 \label{sec:configuration}
-Product does not currently provide a automated deployment solution. 
+
+
+Product does not currently provide a automated deployment solution.
+
 
 
 \newpage

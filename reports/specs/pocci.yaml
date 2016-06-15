@@ -26,7 +26,8 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/pOCCI
 code_style:
-    standard: flake8 
+    standard:
+        - flake8 
     exceptions: "5 (E265,E303,E501,F403,E402 )" 
     jenkins_job:
         - pocci-codestyle

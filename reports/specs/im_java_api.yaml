@@ -1,4 +1,5 @@
-id: "im-java-api (Infrastructure Manager Java API)"
+id: "im-java-api"
+name: "Infrastructure Manager Java API"
 status_complete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
@@ -26,7 +27,8 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/im-java-api
 code_style:
-    standard: java_google
+    standard:
+        - java_google
     exceptions: 0
     jenkins_job:
         - im-java-api-codestyle
@@ -34,7 +36,9 @@ unit_test:
     coverage: 76 
     jenkins_job: im-java-api-unittest
 func_int_test:
-    url: https://jenkins.indigo-datacloud.eu:8080/job/im-java-api-functional/
+    url:  # links to external CIs
+    jenkins_job:
+        - im-java-api-functional
 gitbook:
     url: https://indigo-dc.gitbooks.io/im-java-api/content/ 
     types:
@@ -42,6 +46,7 @@ gitbook:
         - "Deployment documentation"
         - "User documentation"
 config_management:
+    wont_be_provided: True
     tool:   # e.g. ansible, ..
     url:
     level:  # values: installation, configuration, installation/configuration

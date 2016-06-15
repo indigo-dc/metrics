@@ -26,7 +26,8 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/rOCCI-server.git 
 code_style:
-    standard: ruby_style_guide 
+    standard:
+        - ruby
     exceptions: "just lint cops checked"
     jenkins_job:
         - rocci-codestyle

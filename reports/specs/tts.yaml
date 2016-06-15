@@ -1,4 +1,5 @@
-id: "Token Translation Service"
+id: "tts"
+name: "Token Translation Service"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
@@ -26,7 +27,8 @@ tasks:
 repository: 
     url: https://github.com/indigo-dc/tts 
 code_style:
-    standard: erlang
+    standard:
+        - erlang
     exceptions: 0 
     jenkins_job:
         - tts-codestyle

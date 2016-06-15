@@ -58,6 +58,17 @@ def load_jinja(fname):
     )
 
 
+def add_jenkins_job(specs, job_type):
+    if "jenkins_job" in specs[job_type]:
+        if specs[job_type]["jenkins_job"]:
+            specs[job_type]["jobs"] = {}
+            for j in specs[job_type]["jenkins_job"]:
+                specs[job_type]["jobs"][j] = {}
+                specs[job_type]["jobs"][j]["job_url"] = jenkins.get_last_job_url(j)
+                specs[job_type]["jobs"][j]["job_name"] = j
+
+
+
 def main(fname, specdir, output=None, code_style=None):
     texfiles = []
     latex_jinja_env = load_jinja(fname)
@@ -101,9 +112,15 @@ def main(fname, specdir, output=None, code_style=None):
             dest_dir=os.path.join(output, "figs"))
         specs["unit_test"]["data"] = jenkins.get_cobertura_data(
             specs["unit_test"]["jenkins_job"])
+        # specs - func_int_test
+        add_jenkins_job(specs, "func_int_test")
+        print ">>>>> ", specs["func_int_test"]
         # specs - config_management
         specs["config_management"]["job_url"] = jenkins.get_last_job_url(
             specs["config_management"]["jenkins_job"])
+
+        if "data" in specs["code_style"].keys():
+            print ">>>> code_style.data: ", specs["code_style"]["data"]
 
         # latex
         template = latex_jinja_env.get_template(os.path.basename(fname))
