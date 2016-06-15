@@ -36,6 +36,8 @@
 \definecolor{linkred}{RGB}{165,0,33}
 \definecolor{statusred}{RGB}{204,0,0}
 \definecolor{statusgreen}{RGB}{0,153,0}
+\definecolor{statusorange}{RGB}{245,184,0}
+\definecolor{statusyellow}{RGB}{255,255,61}
 \renewcommand\sfdefault{phv}
 %\renewcommand\mddefault{mc} % this causes bold, italic, .. not to be displayed
 \renewcommand\bfdefault{bc}
@@ -60,6 +62,8 @@
 \newcommand{\graybox}[1]{\colorbox{gray!90}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 \newcommand{\lightgraybox}[1]{\colorbox{gray!40}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 \newcommand{\redbox}[1]{\colorbox{statusred}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
+\newcommand{\orangebox}[1]{\colorbox{statusorange}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
+\newcommand{\yellowbox}[1]{\colorbox{statusyellow}{\textcolor{white!90}{\textsf{\textbf{#1}}}}}
 
 \title{Software Quality Assurance (SQA) Report \\[0.7em] \large{13-17 Jun 2016}\\[1.5em] 
        \huge{\texttt{udocker}}\\
@@ -71,7 +75,10 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\greenbox{\strut COMPLETE} \\
+    \graybox{\strut SQA Progress Status}\greenbox{\strut COMPLETE}\\[0.5em]\greenbox{\strut \begin{huge}72\% done\end{huge}} 
+    %\\[0.5em] 
+    %    %    \yellowbox{\strut \begin{huge}72\% done\end{huge}}
+    % \\
 \end{center}
 
 \vspace{4em}
