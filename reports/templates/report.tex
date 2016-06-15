@@ -273,7 +273,7 @@ Last build status on Jenkins CI \href{\VAR{product.unit_test.job_url}}{\VAR{prod
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
-\BLOCK{if not product.func_int_test.url}
+\BLOCK{if not product.func_int_test.url and not product.func_int_test.wp3_in_progress}
 No functional or integration testing provided.
 \BLOCK{endif}
 \BLOCK{if product.func_int_test.comments}
