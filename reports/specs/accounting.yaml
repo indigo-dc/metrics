@@ -1,6 +1,7 @@
 id: "Accounting"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
+# http://bit.ly/accounting_dqa_indigo1
     parent:
         id: 3269
         progress: 25 
@@ -13,7 +14,7 @@ tasks:
           progress: 50 
         - name: "Unit testing coverage"
           id: 3275
-          progress: 0
+          progress: 50
         - name: "Functional and integration testing coverage"
           id: 3278
           progress: 0
@@ -40,7 +41,7 @@ unit_test:
     coverage:
     jenkins_job: #accounting-unittest
     comments:
-        - "Jenkins job is currently being deployed by WP3."
+        - "task is at 50\\% of progress since the tests are defined. Jenkins job is currently being deployed by WP3."
 func_int_test:
     url: # links to external CIs
     jenkins_job:
