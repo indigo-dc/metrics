@@ -3,14 +3,14 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 3809
-        progress: 33 
+        progress: 17
     children:
         - name: "Repository synchronization"
           id: 3812
           progress: 100
         - name: "Code style specification"
           id: 3815
-          progress: 100
+          progress: 0
         - name: "Unit testing coverage"
           id: 3818
           progress: 0
@@ -24,16 +24,14 @@ tasks:
           id: 3827
           progress: 0
 repository: 
-    url: https://github.com/indigo-dc/FutureGateway-APIServer.git
+    url: https://github.com/indigo-dc/fgAPIServer 
 code_style: 
     standard:
-        - java_sun
-    exceptions: "1 (DesignForExtension)" 
+    exceptions:
     jenkins_job:
-        - futuregateway-codestyle
 unit_test:
-    coverage: 0
-    jenkins_job: futuregateway-unittest
+    coverage: 
+    jenkins_job:
 func_int_test:
     url: # links to external CIs
 gitbook:

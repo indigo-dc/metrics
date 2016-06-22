@@ -84,7 +84,6 @@ def main(fname, specdir, output=None, code_style=None):
         output = current_dir
 
     for f in spec_yaml_files:
-        print ">>>>>>>>>>>>>>> ", f
         specs = load_yaml(f)
         # specs - code_style
         if specs["code_style"]["jenkins_job"]:
