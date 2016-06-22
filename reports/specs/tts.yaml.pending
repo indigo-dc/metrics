@@ -1,0 +1,57 @@
+id: "tts"
+name: "Token Translation Service"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 2867
+        progress: 67 
+    children:
+        - name: "Repository synchronization"
+          id: 3956 
+          progress: 100
+        - name: "Code style specification"
+          id: 3959
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3389
+          progress: 49
+        - name: "Functional and integration testing coverage"
+          id: 3392
+          progress: 100
+        - name: "Configuration management"
+          id: 2870
+          progress: 0
+        - name: "GitBook documentation"
+          id: 2873
+          progress: 50
+repository: 
+    url: https://github.com/indigo-dc/tts 
+code_style:
+    standard:
+        - erlang
+    exceptions: 0 
+    jenkins_job:
+        - tts-codestyle
+unit_test:
+    coverage: 49 
+    jenkins_job: tts-unittest
+func_int_test:
+    url: https://jenkins.indigo-datacloud.eu:8080/job/tts-functional/
+gitbook:
+    url: https://indigo-dc.gitbooks.io/token-translation-service/content/
+    types:
+        - "Readme"
+    comments:
+        - "Checking with the product team if the documentation is complete. Setting progress to 50\\%"
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

@@ -1,0 +1,52 @@
+id: "onedata client"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+
+tasks:
+    parent:
+        id: 3119
+        progress: 0 
+    children:
+        - name: "Repository synchronization"
+          id: 3122
+          progress: 0
+        - name: "Code style specification"
+          id: 3848
+          progress: 0
+        - name: "Unit testing coverage"
+          id: 3125
+          progress: 0
+        - name: "Functional and integration testing coverage"
+          id: 3128
+          progress: 0
+        - name: "Configuration management"
+          id: 3131
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3134
+          progress: 0
+repository: 
+    url: 
+code_style:
+    standard: 
+    exceptions: 
+    jenkins_job: 
+unit_test:
+    coverage: 
+    jenkins_job:
+func_int_test:
+    url:
+gitbook:
+    url:
+    types:
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

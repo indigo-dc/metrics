@@ -1,0 +1,58 @@
+id: "Synergy Service"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 2996
+        progress: 52 
+    children:
+        - name: "Repository synchronization"
+          id: 2999 
+          progress: 100
+        - name: "Code style specification"
+          id: 3920
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3923
+          progress: 0
+        - name: "Functional and integration testing coverage"
+          id: 3926
+          progress: 0
+        - name: "Configuration management"
+          id: 3002
+          progress: 40
+        - name: "GitBook documentation"
+          id: 3005
+          progress: 70
+repository: 
+    url: https://github.com/indigo-dc/synergy-service
+code_style:
+    standard:
+        - hacking 
+    exceptions: 0
+    jenkins_job:
+        - synergy-codestyle
+unit_test:
+    coverage: 0
+    jenkins_job: synergy-unittest
+    comments:
+        - "Percentage is 0\\% because of the conditional coverage, but other methods have higher coverage rates."
+func_int_test:
+    url:
+gitbook:
+    url: https://indigo-dc.gitbooks.io/synergy/content/
+    types:
+        - "Readme"
+        - "Deployment documentation"
+        - "Administration documentation"
+config_management:
+    tool: puppet # e.g. ansible, ..
+    url: https://github.com/indigo-dc/puppet-synergy
+    level: "installation/configuration" # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

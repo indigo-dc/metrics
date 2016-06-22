@@ -1,0 +1,55 @@
+id: "python-novaclient"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3620 
+        progress: 63 
+    children:
+        - name: "Repository synchronization"
+          id: 3623
+          progress: 100
+        - name: "Code style specification"
+          id: 3626
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3629
+          progress: 78 
+        - name: "Functional and integration testing coverage"
+          id: 3632
+          progress: 100
+        - name: "Configuration management"
+          id: 3635
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3638
+          progress: 0
+repository: 
+    url: https://github.com/indigo-dc/python-novaclient 
+code_style:
+    standard:
+        - hacking 
+    exceptions: 0
+    jenkins_job:
+        - novaclient-codestyle
+unit_test:
+    coverage: 78
+    jenkins_job: novaclient-unittest
+func_int_test:
+    url:
+    comments:
+        - "In this case functional testing does not have much sense, as this is only passing a parameter to the underlying API calls. Moreover, the upstream functional testing actually refers to integration testing, as it needs to run the tests against a working OpenStack environment."
+gitbook:
+    url:
+    types:
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

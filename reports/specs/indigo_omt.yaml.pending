@@ -1,0 +1,53 @@
+id: "indigo-omt"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3434
+        progress: 17
+    children:
+        - name: "Repository synchronization"
+          id: 3830
+          progress: 100
+        - name: "Code style specification"
+          id: 3449
+          progress: 0
+        - name: "Unit testing coverage"
+          id: 3437
+          progress: 0
+        - name: "Functional and integration testing coverage"
+          id: 3440
+          progress: 0
+        - name: "Configuration management"
+          id: 3443
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3446
+          progress: 0
+repository: 
+    url: 
+code_style: 
+    standard: 
+    exceptions:
+    jenkins_job:
+    comments:
+        - "Product leader/s did not provide this information. WP3 will check for the \\href{https://source.android.com/source/code-style.html}{official Android guidelines} otherwise."
+unit_test:
+    coverage: 0
+    jenkins_job:
+func_int_test:
+    url:
+gitbook:
+    url: 
+    types:
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

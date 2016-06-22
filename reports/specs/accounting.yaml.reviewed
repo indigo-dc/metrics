@@ -1,0 +1,63 @@
+id: "Accounting"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+# http://bit.ly/accounting_dqa_indigo1
+    parent:
+        id: 3269
+        progress: 35 
+    children:
+        - name: "Repository synchronization"
+          id: 3272 
+          progress: 100
+        - name: "Code style specification"
+          id: 3842
+          progress: 50 
+        - name: "Unit testing coverage"
+          id: 3275
+          progress: 60 
+        - name: "Functional and integration testing coverage"
+          id: 3278
+          progress: 0
+        - name: "Configuration management"
+          id: 3281
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3284
+          progress: 0
+repository: 
+    url: https://github.com/indigo-dc/Accounting.git
+code_style:
+    standard:
+        - pep8
+        - pep257
+    exceptions: 0 
+    jenkins_job:
+        - accounting-codestyle
+        - accounting-codestyle-pep257
+    comments:
+        - "Task is at 50\\% of progress since the standards are defined (PEP 8, PEP 257) but the Jenkins jobs are failing."
+unit_test:
+    wp3_in_progress: True
+    coverage: 64
+    jenkins_job: #accounting-unittest
+    url_external: https://coveralls.io/github/apel/rest?branch=dev # links to external CIs
+    comments:
+        - "Jenkins job is currently being deployed by WP3. Meanwhile the coverage are obtained through the product's coveralls.io reports."
+func_int_test:
+    url: # links to external CIs
+    jenkins_job:
+gitbook:
+    url:
+    types:
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

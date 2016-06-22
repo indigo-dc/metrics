@@ -1,0 +1,60 @@
+id: "Ophidia analytics workflow interfaces"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3452
+        progress: 8 
+    children:
+        - name: "Repository synchronization"
+          id: 3455 
+          progress: 0
+        - name: "Code style specification"
+          id: 3458
+          progress: 50
+        - name: "Unit testing coverage"
+          id: 3461
+          progress: 0
+        - name: "Functional and integration testing coverage"
+          id: 3464
+          progress: 0
+        - name: "Configuration management"
+          id: 3467
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3470
+          progress: 0
+repository: 
+    url: 
+code_style: 
+    standard: 
+    exceptions:
+    jenkins_job:
+    comments:
+        - "Product team uses K\\&R indent style. The Jenkins job will be defined whenever the code is available in indigo-dc."
+unit_test:
+    coverage: 0
+    jenkins_job:
+    comments:
+        - "Product team will make scripts available (from their local CI service)."
+func_int_test:
+    url:
+    comments:
+        - "Product team will make scripts available (from their local CI service)."
+gitbook:
+    url: https://sandrofiore.gitbooks.io/ophidiabigdata/content/
+    types:
+        - Readme
+    comments:
+        - "Documentation of the contributions of Ophidia to INDIGO-DataCloud is not clearly identified. Settin progress to 50\\%."
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

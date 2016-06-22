@@ -1,0 +1,66 @@
+id: "CloudProviderRanker"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3287
+        progress: 78
+    children:
+        - name: "Repository synchronization"
+          id: 3836 
+          progress: 100
+        - name: "Code style specification"
+          id: 3839
+          progress: 50
+        - name: "Unit testing coverage"
+          id: 3290
+          progress: 65
+        - name: "Functional and integration testing coverage"
+          id: 3293
+          progress: 50
+        - name: "Configuration management"
+          id: 3296
+          progress: 100
+        - name: "GitBook documentation"
+          id: 3299
+          progress: 100
+repository: 
+    url: https://github.com/indigo-dc/CloudProviderRanker.git 
+code_style:
+    status_notcomplete: True
+    standard:
+        - java_google
+    exceptions: 0
+    jenkins_job:
+        - cloudproviderranker-codestyle
+    comments:
+        - "Progress is set to 50\\%: code style is defined but the current code is not compliant with it. For further information please check last build at Jenkins CI."
+unit_test:
+    coverage: 70
+    jenkins_job: cloudproviderranker-unittest
+func_int_test:
+    status_notcomplete: True
+    url: cloudproviderranker-functional
+    comments:
+        - "Guidelines for testing the server are documented in \\href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}."
+        - "Jenkins job is failing with 'Cannot run program \"rpm\": error=2, No such file or directory'."
+        - "Missing functionalities being tested in the Jenkins job."
+gitbook:
+    url: https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/
+    types:
+        - Readme
+        - Deployment/user documentation
+config_management:
+    wont_be_provided: True
+    comments:
+        - "Configuration for CloudProviderRanker server is trivial: zero configuration, or NO configuration at all (puppet or other). It can be launched without any configuration but the editing of two support files in json notation that define weights and priorities used by the internal engine rule."
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:
