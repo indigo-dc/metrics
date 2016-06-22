@@ -4,7 +4,7 @@ tasks:
 # http://bit.ly/accounting_dqa_indigo1
     parent:
         id: 3269
-        progress: 25 
+        progress: 35 
     children:
         - name: "Repository synchronization"
           id: 3272 
