@@ -13,7 +13,7 @@ tasks:
           progress: 50 
         - name: "Unit testing coverage"
           id: 3275
-          progress: 0
+          progress: 60 
         - name: "Functional and integration testing coverage"
           id: 3278
           progress: 0
@@ -37,10 +37,11 @@ code_style:
         - "Task is at 50\\% of progress since the standards are defined (PEP 8, PEP 257) but the Jenkins jobs are failing."
 unit_test:
     wp3_in_progress: True
-    coverage:
+    coverage: 64
     jenkins_job: #accounting-unittest
+    url_external: https://coveralls.io/github/apel/rest?branch=dev # links to external CIs
     comments:
-        - "Jenkins job is currently being deployed by WP3."
+        - "Jenkins job is currently being deployed by WP3. Meanwhile the coverage are obtained through the product's coveralls.io reports."
 func_int_test:
     url: # links to external CIs
     jenkins_job:

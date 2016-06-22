@@ -11,6 +11,38 @@ import jinja2
 from jinja2 import Template
 import yaml
 
+import logging
+import logging.config
+
+logger = logging.getLogger(__name__)
+# load config from file
+# logging.config.fileConfig('logging.ini', disable_existing_loggers=False)
+# or, for dictConfig
+logging.config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,  # this fixes the problem
+
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'default': {
+            'level':'INFO',
+            'class':'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['default'],
+            'level': 'INFO',
+            'propagate': True
+        }
+    }
+})
+
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Generate INDIGO-DataCloud SQA reports")
@@ -85,14 +117,21 @@ def main(fname, specdir, output=None, code_style=None):
 
     for f in spec_yaml_files:
         specs = load_yaml(f)
+        logger.info("Parsing spec file '%s'" % f)
+
         # specs - code_style
         if specs["code_style"]["jenkins_job"]:
+            logger.info("Jenkins job/s for code style found.")
             specs["code_style"]["jobs"] = {}
             for j in specs["code_style"]["jenkins_job"]:
                 specs["code_style"]["jobs"][j] = {}
                 specs["code_style"]["jobs"][j]["job_url"] = jenkins.get_last_job_url(j)
                 specs["code_style"]["jobs"][j]["job_name"] = j
+        else:
+            logger.info("No Jenkins job found for code style.")
         if specs["code_style"]["standard"]:
+            logger.info("Code style standard/s adhered: %s"
+                         % ','.join(specs["code_style"]["standard"]))
             try:
                 for standard in specs["code_style"]["standard"]:
                     try:
@@ -101,25 +140,43 @@ def main(fname, specdir, output=None, code_style=None):
                         specs["code_style"]["data"] = {}
                     specs["code_style"]["data"][standard] = code_style[standard]
             except KeyError, e:
-                #specs["code_style"]["data"] = code_style["blank"]
                 specs["code_style"]["data"] = {}
+        else:
+            logger.info("No code_style standard/s defined.")
+
         # specs - unit_test
-        specs["unit_test"]["job_url"] = jenkins.get_last_job_url(
-            specs["unit_test"]["jenkins_job"])
-        specs["unit_test"]["graph"] = jenkins.save_cobertura_graph(
-            specs["unit_test"]["jenkins_job"],
-            dest_dir=os.path.join(output, "figs"))
-        specs["unit_test"]["data"] = jenkins.get_cobertura_data(
-            specs["unit_test"]["jenkins_job"])
+        if specs["unit_test"]["jenkins_job"]:
+            specs["unit_test"]["job_url"] = jenkins.get_last_job_url(
+                specs["unit_test"]["jenkins_job"])
+            specs["unit_test"]["graph"] = jenkins.save_cobertura_graph(
+                specs["unit_test"]["jenkins_job"],
+                dest_dir=os.path.join(output, "figs"))
+            specs["unit_test"]["data"] = jenkins.get_cobertura_data(
+                specs["unit_test"]["jenkins_job"])
+            logger.info("Jenkins job for unit testing found: %s"
+                         % specs["unit_test"]["job_url"])
+        elif "url_external" in specs["unit_test"].keys():
+            specs["unit_test"]["job_url"] = specs["unit_test"]["url_external"]
+            logger.info("External URL for unit testing found: %s"
+                         % specs["unit_test"]["job_url"])
+        else:
+            logger.info("No jenkins job defined in configuration.")
+
         # specs - func_int_test
         add_jenkins_job(specs, "func_int_test")
-        print ">>>>> ", specs["func_int_test"]
+        if specs["func_int_test"]:
+            logger.info("Functional/integration tests defined.")
+        else:
+            logger.info("No functional/integration definition found.")
+
         # specs - config_management
         specs["config_management"]["job_url"] = jenkins.get_last_job_url(
             specs["config_management"]["jenkins_job"])
-
-        if "data" in specs["code_style"].keys():
-            print ">>>> code_style.data: ", specs["code_style"]["data"]
+        if specs["config_management"]["job_url"]:
+            logger.info("Configuration management job found: %s"
+                         % specs["config_management"]["jenkins_job"])
+        else:
+            logger.info("No Jenkins job for configuration management found.")
 
         # latex
         template = latex_jinja_env.get_template(os.path.basename(fname))
@@ -153,6 +210,7 @@ def main(fname, specdir, output=None, code_style=None):
 
 
 if __name__ == "__main__":
+    logger.info("test")
     args = parse_args()
     main(args.template,
          args.specdir,

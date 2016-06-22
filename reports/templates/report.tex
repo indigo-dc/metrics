@@ -262,9 +262,17 @@ Last build status on Jenkins CI
     \BLOCK{ endfor } [grid]
 \end{ganttchart}
 \end{center}
-\subsection{Build status}
-Last build status on Jenkins CI \href{\VAR{product.unit_test.job_url}}{\VAR{product.unit_test.jenkins_job}}.
 \BLOCK{endif}
+
+\BLOCK{if product.unit_test.job_url}
+\subsection{Build status}
+    \BLOCK{if product.unit_test.jenkins_job}
+Last build status on Jenkins CI \href{\VAR{product.unit_test.job_url}}{\VAR{product.unit_test.jenkins_job}}.
+    \BLOCK{else}
+Last build status on \href{\VAR{product.unit_test.job_url}}{external CI}.
+    \BLOCK{endif}
+\BLOCK{endif}
+
 \BLOCK{if product.unit_test.comments}
 \subsection{Observations}
 \begin{itemize}
