@@ -1,6 +1,7 @@
 id: "Accounting"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
+# http://bit.ly/accounting_dqa_indigo1
     parent:
         id: 3269
         progress: 25 
