@@ -4,7 +4,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 2963
-        progress: 72 
+        progress: 87 
     children:
         - name: "Repository synchronization"
           id: 3872
@@ -14,10 +14,10 @@ tasks:
           progress: 100
         - name: "Unit testing coverage"
           id: 2969
-          progress: 30
+          progress: 66
         - name: "Functional and integration testing coverage"
           id: 2972
-          progress: 0
+          progress: 50
         - name: "Configuration management"
           id: 2975
           progress: 100
@@ -34,10 +34,10 @@ code_style:
         - im-codestyle
 unit_test:
     wp3_in_progress: True
-    coverage: 31
+    coverage: 66
     jenkins_job: im-unittest
     comments:
-        - "Product team has added new unit tests not currently being integrated in Jenkins service (WP3 in progress)."
+        - "Facing some problems with the pytest tool."
 func_int_test:
     url: # links to external CIs
 gitbook:

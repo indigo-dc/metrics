@@ -75,7 +75,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}67\% done\end{huge}} 
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}78\% done\end{huge}} 
 \end{center}
 
 \vspace{4em}
@@ -84,8 +84,8 @@
 \begin{center}
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{1\%}\\ 
+    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{70\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -101,9 +101,10 @@
     %    bar progress label font=\mdseries\footnotesize\color{black!70},
     %    bar top shift=1, bar height=0.8
     %    ]{1}{5}
-    %    \ganttbar[progress=1]{}{1}{5}
+    %    \ganttbar[progress=70]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \greenbox{COMPLETE} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
     \hyperref[sec:configuration]{Automated deployment} & \greenbox{COMPLETE} \\
 \end{tabular}
@@ -154,7 +155,7 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=67]{\textbf{\#3287} CloudProviderRanker SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=78]{\textbf{\#3287} CloudProviderRanker SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
@@ -164,7 +165,7 @@
             name=WBS1A
         ]{\textbf{\#3839} Code style specification}{1}{12} \\
             \ganttbar[
-            progress=1,
+            progress=65,
             name=WBS1A
         ]{\textbf{\#3290} Unit testing coverage}{1}{12} \\
             \ganttbar[
@@ -203,7 +204,7 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 
 \subsection{Build status}
 Last build status on Jenkins CI
-\href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-codestyle/10}{cloudproviderranker-codestyle}.
+\href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-codestyle/12}{cloudproviderranker-codestyle}.
 
 \subsection{Observations}
 \begin{itemize}
@@ -261,24 +262,22 @@ Last build status on Jenkins CI
 \end{center}
 
 \subsection{Build status}
-Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-unittest/10}{cloudproviderranker-unittest}.
-
-\subsection{Observations}
-\begin{itemize}
-        \item Even though there are quite some work in unit testing in the code, the overall coverage is just 1\% since conditional coverage is 1/150 covered.
-    \end{itemize}
+    Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/cloudproviderranker-unittest/14}{cloudproviderranker-unittest}.
+    
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%Tests currently being defined at Jenkins CI service.
-%%
-Tests currently being defined at Jenkins CI service.
+%%Test at cloudproviderranker-functional.
+%
+Tests are defined in a \href{cloudproviderranker-functional}{external CI service}.
 
 \subsection{Observations}
 \begin{itemize}
-        \item Progress set to 50\%: guidelines for testing the server are documented in \href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}.
+        \item Guidelines for testing the server are documented in \href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}.
+        \item Jenkins job is failing with 'Cannot run program "rpm": error=2, No such file or directory'.
+        \item Missing functionalities being tested in the Jenkins job.
     \end{itemize}
 
 
