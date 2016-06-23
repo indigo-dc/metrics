@@ -78,10 +78,40 @@ erlang:
         no_warnings: 
         url: https://github.com/inaka/elvis_core/wiki/Rules
 
+erlang_dializer:
+    name: "The Dialyzer, a DIscrepancy AnalYZer for ERlang programs"
+    url: http://erlang.org/doc/man/dialyzer.html
+    defacto: "Yes"
+    richness: 
+        number: 18
+        no_errors: 0
+        no_warnings: 18
+        url: http://erlang.org/doc/man/dialyzer.html
+
+android:
+    name: "Android Code Style for Contributors"
+    url: https://source.android.com/source/code-style.html 
+    defacto: "Yes"
+    richness: 
+        number: 
+        no_errors: 
+        no_warnings: 
+        url: 
+
+c:
+    name: "K\\&R indent style"
+    url:
+    defacto: "Yes"
+    richness: 
+        number: 
+        no_errors: 
+        no_warnings: 
+        url: 
+
 dcache:
     name: "Custom Java dCache Style Guide"
     url: https://goo.gl/4Ra3Na
-    defacto: "Yes"
+    defacto: "No"
     richness: 
         number: 6 
         no_errors: 

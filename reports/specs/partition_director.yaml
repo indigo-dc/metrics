@@ -1,35 +1,40 @@
-id: "onedata client"
+id: "Partition Director"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
-
 tasks:
     parent:
-        id: 3119
-        progress: 0 
+        id: 3041
+        progress: 25 
     children:
         - name: "Repository synchronization"
-          id: 3122
-          progress: 0
+          id: 3044
+          progress: 100
         - name: "Code style specification"
-          id: 3848
-          progress: 0
+          id: 3047
+          progress: 50
         - name: "Unit testing coverage"
-          id: 3125
+          id: 3050
           progress: 0
         - name: "Functional and integration testing coverage"
-          id: 3128
+          id: 3056
           progress: 0
         - name: "Configuration management"
-          id: 3131
+          id: 3059
           progress: 0
         - name: "GitBook documentation"
-          id: 3134
+          id: 3062
           progress: 0
 repository: 
     url: 
+        - https://github.com/indigo-dc/dynpart
+    comments:
+        - "Currently in branch \\texttt{ffreze}, to be merged into \\texttt{master}."
 code_style:
-    standard: 
-    exceptions: 
-    jenkins_job: 
+    wp3_in_progress: True
+    standard: pep8
+    exceptions: 0
+    jenkins_job:
+    comments:
+        - "Setting progress to 50\\% since the product is adhered to a standard but the code style is not actually being checked (WP3 duty)."
 unit_test:
     coverage: 
     jenkins_job:

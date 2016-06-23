@@ -75,7 +75,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}67\% done\end{huge}} 
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}82\% done\end{huge}} 
 \end{center}
 
 \vspace{4em}
@@ -85,7 +85,7 @@
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
     \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{49\%}\\ 
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{60\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -101,11 +101,12 @@
     %    bar progress label font=\mdseries\footnotesize\color{black!70},
     %    bar top shift=1, bar height=0.8
     %    ]{1}{5}
-    %    \ganttbar[progress=49]{}{1}{5}
+    %    \ganttbar[progress=60]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \greenbox{COMPLETE} \\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \greenbox{COMPLETE} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
-    \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:configuration]{Automated deployment} & \greenbox{COMPLETE} \\
 \end{tabular}
 \end{center}
 
@@ -154,7 +155,7 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=67]{\textbf{\#2867} tts SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=82]{\textbf{\#2867} tts SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
@@ -164,15 +165,15 @@
             name=WBS1A
         ]{\textbf{\#3959} Code style specification}{1}{12} \\
             \ganttbar[
-            progress=49,
+            progress=60,
             name=WBS1A
         ]{\textbf{\#3389} Unit testing coverage}{1}{12} \\
             \ganttbar[
-            progress=100,
+            progress=90,
             name=WBS1A
         ]{\textbf{\#3392} Functional and integration testing coverage}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=50,
             name=WBS1A
         ]{\textbf{\#2870} Configuration management}{1}{12} \\
             \ganttbar[
@@ -186,7 +187,10 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/tts}\end{center}
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/tts}\
+        \end{itemize}
 
 
 \input{title_codestyle.tex}
@@ -203,7 +207,7 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 
 \subsection{Build status}
 Last build status on Jenkins CI
-\href{https://jenkins.indigo-datacloud.eu:8080//job/tts-codestyle/100}{tts-codestyle}.
+\href{https://jenkins.indigo-datacloud.eu:8080//job/tts-codestyle/103}{tts-codestyle}.
 
 
  
@@ -256,17 +260,32 @@ Last build status on Jenkins CI
 \end{center}
 
 \subsection{Build status}
-Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/tts-unittest/86}{tts-unittest}.
-
+    Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/tts-unittest/86}{tts-unittest}.
+    
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%Test at https://jenkins.indigo-datacloud.eu:8080/job/tts-functional/.
-%
-Tests are defined in a \href{https://jenkins.indigo-datacloud.eu:8080/job/tts-functional/}{external CI service}.
-
+\subsection{Build status}
+Last build status on Jenkins CI
+    \href{None}{a}.
+    \href{None}{c}.
+    \href{None}{f}.
+    \href{None}{i}.
+    \href{None}{-}.
+    \href{None}{l}.
+    \href{None}{o}.
+    \href{None}{n}.
+    \href{None}{s}.
+    \href{None}{u}.
+    \href{None}{t}.
+    
+\subsection{Observations}
+\begin{itemize}
+        \item Still getting some errors in Jenkins, locally it works.
+        \item Missing a description (in the task) of functionalities being checked in the provided tests.
+    \end{itemize}
 
 
 \input{title_gitbook.tex}
@@ -285,9 +304,26 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 \input{title_configuration.tex}
 \label{sec:configuration}
 
+\begin{center}
+\begin{tabular}{ll}
+    Tool & \graybox{ansible} \\
+    Deployment coverage & \graybox{None} \\
+    Manifest link & \url{None} \\
+\end{tabular}
+\end{center}
 
-Product does not currently provide a automated deployment solution.
+\subsection{Build status}
+\begin{center}
+\begin{tabular}{ll}
+        \href{None}{Ubuntu 14.04 LTS} & \redbox{failed}\\
+        \href{None}{CentOS7} & \redbox{failed}\\
+    \end{tabular}
+\end{center}
 
+\subsection{Observations}
+\begin{itemize}
+        \item Ansible configuration is on its way.
+    \end{itemize}
 
 
 \newpage

@@ -3,11 +3,11 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 3452
-        progress: 8 
+        progress: 32 
     children:
         - name: "Repository synchronization"
           id: 3455 
-          progress: 0
+          progress: 100
         - name: "Code style specification"
           id: 3458
           progress: 50
@@ -22,15 +22,20 @@ tasks:
           progress: 0
         - name: "GitBook documentation"
           id: 3470
-          progress: 0
+          progress: 90
 repository: 
-    url: 
+    url:
+        - https://github.com/indigo-dc/ophidia-analytics-framework
+        - https://github.com/indigo-dc/ophidia-primitives
+        - https://github.com/indigo-dc/ophidia-server
+        - https://github.com/indigo-dc/ophidia-terminal
 code_style: 
-    standard: 
-    exceptions:
+    wp3_in_progress: True
+    standard: c 
+    exceptions: 0
     jenkins_job:
     comments:
-        - "Product team uses K\\&R indent style. The Jenkins job will be defined whenever the code is available in indigo-dc."
+        - "Product team uses K\\&R indent style. Currently searching for an appropriate tool to check this standard."
 unit_test:
     coverage: 0
     jenkins_job:
@@ -43,9 +48,12 @@ func_int_test:
 gitbook:
     url: https://sandrofiore.gitbooks.io/ophidiabigdata/content/
     types:
-        - Readme
+        - "Readme"
+        - "User documentation"
+        - "Developer documentation"
+        - "Administration documentation"
     comments:
-        - "Documentation of the contributions of Ophidia to INDIGO-DataCloud is not clearly identified. Settin progress to 50\\%."
+        - "GitBook's indigo-dc organization has currently reached the limit of books for the free account. When this situation is sorted out, documentation will be made available at indigo-dc organization."
 config_management:
     tool:   # e.g. ansible, ..
     url:

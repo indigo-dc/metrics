@@ -1,6 +1,6 @@
 id: "IM"
 name: "Infrastructure Manager"
-status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+status_complete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
         id: 2963
@@ -25,7 +25,8 @@ tasks:
           id: 2978
           progress: 100
 repository: 
-    url: https://github.com/indigo-dc/im.git 
+    url:
+        - https://github.com/indigo-dc/im.git 
 code_style:
     standard:
         - pep8
@@ -37,9 +38,14 @@ unit_test:
     coverage: 66
     jenkins_job: im-unittest
     comments:
-        - "Facing some problems with the pytest tool."
+        - "Job execution in Jenkins is currently facing some problems with the pytest tool (WP3 duty)."
 func_int_test:
-    url: # links to external CIs
+    wp3_in_progress: True
+    jenkins_job:
+    url_external: # links to external CIs
+    comments:
+        - "Functional tests have been provided and integration in Jenkins started: \\href{https://jenkins.indigo-datacloud.eu:8080/job/im-functional/}{im-functional}."
+        - "Missing a description (in the task) of functionalities being checked in the provided tests."
 gitbook:
     url: https://indigo-dc.gitbooks.io/im/content/
     types:
@@ -49,7 +55,7 @@ gitbook:
 config_management:
     tool: ansible  # e.g. ansible, ..
     url: https://raw.githubusercontent.com/indigo-dc/im/master/ansible_install.yaml
-    level: installation # values: installation, configuration, installation/configuration
+    level: installation/configuration # values: installation, configuration, installation/configuration
     jenkins_job: im-ansible
     build:
         - version: Ubuntu 14.04 LTS
@@ -59,4 +65,5 @@ config_management:
           successful: True  # True, False
           url: https://jenkins.indigo-datacloud.eu:8080/job/im-ansible/label=ansible-centos/
     comments:
-        - "Task is at 50\\% since the Ansible playbook does not cover configuration. Product team has confirmed that configuration will be added as well."
+        - "Ansible playbook does cover the full deployment (installation and configuration)."
+        - "WP3 working on Ubuntu 14.04 execution, currently failing."

@@ -1,0 +1,71 @@
+id: "onedata"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3101
+        progress: 47 
+    children:
+        - name: "Repository synchronization"
+          id: 3104
+          progress: 100
+        - name: "Code style specification"
+          id: 3851
+          progress: 50
+        - name: "Unit testing coverage"
+          id: 3107
+          progress: 10
+        - name: "Functional and integration testing coverage"
+          id: 3110
+          progress: 10
+        - name: "Configuration management"
+          id: 3113
+          progress: 100
+        - name: "GitBook documentation"
+          id: 3116
+          progress: 50
+repository: 
+    url:
+        - https://github.com/indigo-dc/onedata
+        - https://github.com/indigo-dc/onezone
+        - https://github.com/indigo-dc/oneclient
+        - https://github.com/indigo-dc/luma
+code_style:
+    wp3_in_progress: True
+    standard:
+        - erlang_dializer
+    exceptions: 0
+    jenkins_job:
+unit_test:
+    wp3_in_progress: True
+    coverage: 
+    jenkins_job:
+    comments:
+        - "Currently figuring out the best approach to gather reports from their external CI."
+func_int_test:
+    wp3_in_progress: True
+    url:
+    comments:
+        - "Currently figuring out the best approach to gather reports from their external CI."
+gitbook:
+    url: https://groundnuty.gitbooks.io/onedata-documentation/content/
+    types:
+        - Readme
+        - User documentation
+        - Administrator documentation
+    comments:
+        - "GitBook's indigo-dc organization has currently reached the limit of books for the free account. When this situation is sorted out, documentation will be made available at indigo-dc organization."
+config_management:
+    wont_be_provided: True
+    comments:
+        - "Quoting team comments:\\begin{itemize} \\item When one installs oneprovider/onezone they really just install instance of onepanel. Oneprovider/zone are cluster (multinode) solutions. After installing oneprovider/zone on a number of nodes. User logs into onepanel on any of them, onepanel then detects other instances of onepanel running on other nodes. User uses onepanel to chose which services will be installed on which nodes. \\item Onepanel itself has no configuration variables when installed, hence the packages of oneprovider/onezone (and oneclient) has not configuration options on its own. \\item Onedata currently is being mainly tested and used using docker containers. We provide packages deb/rmps but we prefer for now that users focus on docker releases. Introducing another configuration layer on top of onepanel/docker containers would make the process of installing onedata even harder to grasp. \\item It is possible that in near future it will be possible to integrate our custom solution with ex. Ansible. For that reason, that task is being suspended for now.\\end{itemize}"
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

@@ -84,7 +84,7 @@
 \begin{center}
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
     \hyperref[sec:unit_test]{Code coverage} & \graybox{None\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -103,7 +103,8 @@
     %    ]{1}{5}
     %    \ganttbar[progress=None]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \greenbox{COMPLETE} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \redbox{NOT COMPLETE} \\
     \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
 \end{tabular}
@@ -186,13 +187,22 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/fgAPIServer}\end{center}
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/fgAPIServer}\
+        \item \url{https://github.com/indigo-dc/fgTools}\
+        \item \url{https://github.com/indigo-dc/APIServerDaemon}\
+        \end{itemize}
 
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
 
 
+\subsection{Observations}
+\begin{itemize}
+        \item Standard still to be confirmed by the team.
+    \end{itemize}
 
  
  
@@ -205,10 +215,9 @@ Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%No functional or integration testing provided.
-%%
-No functional or integration testing provided.
-
+    No functional or integration testing provided.
+    
+    
 
 
 \input{title_gitbook.tex}

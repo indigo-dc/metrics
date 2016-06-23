@@ -75,7 +75,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}0\% done\end{huge}} 
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}67\% done\end{huge}} 
 \end{center}
 
 \vspace{4em}
@@ -83,9 +83,9 @@
 \large
 \begin{center}
 \begin{tabular}{ll}
-    \hyperref[sec:repository]{GitHub repository} & \redbox{NOT COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{None\%}\\ 
+    \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{45\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -101,11 +101,12 @@
     %    bar progress label font=\mdseries\footnotesize\color{black!70},
     %    bar top shift=1, bar height=0.8
     %    ]{1}{5}
-    %    \ganttbar[progress=None]{}{1}{5}
+    %    \ganttbar[progress=45]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \redbox{NOT COMPLETE} \\
-    \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:configuration]{Automated deployment} & \greenbox{COMPLETE} \\
 \end{tabular}
 \end{center}
 
@@ -154,25 +155,25 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=0]{\textbf{\#3248} INDIGO IAM SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=67]{\textbf{\#3248} INDIGO IAM SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=100,
             name=WBS1A
         ]{\textbf{\#3254} Repository synchronization}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=100,
             name=WBS1A
         ]{\textbf{\#3251} Code style specification}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=45,
             name=WBS1A
         ]{\textbf{\#3257} Unit testing coverage}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=50,
             name=WBS1A
         ]{\textbf{\#3260} Functional and integration testing coverage}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=100,
             name=WBS1A
         ]{\textbf{\#3263} Configuration management}{1}{12} \\
             \ganttbar[
@@ -186,29 +187,59 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository is currently \textbf{not available} under \href{https://github.com/indigo-dc/}{\texttt{indigo-dc}} GitHub organization.
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/iam}\
+        \end{itemize}
 
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
+\begin{tabular}{ll}
+    Code style definition &
+        \href{https://google.github.io/styleguide/javaguide.html}{Google Java Style} \\
+    Community/de-facto standard &
+        \graybox{Yes} \\ 
+    Exceptions & 
+        \graybox{0} \\
+    Richness & \graybox{\strut 54} \hspace{0.3em} \graybox{\strut Errors 54} \graybox{\strut Warnings 0} \href{https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml}{link}
+\end{tabular}
 
 
+\subsection{Observations}
+\begin{itemize}
+        \item \href{https://jenkins.indigo-datacloud.eu:8080/job/iam-codestyle}{Code style job} at INDIGO Jenkins CI is defined but currently failing (WP3 duty). Meanwhile relying on the URL of the external CI.
+    \end{itemize}
 
  
  
 \input{title_unittest.tex}
 \label{sec:unit_test}
 
-
+\subsection{Build status}
+    Last build status on \href{http://radiohead.cnaf.infn.it:9999/job/iam-master/}{external CI}.
+    
+\subsection{Observations}
+\begin{itemize}
+        \item \href{https://jenkins.indigo-datacloud.eu:8080/job/iam-unittest}{Unit test job} at INDIGO Jenkins CI is defined but currently failing (WP3 duty). Meanwhile relying on the URL of the external CI.
+    \end{itemize}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%No functional or integration testing provided.
-%%
-No functional or integration testing provided.
-
+    Tests currently being defined at Jenkins CI service.
+    
+    \subsection{Test coverage}
+    \begin{enumerate}
+                \item Endpoints extended from \href{https://github.com/mitreid-connect/OpenID-Connect-Java-Spring-Server}{mitreid-connect}.
+                \item Endpoints added by IAM, some integration tests are provided through unit tests.
+            \end{enumerate}
+    
+\subsection{Observations}
+\begin{itemize}
+        \item \href{https://jenkins.indigo-datacloud.eu:8080/job/iam-functional}{Functional job} at INDIGO Jenkins CI is defined but currently failing (WP3 duty).
+    \end{itemize}
 
 
 \input{title_gitbook.tex}
@@ -220,8 +251,11 @@ Documentation is currently \textbf{not available} under \href{https://www.gitboo
 \label{sec:configuration}
 
 
-Product does not currently provide a automated deployment solution.
 
+\subsection{Observations}
+\begin{itemize}
+        \item Team is working on a Puppet module for deploying the product, but won't be available for the 1st release.
+    \end{itemize}
 
 
 \newpage

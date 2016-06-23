@@ -1,51 +1,46 @@
-id: "ONEDock"
+id: "indigo-omt"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3026
-        progress: 58 
+        id: 3434
+        progress: 25
     children:
         - name: "Repository synchronization"
-          id: 3896
+          id: 3830
           progress: 100
         - name: "Code style specification"
-          id: 3899
-          progress: 100
+          id: 3449
+          progress: 50
         - name: "Unit testing coverage"
-          id: 3029
+          id: 3437
           progress: 0
         - name: "Functional and integration testing coverage"
-          id: 3032
+          id: 3440
           progress: 0
         - name: "Configuration management"
-          id: 3035
+          id: 3443
           progress: 0
         - name: "GitBook documentation"
-          id: 3038
-          progress: 100
+          id: 3446
+          progress: 0
 repository: 
-    url: https://github.com/indigo-dc/onedock
-code_style:
-    standard:
-        - pep8
+    url:
+        - https://github.com/indigo-dc/indigo-omt
+code_style: 
+    standard: android
     exceptions: 0
     jenkins_job:
-        - onedock-codestyle
+    comments:
+        - "Currently searching for tools that check this standard."
+        - "Progress set to 50\\% since the team has adhered to a standard but the code is not currently being checked."
 unit_test:
-    coverage: 
+    coverage: 0
     jenkins_job:
-    comments:
-        - "Suggested \\href{https://code.google.com/archive/p/shunit2/}{shunit2} framework."
 func_int_test:
-    wp3_in_progress: True
     url:
-    comments:
-        - "Integration testing recipe has been provided, requiring an OpenNebula installation. Still considering to implement this in Jenkins."
 gitbook:
-    url: https://indigo-dc.gitbooks.io/onedock/content/
+    url: 
     types:
-        - Readme
-        - Deployment documentation
 config_management:
     tool:   # e.g. ansible, ..
     url:

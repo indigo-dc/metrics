@@ -24,7 +24,8 @@ tasks:
           id: 2846
           progress: 0
 repository: 
-    url: https://github.com/indigo-dc/ooi.git 
+    url:
+        - https://github.com/indigo-dc/ooi.git 
 code_style:
     standard:
         - hacking

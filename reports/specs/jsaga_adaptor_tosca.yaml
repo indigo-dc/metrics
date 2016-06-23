@@ -1,49 +1,43 @@
-id: "indigo-kepler"
-name: "INDIGO Plug-ins for scientific workflow systems"
+id: "JSAGA Adaptor for the TOSCA orchestrator"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3530
-        progress: 25 
+        id: 3473
+        progress: 17
     children:
         - name: "Repository synchronization"
-          id: 3833
-          progress: 100
+          id: 3476 
+          progress: 100 
         - name: "Code style specification"
-          id: 3533
-          progress: 50
+          id: 3479
+          progress: 0
         - name: "Unit testing coverage"
-          id: 3536
+          id: 3482
           progress: 0
         - name: "Functional and integration testing coverage"
-          id: 3539
+          id: 3485
           progress: 0
         - name: "Configuration management"
-          id: 3542
+          id: 3488
           progress: 0
         - name: "GitBook documentation"
-          id: 3545
+          id: 3491
           progress: 0
 repository: 
-    url: https://github.com/indigo-dc/indigokepler
-code_style:
-    wp3_in_progress: True
-    standard:
-        - java_sun
-    exceptions: 0
+    url: 
+        - https://github.com/indigo-dc/jsaga-adaptor-tosca
+        - https://github.com/indigo-dc/jsaga-adaptor-rocci
+code_style: 
+    standard: 
+    exceptions: 
     jenkins_job:
-        - indigokepler-codestyle
     comments:
-        - "Job fails to run due to a dependency issue (with indigoclient)."
+        - "Code style still to be confirmed by the team."
 unit_test:
-    wp3_in_progress: True
-    coverage: 
+    coverage: 0
     jenkins_job:
-        - indigokepler-unittest
-    comments:
-        - "Job fails to run due to a dependency issue (with indigoclient)."
 func_int_test:
-    url: # links to external CIs
+    url:
 gitbook:
     url: 
     types:

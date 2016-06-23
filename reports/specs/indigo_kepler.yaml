@@ -1,48 +1,52 @@
-id: "INDIGO-DataCloud CDMI Server"
+id: "indigo-kepler"
+name: "INDIGO Plug-ins for scientific workflow systems"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 2888
-        progress: 50 
+        id: 3530
+        progress: 33
     children:
         - name: "Repository synchronization"
-          id: 3941 
+          id: 3833
           progress: 100
         - name: "Code style specification"
-          id: 3944
+          id: 3533
           progress: 100
         - name: "Unit testing coverage"
-          id: 2891
+          id: 3536
           progress: 0
         - name: "Functional and integration testing coverage"
-          id: 2897
+          id: 3539
           progress: 0
         - name: "Configuration management"
-          id: 2900
+          id: 3542
           progress: 0
         - name: "GitBook documentation"
-          id: 2903
-          progress: 100
+          id: 3545
+          progress: 0
 repository: 
-    url: https://github.com/indigo-dc/CDMI
+    url:
+        - https://github.com/indigo-dc/indigoclient
+        - https://github.com/indigo-dc/indigokepler
 code_style:
     standard:
-        - java_google 
-    exceptions: 0
+        - java_sun
+    exceptions: 3 (ignoreConstructorParameter, ignoreSetter, ignoreAnnotationCanonicalNames)
     jenkins_job:
-        - qos-codestyle
+        - indigokepler-codestyle
 unit_test:
-    coverage: 0 
-    jenkins_job: qos-unittest
+    wp3_in_progress: True
+    coverage: 
+    jenkins_job:
+        - indigokepler-unittest
+    comments:
+        - "Job fails to run due to a dependency issue (with indigoclient)."
 func_int_test:
-    url:
+    jenkins_job:
+    url_external: # links to external CIs
 gitbook:
-    url: https://indigo-dc.gitbooks.io/cdmi-qos/content/
+    url: 
     types:
-        - "Readme"
-        - "Deployment documentation"
-        - "Administration documentation"
-        - "User documentation"
 config_management:
     tool:   # e.g. ansible, ..
     url:

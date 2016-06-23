@@ -1,53 +1,53 @@
-id: "Synergy Scheduler Manager"
+id: "INDIGO-DataCloud CDMI Server"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3788 
-        progress: 67 
+        id: 2888
+        progress: 50 
     children:
         - name: "Repository synchronization"
-          id: 3791
+          id: 3941 
           progress: 100
         - name: "Code style specification"
-          id: 3794
+          id: 3944
           progress: 100
         - name: "Unit testing coverage"
-          id: 3797
+          id: 2891
           progress: 0
         - name: "Functional and integration testing coverage"
-          id: 3800
+          id: 2897
           progress: 0
         - name: "Configuration management"
-          id: 3803
-          progress: 100
+          id: 2900
+          progress: 0
         - name: "GitBook documentation"
-          id: 3806
+          id: 2903
           progress: 100
 repository: 
-    url: https://github.com/indigo-dc/synergy-scheduler-manager 
+    url:
+        - https://github.com/indigo-dc/CDMI
 code_style:
     standard:
-        - hacking 
+        - java_google 
     exceptions: 0
     jenkins_job:
-        - synergy-scheduler-codestyle
+        - qos-codestyle
 unit_test:
     coverage: 0 
-    jenkins_job: synergy-scheduler-unittest
-    comments:
-        - "Percentage is 0\\% because of the conditional coverage, but other methods have higher coverage rates."
+    jenkins_job: qos-unittest
 func_int_test:
     url:
 gitbook:
-    url: https://indigo-dc.gitbooks.io/synergy/content/
+    url: https://indigo-dc.gitbooks.io/cdmi-qos/content/
     types:
         - "Readme"
         - "Deployment documentation"
         - "Administration documentation"
+        - "User documentation"
 config_management:
-    tool: puppet   # e.g. ansible, ..
-    url: https://github.com/indigo-dc/puppet-synergy
-    level: "installation/configuration" # values: installation, configuration, installation/configuration
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
     jenkins_job:
     build:
         - version: Ubuntu 14.04 LTS
@@ -56,5 +56,3 @@ config_management:
         - version: CentOS7
           successful:   # True, False
           url:
-    comments:
-        - "Jenkins jobs pending (WP3 duty)."

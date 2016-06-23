@@ -75,7 +75,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}0\% done\end{huge}} 
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}25\% done\end{huge}} 
 \end{center}
 
 \vspace{4em}
@@ -83,8 +83,8 @@
 \large
 \begin{center}
 \begin{tabular}{ll}
-    \hyperref[sec:repository]{GitHub repository} & \redbox{NOT COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:unit_test]{Code coverage} & \graybox{None\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -103,7 +103,8 @@
     %    ]{1}{5}
     %    \ganttbar[progress=None]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \greenbox{COMPLETE} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \redbox{NOT COMPLETE} \\
     \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
 \end{tabular}
@@ -154,13 +155,13 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=0]{\textbf{\#3041} Partition Director SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=25]{\textbf{\#3041} Partition Director SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=100,
             name=WBS1A
         ]{\textbf{\#3044} Repository synchronization}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=50,
             name=WBS1A
         ]{\textbf{\#3047} Code style specification}{1}{12} \\
             \ganttbar[
@@ -186,13 +187,24 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository is currently \textbf{not available} under \href{https://github.com/indigo-dc/}{\texttt{indigo-dc}} GitHub organization.
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/dynpart}\
+        \end{itemize}
+\subsection{Observations}
+\begin{itemize}
+        \item Currently in branch \texttt{ffreze}, to be merged into \texttt{master}.
+    \end{itemize}
 
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
 
 
+\subsection{Observations}
+\begin{itemize}
+        \item Setting progress to 50\% since the product is adhered to a standard but the code style is not actually being checked (WP3 duty).
+    \end{itemize}
 
  
  
@@ -205,10 +217,9 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%No functional or integration testing provided.
-%%
-No functional or integration testing provided.
-
+    No functional or integration testing provided.
+    
+    
 
 
 \input{title_gitbook.tex}

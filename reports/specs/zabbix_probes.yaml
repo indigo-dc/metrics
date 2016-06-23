@@ -1,39 +1,44 @@
-id: "Partition Director"
+id: "Zabbix Probes"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3041
-        progress: 0 
+        id: 3221
+        progress: 25
     children:
         - name: "Repository synchronization"
-          id: 3044
-          progress: 0
+          id: 3224 
+          progress: 100
         - name: "Code style specification"
-          id: 3047
-          progress: 0
+          id: 3845
+          progress: 50
         - name: "Unit testing coverage"
-          id: 3050
+          id: 3233
           progress: 0
         - name: "Functional and integration testing coverage"
-          id: 3056
+          id: 3236
           progress: 0
         - name: "Configuration management"
-          id: 3059
+          id: 3239
           progress: 0
         - name: "GitBook documentation"
-          id: 3062
+          id: 3242
           progress: 0
 repository: 
-    url: 
+    url:
+        - https://github.com/indigo-dc/Zabbix-probes.git 
 code_style:
-    standard: 
-    exceptions: 
-    jenkins_job: 
+    standard:
+        - java_google
+    exceptions: 0
+    jenkins_job:
+        - zabbix-probes-codestyle
+    comments:
+        - "Progress set to 50\\% since the product is adhered to a standard, but not currently compliant with it."
 unit_test:
     coverage: 
     jenkins_job:
 func_int_test:
-    url:
+    jenkins_job:
 gitbook:
     url:
     types:

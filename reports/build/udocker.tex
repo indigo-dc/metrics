@@ -103,6 +103,7 @@
     %    ]{1}{5}
     %    \ganttbar[progress=25]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
     \hyperref[sec:configuration]{Automated deployment} & \graybox{IN PROGRESS - WP3} \\
@@ -186,7 +187,10 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/udocker}\end{center}
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/udocker}\
+        \end{itemize}
 
 
 \input{title_codestyle.tex}
@@ -256,17 +260,20 @@ Last build status on Jenkins CI
 \end{center}
 
 \subsection{Build status}
-Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/udocker-unittest/19}{udocker-unittest}.
-
+    Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/udocker-unittest/19}{udocker-unittest}.
+    
+\subsection{Observations}
+\begin{itemize}
+        \item Coverage is 25\% since this is the current coverage value for \texttt{lines}. The rest of coverage values are 100\%.
+    \end{itemize}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%Tests currently being defined at Jenkins CI service.
-%%
-Tests currently being defined at Jenkins CI service.
-
+    Tests currently being defined at Jenkins CI service.
+    
+    
 \subsection{Observations}
 \begin{itemize}
         \item Product leader provided both functional and integration tests. WP3 is currently working on the Jenkins CI job definition.

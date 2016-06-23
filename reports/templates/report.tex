@@ -84,7 +84,7 @@
 \begin{center}
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \BLOCK{if product.repository.url}\greenbox{COMPLETE}\BLOCK{else}\redbox{NOT COMPLETE}\BLOCK{endif} \\
-    \hyperref[sec:code_style]{Code style adherence} & \BLOCK{if product.code_style.status_notcomplete}\redbox{NOT COMPLETE}\BLOCK{else}\greenbox{COMPLETE}\BLOCK{endif} \\
+    \hyperref[sec:code_style]{Code style adherence} & \BLOCK{if product.code_style.wp3_in_progress}\graybox{IN PROGRESS - WP3}\BLOCK{elif product.code_style.status_notcomplete}\redbox{NOT COMPLETE}\BLOCK{else}\greenbox{COMPLETE}\BLOCK{endif} \\
     \hyperref[sec:unit_test]{Code coverage} & \BLOCK{if product.unit_test.wp3_in_progress}\graybox{IN PROGRESS - WP3}\BLOCK{else}\graybox{\VAR{product.unit_test.coverage}\%}\BLOCK{endif}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -169,7 +169,12 @@
 \input{title_repository.tex}
 \label{sec:repository}
 \BLOCK{if product.repository.url}
-Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{\VAR{product.repository.url}}\end{center}
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+    \BLOCK{for repo in product.repository.url}
+    \item \url{\VAR{repo}}\
+    \BLOCK{endfor}
+    \end{itemize}
 \BLOCK{else}
 Repository is currently \textbf{not available} under \href{https://github.com/indigo-dc/}{\texttt{indigo-dc}} GitHub organization.
 \BLOCK{endif}
@@ -287,30 +292,29 @@ Last build status on \href{\VAR{product.unit_test.job_url}}{external CI}.
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%\BLOCK{if product.func_int_test.url}
-%Test at \VAR{product.func_int_test.url}.
-%\BLOCK{else}
-%\BLOCK{if product.func_int_test.wp3_in_progress}
-%Tests currently being defined at Jenkins CI service.
-%\BLOCK{else}
-%No functional or integration testing provided.
-%\BLOCK{endif}
-%\BLOCK{endif}
-
 \BLOCK{if product.func_int_test.jobs}
 \subsection{Build status}
 Last build status on Jenkins CI
-\BLOCK{for job_name, job_data in product.func_int_test.jobs.iteritems()}
+    \BLOCK{for job_name, job_data in product.func_int_test.jobs.iteritems()}
 \href{\VAR{job_data.job_url}}{\VAR{job_name}}.
-\BLOCK{endfor}
-\BLOCK{elif product.func_int_test.url}
-Tests are defined in a \href{\VAR{product.func_int_test.url}}{external CI service}.
+    \BLOCK{endfor}
+\BLOCK{elif product.func_int_test.url_external}
+Tests are defined in a \href{\VAR{product.func_int_test.url_external}}{external CI service}.
 \BLOCK{else}
-\BLOCK{if product.func_int_test.wp3_in_progress}
+    \BLOCK{if product.func_int_test.wp3_in_progress}
 Tests currently being defined at Jenkins CI service.
-\BLOCK{else}
+    \BLOCK{else}
 No functional or integration testing provided.
-\BLOCK{endif}
+    \BLOCK{endif}
+
+    \BLOCK{if product.func_int_test.description}
+\subsection{Test coverage}
+    \begin{enumerate}
+        \BLOCK{for item in product.func_int_test.description}
+        \item \VAR{item}
+        \BLOCK{endfor}
+    \end{enumerate}
+    \BLOCK{endif}
 \BLOCK{endif}
 
 \BLOCK{if product.func_int_test.comments}

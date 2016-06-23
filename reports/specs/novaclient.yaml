@@ -1,41 +1,46 @@
-id: "JSAGA Adaptor for the TOSCA orchestrator"
+id: "python-novaclient"
 status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
 tasks:
     parent:
-        id: 3473
-        progress: 0
+        id: 3620 
+        progress: 63 
     children:
         - name: "Repository synchronization"
-          id: 3476 
-          progress: 0
+          id: 3623
+          progress: 100
         - name: "Code style specification"
-          id: 3479
-          progress: 0
+          id: 3626
+          progress: 100
         - name: "Unit testing coverage"
-          id: 3482
-          progress: 0
+          id: 3629
+          progress: 78 
         - name: "Functional and integration testing coverage"
-          id: 3485
-          progress: 0
+          id: 3632
+          progress: 100
         - name: "Configuration management"
-          id: 3488
+          id: 3635
           progress: 0
         - name: "GitBook documentation"
-          id: 3491
+          id: 3638
           progress: 0
 repository: 
-    url: 
-code_style: 
-    standard: 
-    exceptions: 
+    url:
+        - https://github.com/indigo-dc/python-novaclient 
+code_style:
+    standard:
+        - hacking 
+    exceptions: 0
     jenkins_job:
+        - novaclient-codestyle
 unit_test:
-    coverage: 0
-    jenkins_job:
+    coverage: 78
+    jenkins_job: novaclient-unittest
 func_int_test:
     url:
+    comments:
+        - "In this case functional testing does not have much sense, as this is only passing a parameter to the underlying API calls. Moreover, the upstream functional testing actually refers to integration testing, as it needs to run the tests against a working OpenStack environment."
 gitbook:
-    url: 
+    url:
     types:
 config_management:
     tool:   # e.g. ansible, ..

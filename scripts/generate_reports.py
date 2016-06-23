@@ -91,13 +91,18 @@ def load_jinja(fname):
 
 
 def add_jenkins_job(specs, job_type):
-    if "jenkins_job" in specs[job_type]:
+    if "jenkins_job" in specs[job_type].keys():
         if specs[job_type]["jenkins_job"]:
             specs[job_type]["jobs"] = {}
             for j in specs[job_type]["jenkins_job"]:
                 specs[job_type]["jobs"][j] = {}
                 specs[job_type]["jobs"][j]["job_url"] = jenkins.get_last_job_url(j)
                 specs[job_type]["jobs"][j]["job_name"] = j
+    elif "url_external" in specs[job_type].keys():
+        if specs[job_type]["url_external"]:
+            specs[job_type]["jobs"] = specs[job_type]["url_external"]
+            logger.info("External URL for %s found: %s"
+                        % (job_type, specs[job_type]["jobs"]))
 
 
 

@@ -25,7 +25,8 @@ tasks:
           id: 3146
           progress: 100
 repository: 
-    url: https://github.com/indigo-dc/clues-indigo.git
+    url:
+        - https://github.com/indigo-dc/clues-indigo.git
 code_style:
     standard:
         - pep8
@@ -39,7 +40,8 @@ unit_test:
     comments:
         - "Job has not yet been defined (WP3 duty). There are some errors arising when using pytest (for cobertura support)."
 func_int_test:
-    url: # links to external CIs
+    jenkins_job:
+    url_external: # links to external CIs
 gitbook:
     url: https://indigo-dc.gitbooks.io/clues-plugins/content/
     types:

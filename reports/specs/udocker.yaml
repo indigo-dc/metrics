@@ -24,7 +24,8 @@ tasks:
           id: 3659
           progress: 100
 repository: 
-    url: https://github.com/indigo-dc/udocker
+    url: 
+        - https://github.com/indigo-dc/udocker
 code_style: 
     standard:
         - pep8
@@ -34,6 +35,8 @@ code_style:
 unit_test:
     coverage: 25
     jenkins_job: udocker-unittest
+    comments:
+        - "Coverage is 25\\% since this is the current coverage value for \\texttt{lines}. The rest of coverage values are 100\\%."
 func_int_test:
     wp3_in_progress: True
     url:

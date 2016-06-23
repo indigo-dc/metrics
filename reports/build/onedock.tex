@@ -75,7 +75,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}58\% done\end{huge}} 
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}73\% done\end{huge}} 
 \end{center}
 
 \vspace{4em}
@@ -85,7 +85,7 @@
 \begin{tabular}{ll}
     \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
     \hyperref[sec:code_style]{Code style adherence} & \greenbox{COMPLETE} \\
-    \hyperref[sec:unit_test]{Code coverage} & \graybox{None\%}\\ 
+    \hyperref[sec:unit_test]{Code coverage} & \graybox{IN PROGRESS - WP3}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
     %    hgrid style/.style={draw=none, fill=none},
@@ -103,6 +103,7 @@
     %    ]{1}{5}
     %    \ganttbar[progress=None]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
     \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
@@ -154,7 +155,7 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=58]{\textbf{\#3026} ONEDock SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=73]{\textbf{\#3026} ONEDock SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
@@ -164,11 +165,11 @@
             name=WBS1A
         ]{\textbf{\#3899} Code style specification}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=50,
             name=WBS1A
         ]{\textbf{\#3029} Unit testing coverage}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=90,
             name=WBS1A
         ]{\textbf{\#3032} Functional and integration testing coverage}{1}{12} \\
             \ganttbar[
@@ -186,7 +187,10 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/onedock}\end{center}
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/onedock}\
+        \end{itemize}
 
 
 \input{title_codestyle.tex}
@@ -214,20 +218,20 @@ Last build status on Jenkins CI
 
 \subsection{Observations}
 \begin{itemize}
-        \item Suggested \href{https://code.google.com/archive/p/shunit2/}{shunit2} framework.
+        \item No Jenkins job have been defined yet (WP3 duty).
     \end{itemize}
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%Tests currently being defined at Jenkins CI service.
-%%
-Tests currently being defined at Jenkins CI service.
-
+    Tests currently being defined at Jenkins CI service.
+    
+    
 \subsection{Observations}
 \begin{itemize}
         \item Integration testing recipe has been provided, requiring an OpenNebula installation. Still considering to implement this in Jenkins.
+        \item Missing a description (in the task) of functionalities being checked in the provided tests.
     \end{itemize}
 
 

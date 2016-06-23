@@ -4,7 +4,7 @@ status_notcomplete: True   # values: status_accepted, status_notcomplete, status
 tasks:
     parent:
         id: 2867
-        progress: 67 
+        progress: 82
     children:
         - name: "Repository synchronization"
           id: 3956 
@@ -14,18 +14,19 @@ tasks:
           progress: 100
         - name: "Unit testing coverage"
           id: 3389
-          progress: 49
+          progress: 60
         - name: "Functional and integration testing coverage"
           id: 3392
-          progress: 100
+          progress: 90
         - name: "Configuration management"
           id: 2870
-          progress: 0
+          progress: 50
         - name: "GitBook documentation"
           id: 2873
           progress: 50
 repository: 
-    url: https://github.com/indigo-dc/tts 
+    url:
+        - https://github.com/indigo-dc/tts 
 code_style:
     standard:
         - erlang
@@ -33,10 +34,13 @@ code_style:
     jenkins_job:
         - tts-codestyle
 unit_test:
-    coverage: 49 
+    coverage: 60
     jenkins_job: tts-unittest
 func_int_test:
-    url: https://jenkins.indigo-datacloud.eu:8080/job/tts-functional/
+    jenkins_job: tts-functional
+    comments:
+        - "Still getting some errors in Jenkins, locally it works."
+        - "Missing a description (in the task) of functionalities being checked in the provided tests."
 gitbook:
     url: https://indigo-dc.gitbooks.io/token-translation-service/content/
     types:
@@ -44,7 +48,10 @@ gitbook:
     comments:
         - "Checking with the product team if the documentation is complete. Setting progress to 50\\%"
 config_management:
-    tool:   # e.g. ansible, ..
+    status_notcomplete: True
+    comments:
+        - "Ansible configuration is on its way."
+    tool: ansible  # e.g. ansible, ..
     url:
     level:  # values: installation, configuration, installation/configuration
     jenkins_job:

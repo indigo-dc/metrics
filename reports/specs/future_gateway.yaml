@@ -24,11 +24,16 @@ tasks:
           id: 3827
           progress: 0
 repository: 
-    url: https://github.com/indigo-dc/fgAPIServer 
-code_style: 
-    standard:
-    exceptions:
+    url: 
+        - https://github.com/indigo-dc/fgAPIServer 
+        - https://github.com/indigo-dc/fgTools
+        - https://github.com/indigo-dc/APIServerDaemon
+code_style:
+    standard: 
+    exceptions: 0
     jenkins_job:
+    comments:
+        - "Standard still to be confirmed by the team."
 unit_test:
     coverage: 
     jenkins_job:

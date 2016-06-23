@@ -24,7 +24,8 @@ tasks:
           id: 3299
           progress: 100
 repository: 
-    url: https://github.com/indigo-dc/CloudProviderRanker.git 
+    url:
+        - https://github.com/indigo-dc/CloudProviderRanker.git 
 code_style:
     status_notcomplete: True
     standard:
@@ -39,11 +40,12 @@ unit_test:
     jenkins_job: cloudproviderranker-unittest
 func_int_test:
     status_notcomplete: True
-    url: cloudproviderranker-functional
+    jenkins_job: cloudproviderranker-functional
     comments:
         - "Guidelines for testing the server are documented in \\href{https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/chapter1.html}{GitBook}."
         - "Jenkins job is failing with 'Cannot run program \"rpm\": error=2, No such file or directory'."
         - "Missing functionalities being tested in the Jenkins job."
+    url_external: # links to external CIs
 gitbook:
     url: https://indigo-dc.gitbooks.io/cloud-provider-ranker/content/
     types:

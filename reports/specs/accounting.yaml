@@ -25,7 +25,8 @@ tasks:
           id: 3284
           progress: 0
 repository: 
-    url: https://github.com/indigo-dc/Accounting.git
+    url:
+        - https://github.com/indigo-dc/Accounting.git
 code_style:
     standard:
         - pep8
@@ -44,7 +45,7 @@ unit_test:
     comments:
         - "Jenkins job is currently being deployed by WP3. Meanwhile the coverage are obtained through the product's coveralls.io reports."
 func_int_test:
-    url: # links to external CIs
+    url_external: # links to external CIs
     jenkins_job:
 gitbook:
     url:

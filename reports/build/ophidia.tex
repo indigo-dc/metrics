@@ -75,7 +75,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}8\% done\end{huge}} 
+    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}32\% done\end{huge}} 
 \end{center}
 
 \vspace{4em}
@@ -83,8 +83,8 @@
 \large
 \begin{center}
 \begin{tabular}{ll}
-    \hyperref[sec:repository]{GitHub repository} & \redbox{NOT COMPLETE} \\
-    \hyperref[sec:code_style]{Code style adherence} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:repository]{GitHub repository} & \greenbox{COMPLETE} \\
+    \hyperref[sec:code_style]{Code style adherence} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:unit_test]{Code coverage} & \graybox{0\%}\\ 
     %\hyperref[sec:unit_test]{Code coverage} & \begin{ganttchart}[
     %    canvas/.append style={fill=none, draw=none},
@@ -103,7 +103,8 @@
     %    ]{1}{5}
     %    \ganttbar[progress=0]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \greenbox{COMPLETE} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
     \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
 \end{tabular}
@@ -154,9 +155,9 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=8]{\textbf{\#3452} Ophidia analytics workflow interfaces SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=32]{\textbf{\#3452} Ophidia analytics workflow interfaces SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=100,
             name=WBS1A
         ]{\textbf{\#3455} Repository synchronization}{1}{12} \\
             \ganttbar[
@@ -176,7 +177,7 @@
             name=WBS1A
         ]{\textbf{\#3467} Configuration management}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=90,
             name=WBS1A
         ]{\textbf{\#3470} GitBook documentation}{1}{12} \\
      [grid]
@@ -186,16 +187,31 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository is currently \textbf{not available} under \href{https://github.com/indigo-dc/}{\texttt{indigo-dc}} GitHub organization.
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/ophidia-analytics-framework}\
+        \item \url{https://github.com/indigo-dc/ophidia-primitives}\
+        \item \url{https://github.com/indigo-dc/ophidia-server}\
+        \item \url{https://github.com/indigo-dc/ophidia-terminal}\
+        \end{itemize}
 
 
 \input{title_codestyle.tex}
 \label{sec:code_style}
+\begin{tabular}{ll}
+    Code style definition &
+        \href{None}{K\&R indent style} \\
+    Community/de-facto standard &
+        \graybox{Yes} \\ 
+    Exceptions & 
+        \graybox{0} \\
+    Richness & \graybox{\strut None} \hspace{0.3em} \graybox{\strut Errors None} \graybox{\strut Warnings None} \href{None}{link}
+\end{tabular}
 
 
 \subsection{Observations}
 \begin{itemize}
-        \item Product team uses K\&R indent style. The Jenkins job will be defined whenever the code is available in indigo-dc.
+        \item Product team uses K\&R indent style. Currently searching for an appropriate tool to check this standard.
     \end{itemize}
 
  
@@ -213,10 +229,9 @@ Repository is currently \textbf{not available} under \href{https://github.com/in
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%No functional or integration testing provided.
-%%
-No functional or integration testing provided.
-
+    No functional or integration testing provided.
+    
+    
 \subsection{Observations}
 \begin{itemize}
         \item Product team will make scripts available (from their local CI service).
@@ -229,10 +244,13 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 \subsection{Types of documentation currently provided}
 \begin{center}
 \graybox{\strut Readme}
+\graybox{\strut User documentation}
+\graybox{\strut Developer documentation}
+\graybox{\strut Administration documentation}
 \end{center}
 \subsection{Observations}
 \begin{itemize}
-        \item Documentation of the contributions of Ophidia to INDIGO-DataCloud is not clearly identified. Settin progress to 50\%.
+        \item GitBook's indigo-dc organization has currently reached the limit of books for the free account. When this situation is sorted out, documentation will be made available at indigo-dc organization.
     \end{itemize}
 
 

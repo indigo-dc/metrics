@@ -24,7 +24,8 @@ tasks:
           id: 2858
           progress: 100
 repository: 
-    url: https://github.com/indigo-dc/dcache
+    url:
+        - https://github.com/indigo-dc/dcache
 code_style:
     standard:
         - dcache 
@@ -39,7 +40,8 @@ unit_test:
     comments:
         - "Product team needs to point to the unit testing check within the dCache CI server at https://ci.dcache.org."
 func_int_test:
-    url: # links to external CIs
+    jenkins_job:
+    url_external: # links to external CIs
     comments:
         - "WP3 needs to track the functionality checks for the specific parts of the contribution to INDIGO project. Please provide them by either pointing to already existant CI jobs, documentation, etc."
 gitbook:
