@@ -107,9 +107,13 @@ def add_jenkins_job(specs, job_type):
 
 
 def main(fname, specdir, output=None, code_style=None):
+    if os.path.isdir(specdir):
+        spec_yaml_files = glob.glob(os.path.join(specdir, "*.yaml"))
+    elif os.path.isfile(specdir):
+        spec_yaml_files = [specdir]
+
     texfiles = []
     latex_jinja_env = load_jinja(fname)
-    spec_yaml_files = glob.glob(os.path.join(specdir, "*.yaml"))
     current_dir = os.path.dirname(os.path.abspath(__file__))
     if not code_style:
         code_style = load_yaml(os.path.join(current_dir,
@@ -215,7 +219,6 @@ def main(fname, specdir, output=None, code_style=None):
 
 
 if __name__ == "__main__":
-    logger.info("test")
     args = parse_args()
     main(args.template,
          args.specdir,
