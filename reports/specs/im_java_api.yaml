@@ -1,0 +1,63 @@
+id: "im-java-api"
+name: "Infrastructure Manager Java API"
+status_complete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 2981
+        progress: 98
+    children:
+        - name: "Repository synchronization"
+          id: 3929
+          progress: 100
+        - name: "Code style specification"
+          id: 3932
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 2993
+          progress: 86
+        - name: "Functional and integration testing coverage"
+          id: 2984
+          progress: 100
+        - name: "Configuration management"
+          id: 2987
+          progress: 100
+        - name: "GitBook documentation"
+          id: 2990
+          progress: 100
+repository: 
+    url:
+        - https://github.com/indigo-dc/im-java-api
+code_style:
+    standard:
+        - java_google
+    exceptions: 0
+    jenkins_job:
+        - im-java-api-codestyle
+unit_test:
+    coverage: 76 
+    jenkins_job: im-java-api-unittest
+func_int_test:
+    url_external:  # links to external CIs
+    jenkins_job:
+        - im-java-api-functional
+gitbook:
+    url: https://indigo-dc.gitbooks.io/im-java-api/content/ 
+    types:
+        - "Readme"
+        - "Deployment documentation"
+        - "User documentation"
+config_management:
+    wont_be_provided: True
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:
+    comments:
+        - "No configuration management tool will be used for deploying the product: IM-Java-API will be deployable as a JAR file."

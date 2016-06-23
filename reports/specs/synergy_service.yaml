@@ -1,0 +1,64 @@
+id: "Synergy Service"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 2996
+        progress: 68 
+    children:
+        - name: "Repository synchronization"
+          id: 2999 
+          progress: 100
+        - name: "Code style specification"
+          id: 3920
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3923
+          progress: 13
+        - name: "Functional and integration testing coverage"
+          id: 3926
+          progress: 90
+        - name: "Configuration management"
+          id: 3002
+          progress: 40
+        - name: "GitBook documentation"
+          id: 3005
+          progress: 70
+repository: 
+    url:
+        - https://github.com/indigo-dc/synergy-service
+code_style:
+    standard:
+        - hacking 
+    exceptions: 0
+    jenkins_job:
+        - synergy-codestyle
+unit_test:
+    coverage: 13
+    jenkins_job: synergy-unittest
+func_int_test:
+    wp3_in_progress: True
+    url:
+    comments:
+        - "Reports for integration tests have been provided. They have been executed locally at their own testbed."
+        - "Functional tests have been also provided, but not currently checked in INDIGO Jenkins CI. A description (in the task) of functionalities being checked for the functional tests is missing (setting progress to 90\\%)."
+gitbook:
+    url: https://indigo-dc.gitbooks.io/synergy/content/
+    types:
+        - "Readme"
+        - "Deployment documentation"
+        - "Administration documentation"
+config_management:
+    wp3_in_progress: True
+    comments:
+        - "Puppet module created at https://github.com/indigo-dc/puppet-synergy, though not finished as the Synergy product is still changing a bit."
+    tool: puppet # e.g. ansible, ..
+    url: https://github.com/indigo-dc/puppet-synergy
+    level: "installation/configuration" # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

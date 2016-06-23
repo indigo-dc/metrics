@@ -1,0 +1,66 @@
+id: "Orchestrator"
+status_complete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3089
+        progress: 88 
+    children:
+        - name: "Repository synchronization"
+          id: 3854
+          progress: 100
+        - name: "Code style specification"
+          id: 3857
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3425
+          progress: 25
+        - name: "Functional and integration testing coverage"
+          id: 3428
+          progress: 100
+        - name: "Configuration management"
+          id: 3092
+          progress: 100
+        - name: "GitBook documentation"
+          id: 3098
+          progress: 100
+repository: 
+    url:
+        - https://github.com/indigo-dc/orchestrator.git
+code_style:
+    standard:
+        - java_google 
+    exceptions: 0
+    jenkins_job:
+        - orchestrator-codestyle
+unit_test:
+    coverage: 25
+    jenkins_job: orchestrator-unittest
+    comments:
+        - "Unit testing coverage has decreased from last report (30\\%)."
+func_int_test:
+    url:
+    jenkins_job: orchestrator-integration
+    description:
+        - "\\underline{Functional tests}: WF tasks related to the external Services, using mocks (CloudProviderRanker, CMDB, SLAM, Monitoring, Notification callbacks) - 40\\%."
+        - "\\underline{Integration tests}: (without mock) for external services (CloudProviderRanker, CMDB, SLAM – we had some problems with the last couple, but we will fix them soon)."
+gitbook:
+    url: https://indigo-dc.gitbooks.io/orchestrator/content/
+    types:
+        - "Readme"
+        - "API documentation"
+        - "Deployment documentation"
+config_management:
+    wont_be_provided: True
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:
+    comments:
+        - "The orchestrator is a dockerized service that runs on the kubernetes cluster, and the few configurations that it needs can be expressed via environment variables, so it doesn't really need any configuration management tool."

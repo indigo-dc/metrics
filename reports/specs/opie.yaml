@@ -1,0 +1,54 @@
+id: "opie"
+name: "OpenStack Preemptible Instances Extension"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3767 
+        progress: 48
+    children:
+        - name: "Repository synchronization"
+          id: 3770
+          progress: 100
+        - name: "Code style specification"
+          id: 3773
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3776
+          progress: 92 
+        - name: "Functional and integration testing coverage"
+          id: 3779
+          progress: 0
+        - name: "Configuration management"
+          id: 3782
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3785
+          progress: 0
+repository: 
+    url: https://github.com/indigo-dc/opie 
+code_style:
+    standard:
+        - hacking
+    exceptions: 0
+    jenkins_job:
+        - opie-codestyle
+unit_test:
+    coverage: 92
+    jenkins_job: opie-unittest
+func_int_test:
+    url:
+gitbook:
+    url:
+    types:
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

@@ -1,0 +1,61 @@
+id: "indigo-kepler"
+name: "INDIGO Plug-ins for scientific workflow systems"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3530
+        progress: 33
+    children:
+        - name: "Repository synchronization"
+          id: 3833
+          progress: 100
+        - name: "Code style specification"
+          id: 3533
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3536
+          progress: 0
+        - name: "Functional and integration testing coverage"
+          id: 3539
+          progress: 0
+        - name: "Configuration management"
+          id: 3542
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3545
+          progress: 0
+repository: 
+    url:
+        - https://github.com/indigo-dc/indigoclient
+        - https://github.com/indigo-dc/indigokepler
+code_style:
+    standard:
+        - java_sun
+    exceptions: 3 (ignoreConstructorParameter, ignoreSetter, ignoreAnnotationCanonicalNames)
+    jenkins_job:
+        - indigokepler-codestyle
+unit_test:
+    wp3_in_progress: True
+    coverage: 
+    jenkins_job:
+        - indigokepler-unittest
+    comments:
+        - "Job fails to run due to a dependency issue (with indigoclient)."
+func_int_test:
+    jenkins_job:
+    url_external: # links to external CIs
+gitbook:
+    url: 
+    types:
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

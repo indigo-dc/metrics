@@ -75,7 +75,7 @@
 \Large
 \vspace{-3em}
 \begin{center}
-    \graybox{\strut SQA Progress Status}\redbox{\strut NOT COMPLETE}\\[0.5em]\redbox{\strut \begin{huge}75\% done\end{huge}} 
+    \graybox{\strut SQA Progress Status}\greenbox{\strut COMPLETE}\\[0.5em]\greenbox{\strut \begin{huge}92\% done\end{huge}} 
 \end{center}
 
 \vspace{4em}
@@ -103,9 +103,10 @@
     %    ]{1}{5}
     %    \ganttbar[progress=None]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:func_int_test]{Functional/integration testing} & \graybox{IN PROGRESS - WP3} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \greenbox{COMPLETE} \\
-    \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:configuration]{Automated deployment} & \graybox{IN PROGRESS - WP3} \\
 \end{tabular}
 \end{center}
 
@@ -154,7 +155,7 @@
         title label node/.append style={below left=7pt and -3pt}
     ]{WEEKS:\quad1}{1}
     \gantttitlelist{2,...,12}{1} \\
-    \ganttgroup[progress=75]{\textbf{\#2906} rOCCI SQA FOR 1ST RELEASE}{1}{12} \\
+    \ganttgroup[progress=92]{\textbf{\#2906} rOCCI SQA FOR 1ST RELEASE}{1}{12} \\
             \ganttbar[
             progress=100,
             name=WBS1A
@@ -172,7 +173,7 @@
             name=WBS1A
         ]{\textbf{\#2915} Functional and integration testing coverage}{1}{12} \\
             \ganttbar[
-            progress=0,
+            progress=100,
             name=WBS1A
         ]{\textbf{\#2918} Configuration management}{1}{12} \\
             \ganttbar[
@@ -186,7 +187,10 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/rOCCI-server.git}\end{center}
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/rOCCI-server.git}\
+        \end{itemize}
 
 
 \input{title_codestyle.tex}
@@ -221,10 +225,9 @@ Last build status on Jenkins CI
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%Tests currently being defined at Jenkins CI service.
-%%
-Tests currently being defined at Jenkins CI service.
-
+    Tests currently being defined at Jenkins CI service.
+    
+    
 \subsection{Observations}
 \begin{itemize}
         \item Pending job definition: The set of functional tests is documented here: https://github.com/arax/kitchen-occi
@@ -243,9 +246,19 @@ Documentation available under \texttt{indigo-dc} GitBook organization: \vspace{0
 \input{title_configuration.tex}
 \label{sec:configuration}
 
+\begin{center}
+\begin{tabular}{ll}
+    Tool & \graybox{puppet} \\
+    Deployment coverage & \graybox{configuration} \\
+    Manifest link & \url{https://github.com/EGI-FCTF/rOCCI-server/blob/master/examples/etc/puppet/manifests/site.pp} \\
+\end{tabular}
+\end{center}
 
-Product does not currently provide a automated deployment solution.
 
+\subsection{Observations}
+\begin{itemize}
+        \item Puppet manifest provided for configuring rOCCI-server.
+    \end{itemize}
 
 
 \newpage

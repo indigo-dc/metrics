@@ -103,7 +103,8 @@
     %    ]{1}{5}
     %    \ganttbar[progress=78]{}{1}{5}
     %\end{ganttchart} \vspace{0.6em}\\
-    \hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    %\hyperref[sec:func_int_test]{Functional/integration testing} & \redbox{NOT COMPLETE} \\
+    \hyperref[sec:func_int_test]{Functional/integration testing} & \greenbox{COMPLETE} \\
     \hyperref[sec:gitbook]{GitBook documentation} & \redbox{NOT COMPLETE} \\
     \hyperref[sec:configuration]{Automated deployment} & \redbox{NOT COMPLETE} \\
 \end{tabular}
@@ -186,7 +187,10 @@
 
 \input{title_repository.tex}
 \label{sec:repository}
-Repository exists under \texttt{indigo-dc} GitHub organization: \vspace{0.1em} \begin{center}\url{https://github.com/indigo-dc/python-novaclient}\end{center}
+Repository exists under \texttt{indigo-dc} GitHub organization:
+    \begin{itemize}
+        \item \url{https://github.com/indigo-dc/python-novaclient}\
+        \end{itemize}
 
 
 \input{title_codestyle.tex}
@@ -212,17 +216,16 @@ Last build status on Jenkins CI
 \label{sec:unit_test}
 
 \subsection{Build status}
-Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/novaclient-unittest/2}{novaclient-unittest}.
-
+    Last build status on Jenkins CI \href{https://jenkins.indigo-datacloud.eu:8080//job/novaclient-unittest/2}{novaclient-unittest}.
+    
 
 
 \input{title_functional_integration.tex}
 \label{sec:func_int_test}
 
-%%%No functional or integration testing provided.
-%%
-No functional or integration testing provided.
-
+    No functional or integration testing provided.
+    
+    
 \subsection{Observations}
 \begin{itemize}
         \item In this case functional testing does not have much sense, as this is only passing a parameter to the underlying API calls. Moreover, the upstream functional testing actually refers to integration testing, as it needs to run the tests against a working OpenStack environment.

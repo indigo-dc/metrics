@@ -1,0 +1,55 @@
+id: "indigo-omt"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3434
+        progress: 25
+    children:
+        - name: "Repository synchronization"
+          id: 3830
+          progress: 100
+        - name: "Code style specification"
+          id: 3449
+          progress: 50
+        - name: "Unit testing coverage"
+          id: 3437
+          progress: 0
+        - name: "Functional and integration testing coverage"
+          id: 3440
+          progress: 0
+        - name: "Configuration management"
+          id: 3443
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3446
+          progress: 0
+repository: 
+    url:
+        - https://github.com/indigo-dc/indigo-omt
+code_style: 
+    standard: android
+    exceptions: 0
+    jenkins_job:
+    comments:
+        - "Currently searching for tools that check this standard."
+        - "Progress set to 50\\% since the team has adhered to a standard but the code is not currently being checked."
+unit_test:
+    coverage: 0
+    jenkins_job:
+func_int_test:
+    url:
+gitbook:
+    url: 
+    types:
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

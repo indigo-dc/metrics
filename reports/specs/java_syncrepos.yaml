@@ -1,0 +1,63 @@
+id: "java-syncrepos"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3065 
+        progress: 72
+    children:
+        - name: "Repository synchronization"
+          id: 3068
+          progress: 100
+        - name: "Code style specification"
+          id: 3071
+          progress: 100
+        - name: "Unit testing coverage"
+          id: 3074
+          progress: 29
+        - name: "Functional and integration testing coverage"
+          id: 3077
+          progress: 50
+        - name: "Configuration management"
+          id: 3080
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3083
+          progress: 0
+repository: 
+    url:
+        - https://github.com/indigo-dc/java-syncrepos 
+code_style:
+    standard:
+        - java_google 
+    exceptions: 0
+    jenkins_job:
+        - syncrepos-codestyle
+unit_test:
+    coverage: 29
+    jenkins_job: syncrepos-unittest
+func_int_test:
+    wp3_in_progress: True
+    url:
+    comments:
+        - "Functional test provided but not currently implemented in Jenkins CI. Setting progress to 50\\%."
+        - "Missing a description (in the task) of functionalities being checked in the provided tests."
+gitbook:
+    url: "https://www.gitbook.com/book/jose-sanchezm/java-syncrepos/details"
+    types:
+        - "Readme"
+        - "Deployment documentation"
+    comments:
+        - "GitBook's indigo-dc organization has currently reached the limit of books for the free account. When this situation is sorted out, documentation will be made available at indigo-dc organization."
+
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:

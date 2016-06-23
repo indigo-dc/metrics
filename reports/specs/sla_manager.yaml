@@ -1,0 +1,51 @@
+id: "SLA Manager"
+status_notcomplete: True   # values: status_accepted, status_notcomplete, status_inprogress
+tasks:
+    parent:
+        id: 3194
+        progress: 0 
+    children:
+        - name: "Repository synchronization"
+          id: 3200
+          progress: 0
+        - name: "Code style specification"
+          id: 3860
+          progress: 0
+        - name: "Unit testing coverage"
+          id: 3203
+          progress: 0
+        - name: "Functional and integration testing coverage"
+          id: 3206
+          progress: 0
+        - name: "Configuration management"
+          id: 3209
+          progress: 0
+        - name: "GitBook documentation"
+          id: 3212
+          progress: 0
+repository: 
+    url: 
+code_style:
+    standard: 
+    exceptions: 
+    jenkins_job: 
+unit_test:
+    coverage: 
+    jenkins_job:
+func_int_test:
+    url:
+gitbook:
+    url:
+    types:
+config_management:
+    tool:   # e.g. ansible, ..
+    url:
+    level:  # values: installation, configuration, installation/configuration
+    jenkins_job:
+    build:
+        - version: Ubuntu 14.04 LTS
+          successful:   # True, False
+          url:
+        - version: CentOS7
+          successful:   # True, False
+          url:
