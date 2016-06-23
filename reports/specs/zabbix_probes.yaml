@@ -27,6 +27,7 @@ repository:
     url:
         - https://github.com/indigo-dc/Zabbix-probes.git 
 code_style:
+    status_notcomplete: True
     standard:
         - java_google
     exceptions: 0
@@ -35,9 +36,10 @@ code_style:
     comments:
         - "Progress set to 50\\% since the product is adhered to a standard, but not currently compliant with it."
 unit_test:
-    coverage: 
+    coverage: 0 
     jenkins_job:
 func_int_test:
+    status_notcomplete: True
     jenkins_job:
 gitbook:
     url:

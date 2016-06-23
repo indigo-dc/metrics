@@ -27,16 +27,19 @@ repository:
     url: 
         - https://github.com/indigo-dc/jsaga-adaptor-tosca
         - https://github.com/indigo-dc/jsaga-adaptor-rocci
-code_style: 
+code_style:
+    status_notcomplete: True
     standard: 
     exceptions: 
     jenkins_job:
     comments:
         - "Code style still to be confirmed by the team."
 unit_test:
-    coverage: 0
+    status_notcomplete: True
+    coverage:
     jenkins_job:
 func_int_test:
+    status_notcomplete: True
     url:
 gitbook:
     url: 
