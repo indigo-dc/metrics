@@ -40,6 +40,7 @@ unit_test:
     comments:
         - "Product team needs to point to the unit testing check within the dCache CI server at https://ci.dcache.org."
 func_int_test:
+    status_notcomplete: True
     jenkins_job:
     url_external: # links to external CIs
     comments:

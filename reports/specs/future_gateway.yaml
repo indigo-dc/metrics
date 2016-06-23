@@ -35,9 +35,11 @@ code_style:
     comments:
         - "Standard still to be confirmed by the team."
 unit_test:
+    status_notcomplete: True
     coverage: 
     jenkins_job:
 func_int_test:
+    status_notcomplete: True
     url: # links to external CIs
 gitbook:
     url: 

@@ -44,6 +44,7 @@ unit_test:
     comments:
         - "Jenkins job is currently being deployed by WP3. Meanwhile the coverage are obtained through the product's coveralls.io reports."
 func_int_test:
+    status_notcomplete: True
     url_external: # links to external CIs
     jenkins_job:
 gitbook:
