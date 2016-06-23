@@ -38,7 +38,6 @@ code_style:
     comments:
         - "Task is at 50\\% of progress since the standards are defined (PEP 8, PEP 257) but the Jenkins jobs are failing."
 unit_test:
-    wp3_in_progress: True
     coverage: 64
     jenkins_job: #accounting-unittest
     url_external: https://coveralls.io/github/apel/rest?branch=dev # links to external CIs
