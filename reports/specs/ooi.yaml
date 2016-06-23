@@ -36,6 +36,7 @@ unit_test:
     coverage: 91 
     jenkins_job: ooi-unittest
 func_int_test:
+    status_notcomplete: True
     url:
 gitbook:
     url:

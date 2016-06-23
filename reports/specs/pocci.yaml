@@ -36,7 +36,7 @@ unit_test:
     coverage: 22 
     jenkins_job: pocci-unittest
 func_int_test:
-    wp3_in_progress: True
+    status_notcomplete: True
     url:
     comments:
         - "Integration tests provided, currently figuring out whether it will be implemented in INDIGO Jenkins CI."

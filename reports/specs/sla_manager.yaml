@@ -26,13 +26,15 @@ tasks:
 repository: 
     url: 
 code_style:
+    status_notcomplete: True
     standard: 
     exceptions: 
     jenkins_job: 
 unit_test:
-    coverage: 
+    coverage: 0
     jenkins_job:
 func_int_test:
+    status_notcomplete: True
     url:
 gitbook:
     url:

@@ -36,6 +36,7 @@ unit_test:
     coverage: 92
     jenkins_job: opie-unittest
 func_int_test:
+    status_notcomplete: True
     url:
 gitbook:
     url:

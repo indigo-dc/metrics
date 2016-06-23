@@ -38,6 +38,7 @@ unit_test:
     comments:
         - "Percentage is 9\\% because of the conditional coverage, but other methods have higher coverage rates."
 func_int_test:
+    status_notcomplete: True
     url:
     comments:
         - "Reports for integration tests have been provided. They have been executed locally at their own testbed."

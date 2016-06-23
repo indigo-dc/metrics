@@ -38,6 +38,7 @@ unit_test:
     comments:
         - "Unit testing have been provided, but currently errors arise when gathering code coverage. Setting progress to 50\\%."
 func_int_test:
+    status_notcomplete: True
     url:
 gitbook:
     url:

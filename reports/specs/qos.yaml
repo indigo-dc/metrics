@@ -36,6 +36,7 @@ unit_test:
     coverage: 0 
     jenkins_job: qos-unittest
 func_int_test:
+    status_notcomplete: True
     url:
 gitbook:
     url: https://indigo-dc.gitbooks.io/cdmi-qos/content/

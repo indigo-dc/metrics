@@ -42,10 +42,12 @@ unit_test:
     comments:
         - "Product team will make scripts available (from their local CI service)."
 func_int_test:
+    status_notcomplete: True
     url:
     comments:
         - "Product team will make scripts available (from their local CI service)."
 gitbook:
+    status_notcomplete: True
     url: https://sandrofiore.gitbooks.io/ophidiabigdata/content/
     types:
         - "Readme"

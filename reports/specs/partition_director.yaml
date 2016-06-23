@@ -36,9 +36,10 @@ code_style:
     comments:
         - "Setting progress to 50\\% since the product is adhered to a standard but the code style is not actually being checked (WP3 duty)."
 unit_test:
-    coverage: 
+    coverage: 0 
     jenkins_job:
 func_int_test:
+    status_notcomplete: True
     url:
 gitbook:
     url:
