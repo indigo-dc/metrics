@@ -191,7 +191,7 @@ def main(fname, specdir, output=None, code_style=None):
         template = latex_jinja_env.get_template(os.path.basename(fname))
         r = template.render(
             product=specs,
-            period="13-17 Jun 2016",
+            period="20-24 Jun 2016",
             weeks=12,
             current_week=10,
         )
