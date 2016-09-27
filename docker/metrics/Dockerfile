@@ -3,6 +3,7 @@ MAINTAINER Pablo Orviz <orviz@ifca.unican.es>
 
 USER root
 
+RUN apt-get clean
 RUN apt-get update
 RUN apt-get -y install python git
 
@@ -40,17 +41,17 @@ RUN python setup.py install
 #		       python3-dateutil \
 #		       python3-jinja
 #
-RUN apt-get -y install software-properties-common
-RUN apt-add-repository -y 'deb http://archive.ubuntu.com/ubuntu/ wily universe'
-RUN apt-get update
-RUN apt-get -y install python3-pymysql
-RUN apt-add-repository -y -r 'deb http://archive.ubuntu.com/ubuntu/ wily universe'
-RUN apt-get update
+#RUN apt-get -y install software-properties-common
+#RUN apt-add-repository -y 'deb http://archive.ubuntu.com/ubuntu/ wily universe'
+#RUN apt-get update
+#RUN apt-get -y install python3-pymysql
+#RUN apt-add-repository -y -r 'deb http://archive.ubuntu.com/ubuntu/ wily universe'
+#RUN apt-get update
 
 WORKDIR $tooldir
 RUN git clone https://github.com/MetricsGrimoire/sortinghat.git
 WORKDIR ${tooldir}/sortinghat
-RUN python3.4 setup.py install
+RUN python setup.py install
 
 
 # bicho
