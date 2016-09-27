@@ -35,11 +35,11 @@ RUN python setup.py install
 
 
 # sortinghat
-RUN apt-get -y install python3.4 \
-		       python3-sqlalchemy \
-		       python3-dateutil \
-		       python3-jinja
-
+#RUN apt-get -y install python3.4 \
+#		       python3-sqlalchemy \
+#		       python3-dateutil \
+#		       python3-jinja
+#
 RUN apt-get -y install software-properties-common
 RUN apt-add-repository -y 'deb http://archive.ubuntu.com/ubuntu/ wily universe'
 RUN apt-get update
@@ -76,7 +76,7 @@ RUN apt-get -y install python-pip \
 ADD https://pypi.python.org/packages/source/g/github3.py/github3.py-1.0.0a1.tar.gz /tmp/github3.py-1.0.0a1.tar.gz
 RUN tar xvfz /tmp/github3.py-1.0.0a1.tar.gz -C /tmp/
 WORKDIR /tmp/github3.py-1.0.0a1
-RUN python setup.py install
+RUN python setup.py install ; exit 0 # urltemplate false positive
 WORKDIR $tooldir
 RUN git clone https://github.com/MetricsGrimoire/pullpo.git
 WORKDIR ${tooldir}/pullpo
