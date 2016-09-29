@@ -92,7 +92,7 @@ RUN python setup.py install
 
 
 # R & VizGrimoire
-apt-get -y install r-base \
+RUN apt-get -y install r-base \
 		   python-rpy2 \
 		   python-scipy \
 		   python-jinja2 \ 
@@ -106,7 +106,7 @@ ENV metrics_repo_path $tooldir/metrics
 ENV automator_repo_path $tooldir/Automator
 RUN git clone https://github.com/orviz/Automator.git
 RUN git clone https://github.com/indigo-dc/metrics.git 
-RUN sed -i '/exit 0/i\source /root/.sqa/sqarc\ncd $metrics_repo_path && git pull origin master\ncd $automator_repo_path && git pull origin master'
+#RUN sed -i '/exit 0/i\source /root/.sqa/sqarc\ncd $metrics_repo_path && git pull origin master\ncd $automator_repo_path && git pull origin master'
 
 
 # misc 
