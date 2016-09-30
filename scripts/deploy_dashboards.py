@@ -118,17 +118,17 @@ logger.addHandler(ch)
 
 parser = argparse.ArgumentParser(description="Deploy indigo-dc VizGrimoire dashboards")
 parser.add_argument('db_user',
-                    metavar="USERID",
+                    metavar="DB_USER",
                     type=str,
                     default="indigo.dc",
                     help="MetricsDB user ID.")
 parser.add_argument('db_password',
-                    metavar="PASSWORD",
+                    metavar="DB_PASSWORD",
                     type=str,
                     default="",
                     help="MetricsDB user password.")
 parser.add_argument('db_host',
-                    metavar="HOST",
+                    metavar="DB_HOST",
                     type=str,
                     default="metricsdb",
                     help="MetricsDB host.")
@@ -293,7 +293,8 @@ def main():
     # CREATE workspace
     create_workspace()
     org_data = json.loads(urllib2.urlopen("https://api.github.com/orgs/indigo-dc/repos").read())
-    for repo in org_data:
+    #for repo in org_data:
+    for repo in [{"name": "CDMI"}]:
         name = repo["name"]
         repo_url = os.path.join(args.organization_url, name)
 
