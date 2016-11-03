@@ -57,3 +57,8 @@ dashboards will be accesible via:
 
 which uses GitHub Pages for creating the websites.
 
+In the current implementation, the metrics manager container exposes a service (port 5000, see 
+below) that will receive POSTs from GitHub webhooks to create/update the dashboard for the given 
+repository. For that purpose it uses [Python GitHub Webhooks](https://github.com/carlos-jenkins/python-github-webhooks)
+tool, which will run the [hook](https://github.com/indigo-dc/metrics/raw/master/scripts/hooks/all)
+for triggering the `deploy_dashboard.py` execution.
