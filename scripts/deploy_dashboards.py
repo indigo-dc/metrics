@@ -117,18 +117,22 @@ logger.addHandler(ch)
 
 
 parser = argparse.ArgumentParser(description="Deploy indigo-dc VizGrimoire dashboards")
+parser.add_argument('repository',
+                    metavar="REPOSITORY",
+                    type=str,
+                    help="GitHub repository name ('indigo_all' for the whole organization).")
 parser.add_argument('db_user',
-                    metavar="USERID",
+                    metavar="DB_USER",
                     type=str,
                     default="indigo.dc",
                     help="MetricsDB user ID.")
 parser.add_argument('db_password',
-                    metavar="PASSWORD",
+                    metavar="DB_PASSWORD",
                     type=str,
                     default="",
                     help="MetricsDB user password.")
 parser.add_argument('db_host',
-                    metavar="HOST",
+                    metavar="DB_HOST",
                     type=str,
                     default="metricsdb",
                     help="MetricsDB host.")
@@ -292,9 +296,50 @@ def exec_command(lcmd, abort=False, stderr_to_stdout=True):
 def main():
     # CREATE workspace
     create_workspace()
-    org_data = json.loads(urllib2.urlopen("https://api.github.com/orgs/indigo-dc/repos").read())
-    for repo in org_data:
-        name = repo["name"]
+    if args.repository == "indigo_all":
+    	org_data = json.loads(urllib2.urlopen("https://api.github.com/orgs/indigo-dc/repos").read())
+	repos = [repo["name"] for repo in org_data]
+	repos = [
+            #{"name": "accounting"},
+            #{"name": "cloud-info-provider"},
+            #{"name": "CloudProviderRanker"},
+            #{"name": "clues-indigo"},
+            #{"name": "CDMI"},
+            ##{"name": "dcache"},
+            #{"name": "fgapiserver"},
+            #{"name": "heat-translator"},
+            #{"name": "identity-harmonization"},
+            #{"name": "im"},
+            #{"name": "im-java-api"},
+            #{"name": "iam"},
+            #{"name": "indigokepler"},
+            #{"name": "omt-android"},
+            #{"name": "java-reposync"},
+            #{"name": "jsaga"},
+            ##{"name": "jsaga-adaptor-rocci"},
+            #{"name": "jsaga-adaptor-tosca"},
+            #{"name": "liferayiam"},
+            #{"name": "python-novaclient"},
+            #{"name": "onedock"},
+            #{"name": "ooi"},
+            ##{"name": "python-openstackclient"},
+            #{"name": "ophidia-server"},
+            #{"name": "opie"},
+            #{"name": "orchestrator"},
+            #{"name": "dynpart"},
+            #{"name": "pocci"},
+            #{"name": "rocci-server"},
+            #{"name": "synergy-service"},
+            #{"name": "synergy-scheduler-manager"},
+            ##{"name": "tosca-parser"},
+            #{"name": "tts"},
+            #{"name": "udocker"},
+            #{"name": "monitoring"},
+        ]
+    else:
+        repos = [args.repository]
+
+    for name in repos:
         repo_url = os.path.join(args.organization_url, name)
 
         logger.debug("Managing project '%s'" % name)
@@ -313,7 +358,7 @@ def main():
         #clone_repo("https://github.com/VizGrimoire/GrimoireLib.git",
         clone_repo("https://github.com/orviz/GrimoireLib.git",
                    os.path.join(tool_dir, "GrimoireLib"),
-		   branch="remote_host_db_support",
+		   branch="indigo",
                    backup=False)
         logger.debug("Tool GrimoireLib added")
 
