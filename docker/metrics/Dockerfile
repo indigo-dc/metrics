@@ -5,7 +5,7 @@ USER root
 
 RUN apt-get clean
 RUN apt-get update
-RUN apt-get -y install python git
+RUN apt-get -y install python git vim
 
 ENV tooldir /srv/tools
 RUN mkdir -p $tooldir
@@ -108,7 +108,13 @@ RUN git clone https://github.com/orviz/Automator.git
 RUN git clone https://github.com/indigo-dc/metrics.git 
 #RUN sed -i '/exit 0/i\source /root/.sqa/sqarc\ncd $metrics_repo_path && git pull origin master\ncd $automator_repo_path && git pull origin master'
 
+# webhook
+WORKDIR /srv
+ENV webhook_repo_path /srv/python-github-webhooks
+RUN git clone https://github.com/carlos-jenkins/python-github-webhooks
+RUN ln -s ${metrics_repo_path}/scripts/hooks/all ${webhook_repo_path}/hooks/ 
+WORKDIR $webhook_repo_path
+RUN pip install -r requirements.txt
 
-# misc 
-WORKDIR /root
-RUN apt-get -y install vim
+EXPOSE 5000
+CMD ["python", "webhooks.py"]
