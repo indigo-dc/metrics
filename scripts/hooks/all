@@ -1,0 +1,55 @@
+#!/usr/bin/env python
+
+import json
+import os
+import os.path
+from subprocess import Popen, PIPE
+import sys
+
+deploy_dashboard_script = "/srv/metrics/scripts/deploy_dashboards.py"
+sqarc_file = "/root/.sqa/sqarc"
+
+def read_github_payload(fname):
+    with open(fname) as f:
+        data = json.load(f)
+    return data
+
+# Taken from http://stackoverflow.com/questions/31117531/load-environment-variables-from-a-shell-script
+def get_sqarc_vars():
+    p = Popen(['bash', '-c', 'source {} && env'.format(sqarc_file)], stdout=PIPE)
+    return {tup[0].strip(): tup[1].strip() for tup in map(lambda s: s.strip().split('=', 1), p.stdout)}
+
+
+payload_fname, event = sys.argv[1:]
+if not os.path.exists(payload_fname):
+    sys.exit("GitHub payload JSON file not found!")
+
+payload_data = read_github_payload(payload_fname)
+environ = get_sqarc_vars()
+
+repo = payload_data["repository"]["name"]
+db_user = environ["MYSQL_USER"]
+db_pass = environ["MYSQL_PASSWORD"]
+db_host = environ["MYSQL_HOST"]
+github_token_id = environ["GITHUB_TOKEN"]
+
+print("CMD: %s" % ' '.join([
+	deploy_dashboard_script,
+    	repo,
+    	db_user,
+    	db_pass,
+    	db_host,
+    	github_token_id]))
+
+p = Popen([
+	deploy_dashboard_script,
+    	repo,
+    	db_user,
+    	db_pass,
+    	db_host,
+    	github_token_id],
+    stdout=PIPE,
+    stderr=PIPE)
+stdout, stderr = p.communicate()
+
+print (stdout, stderr)
