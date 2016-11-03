@@ -28,6 +28,16 @@ the Docker image triggers at boot time.
 Just run the `run_container.sh` script to deploy both the MetricsDB and the 
 collector containers.
 
+This script expects a file in `/root/.sqa/sqarc` with all the following environment variables 
+defined:
+
+- REPO_PATH
+- MYSQL_ROOT_PASSWORD
+- MYSQL_USER
+- MYSQL_PASSWORD
+- MYSQL_HOST
+- GITHUB_TOKEN
+
 ## Generating repository dashboards
 
 Tackled by `deploy_dashboards.py` script, it needs credentials (passed through 
@@ -35,7 +45,7 @@ positional arguments) in order to get access to the MetricsDB and to push dashbo
 to GitHub. Usually it will be ok with:
 
 ```
-	deploy_dashboards.py $MYSQL_USER $MYSQL_PASSWORD $MYSQL_HOST $GITHUB_TOKEN
+	deploy_dashboards.py <repo> $MYSQL_USER $MYSQL_PASSWORD $MYSQL_HOST $GITHUB_TOKEN
 ```
 
 Once `deploy_dashboards.py` has been triggered in the collector, the
